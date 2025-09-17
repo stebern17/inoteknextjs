@@ -14,7 +14,7 @@ function NewsSection() {
     const fetchNews = async () => {
       try {
         const res = await fetch(
-          "http://localhost:1337/api/articles?populate=*"
+          "https://sublime-animal-0e42b737fe.strapiapp.com/api/articles?populate=*"
         );
 
         if (!res.ok) throw new Error("Gagal fetch data");
@@ -25,10 +25,10 @@ function NewsSection() {
         const mapped = data.data.map((item) => ({
           id: item.id,
           title: item.title,
-          category: item.category?.category || "News",
-          image: item.image?.formats?.medium?.url
-            ? `http://localhost:1337${item.image.formats.medium.url}`
-            : `http://localhost:1337${item.image?.url}`,
+          category: item.category?.name || "News",
+          image: item.cover?.formats?.medium?.url
+            ? item.cover.formats.medium.url
+            : item.cover?.url,
           link: `/news/${item.id}`, // routing ke halaman detail
         }));
 
