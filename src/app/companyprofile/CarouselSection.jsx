@@ -4,10 +4,10 @@ import { Carousel } from "flowbite-react";
 import React from "react";
 
 const crslitem = [
-  { src: "/Images/crsl1.jpg", alt: "Slide 1" },
-  { src: "/Images/crsl2.jpg", alt: "Slide 2" },
-  { src: "/Images/crsl3.jpg", alt: "Slide 3" },
-  { src: "/Images/crsl4.jpg", alt: "Slide 4" },
+  { src: "/images/crsl1.jpg", alt: "Slide 1" },
+  { src: "/images/crsl2.jpg", alt: "Slide 2" },
+  { src: "/images/crsl3.jpg", alt: "Slide 3" },
+  { src: "/images/crsl4.jpg", alt: "Slide 4" },
 ];
 
 function CarouselSection() {
@@ -27,7 +27,7 @@ function CarouselSection() {
       </Carousel>
 
       <img
-        src="/Images/LogoHeader.png"
+        src="/images/LogoHeader.png"
         alt="Header Nichiha Inotek"
         className="
           absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2

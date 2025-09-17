@@ -8,7 +8,7 @@ function ProductSection() {
       <div className="content md:flex grid-cols-1 ">
         <div className="md:w-[50%] w-full flex justify-center">
           <ImageMagnifier
-            src="/Images/EXSeriesImage.png"
+            src="/images/EXSeriesImage.png"
             className={"w-full"}
             magnifierHeight={100}
             magnifierWidth={100}
