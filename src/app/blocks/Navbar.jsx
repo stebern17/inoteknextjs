@@ -64,7 +64,13 @@ function NavbarHeader() {
 
       {/* Mobile Menu */}
       {isOpen && (
-        <div className="lg:hidden fixed w-full bg-white shadow-lg">
+        <div
+          className="lg:hidden absolute top-full left-0 w-full bg-white shadow-lg" // <-- Ubah 'fixed' jadi 'absolute' dan tambahkan 'top-full'
+          style={{
+            maxHeight: "calc(100vh - 4.5rem)", // Contoh: kurangi tinggi navbar (misal 72px = 4.5rem)
+            overflowY: "auto",
+          }}
+        >
           <ul className="flex flex-col items-center space-y-4 py-6 font-display text-lg font-medium">
             {menus.map((menu) => (
               <li key={menu.path}>
