@@ -5,6 +5,7 @@ import React from "react";
 function VideoSection() {
   return (
     <section className="flex justify-center items-center">
+      {/* note : mobile bisa vh full dengan syarat ada video resolusi mobile */}
       <video
         src="/videos/VideoProfile.mp4"
         controls

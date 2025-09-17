@@ -13,14 +13,7 @@
 
 
 
+
 @theme {
   --font-display: 'Barlow', sans-serif;
-}
-
-.carousel-container::-webkit-scrollbar {
-  display: none;
-}
-.carousel-container {
-  -ms-overflow-style: none;  /* IE & Edge */
-  scrollbar-width: none;     /* Firefox */
 }

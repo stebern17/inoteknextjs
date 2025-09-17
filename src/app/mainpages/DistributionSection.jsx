@@ -9,12 +9,13 @@ function ClosingSection() {
           Jangkauan Distribusi
         </h2>
         <p className="text-justify md:text-lg text-base">
-          PT Inotek Karya Mandiri hadir sebagai distributor resmi nasional
-          Nichiha, dengan jaringan distribusi yang luas dan terintegrasi di
-          seluruh Indonesia. Didukung oleh tim profesional dan sistem logistik
-          yang handal, kami memastikan setiap proyek dapat memperoleh akses
-          terhadap produk wall panel premium dari Jepang dengan kualitas dan
-          layanan terbaik.
+          <span className="font-bold">PT Inotek Karya Mandiri</span> hadir
+          sebagai distributor resmi nasional Nichiha, dengan jaringan distribusi
+          yang luas dan terintegrasi di seluruh Indonesia. Didukung oleh tim
+          profesional dan sistem logistik yang handal, kami memastikan setiap
+          proyek dapat memperoleh akses terhadap produk{" "}
+          <span className="font-bold">wall panel premium dari Jepang</span>{" "}
+          dengan kualitas dan layanan terbaik.
         </p>
       </div>
     </section>

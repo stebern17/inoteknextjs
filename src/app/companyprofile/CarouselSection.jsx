@@ -1,7 +1,8 @@
 "use client";
 
-import { Carousel } from "flowbite-react";
+import { Carousel, createTheme } from "flowbite-react";
 import React from "react";
+import { IoIosArrowForward, IoIosArrowBack } from "react-icons/io";
 
 const crslitem = [
   { src: "/images/crsl1.jpg", alt: "Slide 1" },
@@ -10,11 +11,32 @@ const crslitem = [
   { src: "/images/crsl4.jpg", alt: "Slide 4" },
 ];
 
+const carouselTheme = createTheme({
+  scrollContainer: {
+    base: "flex h-full snap-mandatory overflow-y-hidden overflow-x-scroll scroll-smooth scrollbar-hide rounded-none",
+    snap: "snap-x",
+  },
+
+  indicators: {
+    wrapper: "hidden",
+  },
+});
+
 function CarouselSection() {
   return (
-    // pastikan section relatif agar posisi absolute logo bekerja terhadap section ini
+    // bissa min h-screen
     <section className="relative">
-      <Carousel slideInterval={5000} className="lg:h-screen md:h-96 h-64">
+      <Carousel
+        slideInterval={5000}
+        leftControl={
+          <IoIosArrowBack className="text-white opacity-60 size-10 hidden lg:block" />
+        }
+        rightControl={
+          <IoIosArrowForward className="text-white opacity-60 size-10 hidden lg:block" />
+        }
+        className="h-screen"
+        theme={carouselTheme}
+      >
         {crslitem.map((item, index) => (
           <div key={index} className="w-full h-full relative">
             <img

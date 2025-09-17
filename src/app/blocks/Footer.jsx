@@ -47,16 +47,28 @@ function Footer() {
           <h2 className="text-xl font-bold text-[#0253AE]">Perusahaan</h2>
           <ul className="flex flex-col gap-2 text-sm">
             <li>
-              <Link href="/companyprofile">Tentang Kami</Link>
+              <Link
+                href="/companyprofile"
+                className="inline-block hover:scale-110 transition-transform duration-300"
+              >
+                Tentang Kami
+              </Link>
             </li>
             <li>
-              <Link href="/companyprofile">Visi & Misi</Link>
+              <Link
+                href="/companyprofile"
+                className="inline-block hover:scale-110 transition-transform duration-300"
+              >
+                Visi & Misi
+              </Link>
             </li>
             <li>
-              <Link href="/companyprofile">Budaya</Link>
-            </li>
-            <li>
-              <Link href="/companyprofile">Hubungi Kami</Link>
+              <Link
+                href="/companyprofile"
+                className="inline-block hover:scale-110 transition-transform duration-300"
+              >
+                Budaya
+              </Link>
             </li>
           </ul>
         </div>
@@ -66,19 +78,42 @@ function Footer() {
           <h2 className="text-xl font-bold text-[#0253AE]">Produk</h2>
           <ul className="flex flex-col gap-2 text-sm">
             <li>
-              <Link href="/companyprofile">Produk Kami</Link>
+              <Link
+                href="/companyprofile"
+                className="inline-block hover:scale-110 transition-transform duration-300"
+              >
+                Produk Kami
+              </Link>
             </li>
             <li>
-              <Link href="/companyprofile">Keunggulan</Link>
+              <Link
+                href="/companyprofile"
+                className="inline-block hover:scale-110 transition-transform duration-300"
+              >
+                Keunggulan
+              </Link>
             </li>
             <li>
-              <Link href="/companyprofile">EX Series 1820</Link>
+              <Link
+                href="/companyprofile"
+                className="inline-block hover:scale-110 transition-transform duration-300"
+              >
+                EX Series 1820
+              </Link>
             </li>
             <li>
-              <Link href="/companyprofile">EX Series 3030</Link>
+              <Link
+                href="/companyprofile"
+                className="inline-block hover:scale-110 transition-transform duration-300"
+              >
+                EX Series 3030
+              </Link>
             </li>
             <li>
-              <Link href="/companyprofile">
+              <Link
+                href="/companyprofile"
+                className="inline-block hover:scale-110 transition-transform duration-300"
+              >
                 EX Series 3030 New Introduction
               </Link>
             </li>
