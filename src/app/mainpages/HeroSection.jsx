@@ -3,11 +3,11 @@ import React, { use } from "react";
 
 function HeroSection() {
   return (
-    <section className="content flex flex-col font-display justify-center lg:py-24 gap-3">
-      <h2 className="text-xl md:text-2xl md:text-left text-center font-bold text-[#0253AE]">
+    <section className="content flex flex-col font-display justify-center lg:py-16 gap-3">
+      <h2 className="text-lg md:text-2xl md:text-left text-center font-bold text-[#0253AE]">
         PT INOTEK KARYA MANDIRI : MAKES LIVING SIMPLE
       </h2>
-      <p className="text-justify text-base flex flex-col gap-5 md:text-lg">
+      <p className="text-justify text-xs flex flex-col gap-5 md:text-[16px]">
         <span>
           Kami dipercaya sebagai{" "}
           <span className="font-bold">distributor resmi nasional Nichiha</span>,

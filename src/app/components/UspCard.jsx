@@ -4,7 +4,7 @@ import React from "react";
 
 function UspCard({ image, title, icon, reverse }) {
   return (
-    <div className="w-full md:h-[500px] grid grid-cols-2 bg-gray-200 rounded-xl overflow-hidden shadow-lg font-display">
+    <div className="w-full md:h-[400px] grid grid-cols-2 bg-gray-200 rounded-xl overflow-hidden shadow-lg font-display">
       {!reverse ? (
         <>
           {/* Gambar kiri */}
@@ -21,9 +21,9 @@ function UspCard({ image, title, icon, reverse }) {
             <img
               src={icon}
               alt={`${title} icon`}
-              className="md:size-32 size-24"
+              className="md:size-28 size-20"
             />
-            <h2 className="text-xl md:text-3xl font-bold">{title}</h2>
+            <h2 className="text-xs md:text-xl font-bold">{title}</h2>
           </div>
         </>
       ) : (
@@ -33,9 +33,9 @@ function UspCard({ image, title, icon, reverse }) {
             <img
               src={icon}
               alt={`${title} icon`}
-              className="md:size-32 size-24"
+              className="md:size-28 size-20"
             />
-            <h2 className="text-xl md:text-3xl font-bold">{title}</h2>
+            <h2 className="text-xs md:text-xl font-bold">{title}</h2>
           </div>
 
           {/* Gambar kanan */}

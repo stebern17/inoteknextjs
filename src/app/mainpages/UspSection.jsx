@@ -33,7 +33,7 @@ const uspData = [
 
 function UspSection() {
   return (
-    <section className="lg:px-32 px-4 grid grid-cols-1 gap-12">
+    <section className="content grid grid-cols-1 gap-12 w-full">
       {uspData.map((usp, index) => (
         <UspCard
           key={index}

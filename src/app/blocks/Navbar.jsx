@@ -25,11 +25,11 @@ function NavbarHeader() {
         <img
           src="/logo-inotek.svg"
           alt="Inotek Karya Mandiri"
-          className="lg:h-12 h-8"
+          className="lg:h-10 h-8"
         />
 
         {/* Menu Desktop */}
-        <ul className="hidden lg:flex md:space-x-8 lg:space-x-16 font-display text-xl font-medium">
+        <ul className="hidden lg:flex md:space-x-8 lg:space-x-16 font-display text-lg font-medium">
           {menus.map((menu) => (
             <li
               key={menu.path}

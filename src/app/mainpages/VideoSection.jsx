@@ -9,7 +9,7 @@ function VideoSection() {
       <video
         src="/videos/VideoProfile.mp4"
         controls
-        className="lg:min-h-screen object-cover"
+        className="min-h-screen object-cover"
         controlsList="nodownload noremoteplayback"
         autoPlay
         muted
