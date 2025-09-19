@@ -1,6 +1,7 @@
 "use client";
 
 import { useState, useEffect } from "react";
+import Link from "next/link";
 
 export default function Tabs() {
   const [catalogData, setCatalogData] = useState([]);
@@ -46,7 +47,8 @@ export default function Tabs() {
           id: t.id,
           product: t.product?.Name || "Unknown",
           category: t.Kind || "Uncategorized",
-          coverImage: t.CoverImage?.url || null, // use full URL directly
+          coverImage: t.CoverImage?.url || null,
+          link: `/product/productdetail/${t.id}`, // use full URL directly
           variants: (t.variants || [])
             .map((tv) => {
               const variant = variantMap[tv.id];
@@ -131,37 +133,36 @@ export default function Tabs() {
       <div className="mt-8 grid grid-cols-2 lg:grid-cols-3 gap-4">
         {filteredData.length > 0 ? (
           filteredData.map((item) => (
-            <div
-              key={item.id}
-              className="border-t border-s border-gray-300 rounded-xl overflow-hidden mx-auto p-3 shadow-[4px_4px_2px_0_rgba(0,0,0,0.25)] hover:shadow-lg transition-shadow duration-300 w-full max-w-xs"
-            >
-              {item.coverImage && (
-                <img
-                  src={item.coverImage}
-                  alt={`${item.product} - ${item.category}`}
-                  className="w-full h-40 object-cover rounded-xl"
-                />
-              )}
-              {/* List varian */}
-              <div className="mt-2 grid grid-cols-3 gap-2">
-                {item.variants.map((v) => (
-                  <div key={v.id} className="text-center">
-                    {v.image ? (
-                      <img
-                        src={v.image}
-                        alt={v.name}
-                        className="w-full h-20 object-cover rounded-md border border-gray-400"
-                      />
-                    ) : (
-                      <div className="w-full h-20 flex items-center justify-center bg-gray-100 text-xs text-gray-500 rounded-md">
-                        {v.name}
-                      </div>
-                    )}
-                    <p className="text-xs mt-1">{v.name}</p>
-                  </div>
-                ))}
+            <Link key={item.id} href={item.link}>
+              <div className="border-t border-s border-gray-300 rounded-xl overflow-hidden mx-auto p-3 shadow-[4px_4px_2px_0_rgba(0,0,0,0.25)] hover:shadow-lg transition-shadow duration-300 w-full max-w-xs">
+                {item.coverImage && (
+                  <img
+                    src={item.coverImage}
+                    alt={`${item.product} - ${item.category}`}
+                    className="w-full h-40 object-cover rounded-xl"
+                  />
+                )}
+                {/* List varian */}
+                <div className="mt-2 grid grid-cols-3 gap-2">
+                  {item.variants.map((v) => (
+                    <div key={v.id} className="text-center">
+                      {v.image ? (
+                        <img
+                          src={v.image}
+                          alt={v.name}
+                          className="w-full h-20 object-cover rounded-md border border-gray-400"
+                        />
+                      ) : (
+                        <div className="w-full h-20 flex items-center justify-center bg-gray-100 text-xs text-gray-500 rounded-md">
+                          {v.name}
+                        </div>
+                      )}
+                      <p className="text-xs mt-1">{v.name}</p>
+                    </div>
+                  ))}
+                </div>
               </div>
-            </div>
+            </Link>
           ))
         ) : (
           <p className="col-span-full text-center text-gray-500">
