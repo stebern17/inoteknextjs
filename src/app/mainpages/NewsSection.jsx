@@ -14,7 +14,7 @@ function NewsSection() {
     const fetchNews = async () => {
       try {
         const res = await fetch(
-          "https://sublime-animal-0e42b737fe.strapiapp.com/api/articles?populate=*"
+          "https://reassuring-horses-d6fc23943c.strapiapp.com/api/articles?populate=*"
         );
 
         if (!res.ok) throw new Error("Gagal fetch data");
@@ -25,11 +25,9 @@ function NewsSection() {
         const mapped = data.data.map((item) => ({
           id: item.id,
           title: item.title,
-          category: item.category?.name || "News",
-          image: item.cover?.formats?.medium?.url
-            ? item.cover.formats.medium.url
-            : item.cover?.url,
-          link: `/news/${item.id}`, // routing ke halaman detail
+          category: item.category?.category || "News",
+          image: item.image?.formats?.medium?.url || item.cover?.url || null, // Use full URL as is
+          link: `/news/${item.id}`,
         }));
 
         setArticles(mapped);

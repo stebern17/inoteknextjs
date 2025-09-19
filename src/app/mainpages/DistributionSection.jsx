@@ -8,7 +8,7 @@ function ClosingSection() {
         <h2 className="md:text-2xl text-lg md:text-left text-center font-bold text-[#0253AE]">
           Jangkauan Distribusi
         </h2>
-        <p className="text-justify md:text-lg text-xs">
+        <p className="text-justify md:text-[16px] text-s">
           <span className="font-bold">PT Inotek Karya Mandiri</span> hadir
           sebagai distributor resmi nasional Nichiha, dengan jaringan distribusi
           yang luas dan terintegrasi di seluruh Indonesia. Didukung oleh tim

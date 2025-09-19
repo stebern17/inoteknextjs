@@ -5,10 +5,10 @@ import { FaCheckCircle } from "react-icons/fa";
 function CompanyIntroduce() {
   return (
     <section className="content flex flex-col font-display justify-center lg:py-24 gap-3">
-      <h2 className="text-xl md:text-2xl md:text-left text-center font-bold text-[#0253AE]">
+      <h2 className="text-lg md:text-2xl md:text-left text-center font-bold text-[#0253AE]">
         PT INOTEK KARYA MANDIRI
       </h2>
-      <div className="space-y-4 text-justify md:text-lg text-base">
+      <div className="space-y-4 text-justify md:text-[16px] text-sm">
         <p>
           PT Inotek Karya Mandiri adalah perusahaan distribusi yang berkomitmen
           menghadirkan produk material bangunan berkualitas tinggi dengan desain
@@ -26,7 +26,7 @@ function CompanyIntroduce() {
           dan gaya hidup penggunanya.
         </p>
       </div>
-      <div className="md:text-lg text-base">
+      <div className="md:text-[16px] text-sm">
         <p>
           Melalui kemitraan strategis bersama NICHIHA, PT Inotek Karya Mandiri
           menghadirkan solusi panel luar bangunan yang mengedepankan:
@@ -54,7 +54,7 @@ function CompanyIntroduce() {
           </ListItem>
         </List>
       </div>
-      <div className="space-y-4 text-justify md:text-lg text-base">
+      <div className="space-y-4 text-justify md:text-[16px] text-sm">
         <p>
           Dengan dukungan tim yang profesional, layanan distribusi nasional,
           serta komitmen terhadap kualitas, kami siap menjadi bagian dari

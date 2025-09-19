@@ -6,7 +6,12 @@ function InotekSection() {
       <img
         src="/images/NilaiBudaya.png"
         alt="Nilai Budaya"
-        className="mx-auto object-cover"
+        className="mx-auto object-cover hidden md:block"
+      />
+      <img
+        src="/images/nilaibudaya-potrait.png"
+        alt="Nilai Budaya"
+        className="mx-auto object-cover block md:hidden"
       />
     </section>
   );

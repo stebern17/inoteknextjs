@@ -10,10 +10,13 @@ export default function Tabs() {
   useEffect(() => {
     async function fetchCatalog() {
       try {
-        // Fetch dua API
         const [typesRes, variantsRes] = await Promise.all([
-          fetch("http://localhost:1337/api/types?populate=*"),
-          fetch("http://localhost:1337/api/variants?populate=*"),
+          fetch(
+            "https://reassuring-horses-d6fc23943c.strapiapp.com/api/types?populate=*"
+          ),
+          fetch(
+            "https://reassuring-horses-d6fc23943c.strapiapp.com/api/variants?populate=*"
+          ),
         ]);
 
         if (!typesRes.ok || !variantsRes.ok) {
@@ -23,36 +26,34 @@ export default function Tabs() {
         const typesJson = await typesRes.json();
         const variantsJson = await variantsRes.json();
 
-        // Mapping variants jadi dictionary by id
         const variantMap = {};
         variantsJson.data.forEach((v) => {
+          // Use the full URL from VarianImage.formats.small.url or fallback to VarianImage.url
           const img =
             v.VarianImage?.formats?.small?.url ||
             v.VarianImage?.formats?.thumbnail?.url ||
-            v.VarianImage?.url;
-
+            v.VarianImage?.url ||
+            null;
           variantMap[v.id] = {
             id: v.id,
             name: v.Name,
-            image: img ? `http://localhost:1337${img}` : null,
+            image: img, // full URL, no prefix needed
             category: v.typevariant?.Kind || null,
           };
         });
 
-        // Gabungkan types + variants
-        const mapped = typesJson.data.map((t) => {
-          return {
-            id: t.id,
-            product: t.product?.Name || "Unknown",
-            category: t.Kind || "Uncategorized",
-            coverImage: t.CoverImage?.url
-              ? `http://localhost:1337${t.CoverImage.url}`
-              : null,
-            variants: (t.variants || [])
-              .map((tv) => variantMap[tv.id])
-              .filter(Boolean),
-          };
-        });
+        const mapped = typesJson.data.map((t) => ({
+          id: t.id,
+          product: t.product?.Name || "Unknown",
+          category: t.Kind || "Uncategorized",
+          coverImage: t.CoverImage?.url || null, // use full URL directly
+          variants: (t.variants || [])
+            .map((tv) => {
+              const variant = variantMap[tv.id];
+              return variant || null;
+            })
+            .filter(Boolean),
+        }));
 
         setCatalogData(mapped);
       } catch (err) {
