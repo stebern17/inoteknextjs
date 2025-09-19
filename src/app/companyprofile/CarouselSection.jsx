@@ -5,10 +5,10 @@ import React from "react";
 import { IoIosArrowForward, IoIosArrowBack } from "react-icons/io";
 
 const crslitem = [
-  { src: "/images/crsl1.jpg", alt: "Slide 1" },
-  { src: "/images/crsl2.jpg", alt: "Slide 2" },
-  { src: "/images/crsl3.jpg", alt: "Slide 3" },
-  { src: "/images/crsl4.jpg", alt: "Slide 4" },
+  { src: "/nichiha/images/crsl1.jpg", alt: "Slide 1" },
+  { src: "/nichiha/images/crsl2.jpg", alt: "Slide 2" },
+  { src: "/nichiha/images/crsl3.jpg", alt: "Slide 3" },
+  { src: "/nichiha/images/crsl4.jpg", alt: "Slide 4" },
 ];
 
 const carouselTheme = createTheme({

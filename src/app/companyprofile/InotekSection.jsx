@@ -4,12 +4,12 @@ function InotekSection() {
   return (
     <section className="content bg-[#00408A] w-full flex flex-col justify-center lg:min-h-screen py-24 lg:py-0">
       <img
-        src="/images/NilaiBudaya.png"
+        src="/nichiha/images/NilaiBudaya.png"
         alt="Nilai Budaya"
         className="mx-auto object-cover hidden md:block"
       />
       <img
-        src="/images/nilaibudaya-potrait.png"
+        src="/nichiha/images/nilaibudaya-potrait.png"
         alt="Nilai Budaya"
         className="mx-auto object-cover block md:hidden"
       />

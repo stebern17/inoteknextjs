@@ -23,7 +23,7 @@ function NavbarHeader() {
       <div className="content mx-auto flex justify-between items-center py-4 px-6">
         {/* Logo */}
         <img
-          src="/logo-inotek.svg"
+          src="/nichiha/logo-inotek.svg"
           alt="Inotek Karya Mandiri"
           className="lg:h-10 h-8"
         />

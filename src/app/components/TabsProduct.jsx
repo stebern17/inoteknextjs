@@ -118,7 +118,7 @@ export default function Tabs() {
           <button
             key={cat}
             onClick={() => setActiveCategory(cat)}
-            className={`pb-1 text-sm w-full ${
+            className={`pb-1 text-sm xl:text-lg w-full ${
               activeCategory === cat
                 ? "text-[#0253AE] border-b-2 border-[#0253AE]"
                 : "text-gray-800 hover:text-[#0253AE]"

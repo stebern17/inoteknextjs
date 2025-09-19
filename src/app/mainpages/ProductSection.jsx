@@ -8,7 +8,7 @@ function ProductSection() {
       <div className="content md:flex grid-cols-1 ">
         <div className="md:w-[50%] w-full flex justify-center">
           <ImageMagnifier
-            src="/images/EXSeriesImage.png"
+            src="/nichiha/images/EXSeriesImage.png"
             className={"w-full"}
             magnifierHeight={100}
             magnifierWidth={100}
@@ -18,7 +18,7 @@ function ProductSection() {
         </div>
         <div className="flex flex-col md:w-[50%] w-full space-y-4">
           <img
-            src="/images/LogoNichihaExSeries.png"
+            src="/nichiha/images/LogoNichihaExSeries.png"
             alt="LogoNichiha"
             className="w-[30%]"
           />
@@ -40,7 +40,7 @@ function ProductSection() {
             </p>
           </div>
           <img
-            src="/images/ExSeries3030.png"
+            src="/nichiha/images/ExSeries3030.png"
             alt="ExSeries3030"
             className="w-[80%] h-auto"
           />
