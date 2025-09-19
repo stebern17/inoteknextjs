@@ -4,7 +4,15 @@ import withFlowbiteReact from "flowbite-react/plugin/nextjs";
 const nextConfig = {
   reactStrictMode: true,
   basePath: "/nichiha",
-  // assetPrefix: "/nichiha/", // ⚠️ disable dulu
+  async redirects() {
+    return [
+      {
+        source: "/",              // akses root domain
+        destination: "/nichiha",  // redirect ke /nichiha
+        permanent: false,
+      },
+    ];
+  },
 };
 
 export default withFlowbiteReact(nextConfig);
