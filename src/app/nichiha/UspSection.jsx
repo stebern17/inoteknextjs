@@ -6,28 +6,28 @@ import UspCard from "../components/UspCard";
 const uspData = [
   {
     title: "Premium Japanese Standard",
-    icon: "nichiha/icons/QualityIcon.png",
-    image: "nichiha/images/PremiumJapanese.png",
+    icon: "/icons/QualityIcon.png",
+    image: "/images/PremiumJapanese.png",
   },
   {
     title: "Ease of Installation & Maintenance",
-    icon: "nichiha/icons/MaintenanceIcon.png",
-    image: "nichiha/images/Maintenance.png",
+    icon: "/icons/MaintenanceIcon.png",
+    image: "/images/Maintenance.png",
   },
   {
     title: "Sustainable & Eco-Friendly Material",
-    icon: "nichiha/icons/EcoIcon.png",
-    image: "nichiha/images/Eco.png",
+    icon: "/icons/EcoIcon.png",
+    image: "/images/Eco.png",
   },
   {
     title: "Any Weather Product",
-    icon: "nichiha/icons/WeatherIcon.png",
-    image: "nichiha/images/Weather.png",
+    icon: "/icons/WeatherIcon.png",
+    image: "/images/Weather.png",
   },
   {
     title: "No Mortar, No Mess",
-    icon: "nichiha/icons/NomeshIcon.png",
-    image: "nichiha/images/Nomesh.png",
+    icon: "/icons/NomeshIcon.png",
+    image: "/images/Nomesh.png",
   },
 ];
 

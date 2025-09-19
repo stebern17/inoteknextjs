@@ -2,17 +2,7 @@ import withFlowbiteReact from "flowbite-react/plugin/nextjs";
 
 /** @type {import('next').NextConfig} */
 const nextConfig = {
-  reactStrictMode: true,
-  basePath: "/nichiha",
-  async redirects() {
-    return [
-      {
-        source: "/",              // akses root domain
-        destination: "/nichiha",  // redirect ke /nichiha
-        permanent: false,
-      },
-    ];
-  },
+    allowedDevOrigins: ['192.168.1.21', 'local-origin.dev', '*.local-origin.dev'],
 };
 
 export default withFlowbiteReact(nextConfig);

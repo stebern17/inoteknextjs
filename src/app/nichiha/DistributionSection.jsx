@@ -3,10 +3,7 @@ import React from "react";
 function ClosingSection() {
   return (
     <section className="content w-full flex flex-col lg:py-24 py-16 space-y-4 font-display">
-      <img
-        src="/nichiha/images/jangkauan-distribusi.png"
-        alt="Jangkauan distribusi"
-      />
+      <img src="/images/jangkauan-distribusi.png" alt="Jangkauan distribusi" />
       <div>
         <h2 className="md:text-2xl text-lg md:text-left text-center font-bold text-[#0253AE]">
           Jangkauan Distribusi

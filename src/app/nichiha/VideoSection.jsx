@@ -7,7 +7,7 @@ function VideoSection() {
     <section className="flex justify-center items-center">
       {/* note : mobile bisa vh full dengan syarat ada video resolusi mobile */}
       <video
-        src="/nichiha/videos/VideoProfile.mp4"
+        src="/videos/VideoProfile.mp4"
         controls
         className="min-h-screen object-cover"
         controlsList="nodownload noremoteplayback"

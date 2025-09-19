@@ -11,7 +11,7 @@ function NavbarHeader() {
   const pathname = usePathname();
 
   const menus = [
-    { label: "BERANDA", path: "/" },
+    { label: "BERANDA", path: "/nichiha" },
     { label: "COMPANY PROFILE", path: "/companyprofile" },
     { label: "PRODUK", path: "/product" },
   ];
@@ -23,7 +23,7 @@ function NavbarHeader() {
       <div className="content mx-auto flex justify-between items-center py-4 px-6">
         {/* Logo */}
         <img
-          src="/nichiha/logo-inotek.svg"
+          src="/logo-inotek.svg"
           alt="Inotek Karya Mandiri"
           className="lg:h-10 h-8"
         />

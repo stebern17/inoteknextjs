@@ -10,7 +10,7 @@ function Footer() {
         {/* Logo */}
         <div className="col-span-1 flex flex-col gap-4">
           <img
-            src="/nichiha/logo-inotek.svg"
+            src="/logo-inotek.svg"
             alt="Inotek Karya Mandiri"
             className="w-40 h-auto"
           />
@@ -29,27 +29,15 @@ function Footer() {
         <div className="flex flex-col gap-4">
           <h2 className="text-xl font-bold text-[#0253AE]">Kontak</h2>
           <div className="flex items-center gap-2">
-            <img
-              src="/nichiha/icons/Email.svg"
-              alt="email"
-              className="w-6 h-6"
-            />
+            <img src="/icons/Email.svg" alt="email" className="w-6 h-6" />
             <p className="text-sm">info@inotekkaryamandiri.com</p>
           </div>
           <div className="flex items-center gap-2">
-            <img
-              src="/nichiha/icons/TelponIcon.svg"
-              alt="Phone"
-              className="w-6 h-6"
-            />
+            <img src="/icons/TelponIcon.svg" alt="Phone" className="w-6 h-6" />
             <p className="text-sm">(0274) 4332395</p>
           </div>
           <div className="flex items-center gap-2">
-            <img
-              src="/nichiha/icons/Whatsapp.svg"
-              alt="Whatsapp"
-              className="w-6 h-6"
-            />
+            <img src="/icons/Whatsapp.svg" alt="Whatsapp" className="w-6 h-6" />
             <p className="text-sm">0851 6884 2909</p>
           </div>
         </div>
