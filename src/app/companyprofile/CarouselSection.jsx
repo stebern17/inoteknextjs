@@ -48,7 +48,7 @@ function CarouselSection() {
         ))}
       </Carousel>
 
-      <img
+      {/* <img
         src="/images/LogoHeader.png"
         alt="Header Nichiha Inotek"
         className="
@@ -58,7 +58,7 @@ function CarouselSection() {
           lg:w-96 lg:h-auto lg:top-1/4 lg:-translate-y-0
           pointer-events-none
         "
-      />
+      /> */}
     </section>
   );
 }
