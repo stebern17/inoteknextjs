@@ -15,8 +15,8 @@ const uspData = [
     image: "/images/Maintenance.png",
   },
   {
-    title: "Sustainable & Eco-Friendly Material",
-    icon: "/icons/EcoIcon.png",
+    title: "High-Durability Material",
+    icon: "/icons/DurabilityIcon.png",
     image: "/images/Eco.png",
   },
   {
