@@ -4,6 +4,7 @@ import UspSection from "./mainpages/UspSection";
 import ProductSection from "./mainpages/ProductSection";
 import NewsSection from "./mainpages/NewsSection";
 import DistributionSection from "./mainpages/DistributionSection";
+import { redirect } from "next/navigation";
 
 export default function Home() {
   redirect("/nichiha");
