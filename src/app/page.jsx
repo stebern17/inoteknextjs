@@ -6,6 +6,7 @@ import NewsSection from "./mainpages/NewsSection";
 import DistributionSection from "./mainpages/DistributionSection";
 
 export default function Home() {
+  redirect("/nichiha");
   return (
     <>
       <VideoSection />
