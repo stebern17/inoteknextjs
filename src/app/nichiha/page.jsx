@@ -1,3 +1,5 @@
+"use client";
+
 import VideoSection from "./VideoSection";
 import HeroSection from "./HeroSection";
 import UspSection from "./UspSection";

@@ -11,6 +11,10 @@
   }
 }
 
+.content {
+  overflow-x: hidden;
+}
+
 
 
 

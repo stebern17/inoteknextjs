@@ -1,6 +1,7 @@
 "use client";
 
 import React from "react";
+import { motion } from "motion/react";
 import UspCard from "../components/UspCard";
 
 const uspData = [
@@ -35,15 +36,37 @@ function UspSection() {
   return (
     <section className="content grid grid-cols-1 gap-12 w-full">
       {uspData.map((usp, index) => (
-        <UspCard
+        <motion.div
           key={index}
-          image={usp.image}
-          title={usp.title}
-          icon={usp.icon}
-          reverse={index % 2 !== 0}
-        />
+          initial={{
+            opacity: 0,
+            x: index % 2 === 0 ? -150 : 150, // zigzag awal
+          }}
+          whileInView={{
+            opacity: 1,
+            x: 0, // posisi normal
+          }}
+          exit={{
+            opacity: 0,
+            x: index % 2 === 0 ? 150 : -150, // zigzag keluar
+          }}
+          viewport={{ amount: 0.3 }}
+          transition={{
+            type: "spring",
+            stiffness: 40,
+            damping: 10,
+          }}
+        >
+          <UspCard
+            image={usp.image}
+            title={usp.title}
+            icon={usp.icon}
+            reverse={index % 2 !== 0}
+          />
+        </motion.div>
       ))}
     </section>
   );
 }
+
 export default UspSection;

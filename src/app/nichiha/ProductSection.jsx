@@ -1,17 +1,44 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import { HR } from "flowbite-react";
 import ImageMagnifier from "../components/ImageMagnifier";
+import { motion } from "motion/react";
 
 function ProductSection() {
+  const [magnifierSize, setMagnifierSize] = useState({
+    width: 150,
+    height: 150,
+  });
+
+  useEffect(() => {
+    const updateMagnifierSize = () => {
+      if (window.innerWidth < 1024) {
+        setMagnifierSize({ width: 90, height: 90 });
+      } else {
+        setMagnifierSize({ width: 150, height: 150 });
+      }
+    };
+
+    window.addEventListener("resize", updateMagnifierSize);
+    updateMagnifierSize(); // panggil pertama kali
+
+    return () => window.removeEventListener("resize", updateMagnifierSize);
+  }, []);
+
   return (
-    <section className="lg:min-h-screen bg-gray-100 py-6 font-display">
+    <motion.section
+      className="lg:min-h-screen bg-gray-100 py-6 font-display"
+      initial={{ opacity: 0, y: 50 }}
+      whileInView={{ opacity: 1, y: 0 }}
+      viewport={{ amount: 0.5, once: true }}
+      transition={{ type: "spring", stiffness: 90, damping: 10 }}
+    >
       <div className="content md:flex grid-cols-1 ">
         <div className="md:w-[50%] w-full flex justify-center">
           <ImageMagnifier
             src="/images/EXSeriesImage.png"
             className={"w-full"}
-            magnifierHeight={100}
-            magnifierWidth={100}
+            magnifierHeight={magnifierSize.height}
+            magnifierWidth={magnifierSize.width}
             zoomLevel={2}
             alt="Sample Image"
           />
@@ -46,7 +73,7 @@ function ProductSection() {
           />
         </div>
       </div>
-    </section>
+    </motion.section>
   );
 }
 export default ProductSection;
