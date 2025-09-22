@@ -1,6 +1,7 @@
 import React from "react";
 import { List, ListItem } from "flowbite-react";
 import { FaCircle } from "react-icons/fa";
+import { motion } from "motion/react";
 
 function VisiMisiSection() {
   const misiList = {
@@ -12,7 +13,13 @@ function VisiMisiSection() {
   };
   return (
     <section className="content flex flex-col lg:flex-row font-display bg-[#0253AE] text-white justify-center gap-10 w-full lg:py-24 p-6">
-      <div className="flex flex-col gap-2">
+      <motion.div
+        className="flex flex-col gap-2"
+        initial={{ x: -100, opacity: 0 }}
+        whileInView={{ x: 0, opacity: 1 }}
+        viewport={{ amount: 0.3, once: true }}
+        transition={{ type: "spring", stiffness: 90, damping: 10 }}
+      >
         <h2 className="text-xl md:text-5xl md:text-left text-center font-bold mx-auto">
           Visi
         </h2>
@@ -20,8 +27,14 @@ function VisiMisiSection() {
           Menjadi perusahaan distribusi terdepan dalam penyediaan material
           dinding eksterior inovatif dan berestetika di Indonesia
         </p>
-      </div>
-      <div className="flex flex-col gap-3">
+      </motion.div>
+      <motion.div
+        className="flex flex-col gap-3"
+        initial={{ x: -100, opacity: 0 }}
+        whileInView={{ x: 0, opacity: 1 }}
+        viewport={{ amount: 0.3, once: true }}
+        transition={{ type: "spring", stiffness: 90, damping: 10 }}
+      >
         <h2 className="text-xl md:text-5xl md:text-left text-center font-bold mx-auto">
           Misi
         </h2>
@@ -36,7 +49,7 @@ function VisiMisiSection() {
             </ListItem>
           ))}
         </List>
-      </div>
+      </motion.div>
     </section>
   );
 }

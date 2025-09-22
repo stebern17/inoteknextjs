@@ -2,6 +2,7 @@
 
 import { useState, useEffect } from "react";
 import Link from "next/link";
+import { motion } from "motion/react";
 
 export default function Tabs() {
   const [catalogData, setCatalogData] = useState([]);
@@ -93,7 +94,7 @@ export default function Tabs() {
   return (
     <div className="w-full font-display">
       {/* Tab Produk */}
-      <div className="flex border-b justify-evenly border-gray-200">
+      <div className="flex border-b justify-evenly border-gray-200 relative">
         {productList.map((prod) => (
           <button
             key={prod}
@@ -101,30 +102,51 @@ export default function Tabs() {
               setActiveProduct(prod);
               setActiveCategory(categoryMap[prod][0]);
             }}
-            className={`px-6 py-2 text-xs lg:text-lg font-medium w-full ${
-              activeProduct === prod
-                ? "bg-[#0253AE] text-white"
-                : "bg-white text-gray-800 hover:bg-gray-100"
-            }`}
+            className="relative px-6 py-2 text-xs lg:text-lg font-medium w-full"
           >
-            {prod}
+            {activeProduct === prod && (
+              <motion.div
+                layoutId="activeProductHighlight"
+                className="absolute inset-0 bg-[#0253AE]"
+                transition={{ type: "spring", stiffness: 300, damping: 20 }}
+              />
+            )}
+            <span
+              className={`relative z-10 ${
+                activeProduct === prod ? "text-white" : "text-gray-800"
+              }`}
+            >
+              {prod}
+            </span>
           </button>
         ))}
       </div>
 
       {/* Tab Kategori */}
-      <div className="flex justify-evenly gap-8 mt-6">
+      <div className="flex justify-evenly gap-8 mt-6 relative">
         {categoryMap[activeProduct].map((cat) => (
           <button
             key={cat}
             onClick={() => setActiveCategory(cat)}
-            className={`pb-1 text-sm xl:text-lg w-full ${
-              activeCategory === cat
-                ? "text-[#0253AE] border-b-2 border-[#0253AE]"
-                : "text-gray-800 hover:text-[#0253AE]"
-            }`}
+            className="relative pb-1 text-sm xl:text-lg w-full text-center"
           >
-            {cat}
+            <span
+              className={`${
+                activeCategory === cat
+                  ? "text-[#0253AE]"
+                  : "text-gray-800 hover:text-[#0253AE]"
+              }`}
+            >
+              {cat}
+            </span>
+
+            {activeCategory === cat && (
+              <motion.div
+                layoutId="activeCategoryUnderline"
+                className="absolute bottom-0 left-0 right-0 h-[2px] bg-[#0253AE]"
+                transition={{ type: "spring", stiffness: 300, damping: 20 }}
+              />
+            )}
           </button>
         ))}
       </div>
