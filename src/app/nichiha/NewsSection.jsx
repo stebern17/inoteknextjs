@@ -1,15 +1,16 @@
-import React from "react";
 import NewsCard from "../components/NewsCard";
+import NewsSlider from "../components/NewsSlider";
 
-// Helper to fetch news data with ISR
 async function getNewsArticles() {
   const res = await fetch(
     "https://reassuring-horses-d6fc23943c.strapiapp.com/api/articles?populate=*",
-    { cache: "force-cache" }
+    {
+      next: { revalidate: 86400 }, // regenerate setiap 1 hari
+    }
   );
   if (!res.ok) throw new Error("Gagal fetch data");
   const data = await res.json();
-  // Normalisasi data Strapi
+
   return data.data.map((item) => ({
     id: item.id,
     title: item.title,
@@ -19,12 +20,11 @@ async function getNewsArticles() {
   }));
 }
 
-const NewsSection = async () => {
+export default async function NewsSection() {
   let articles = [];
   try {
     articles = await getNewsArticles();
   } catch (error) {
-    // Optionally handle error UI
     return (
       <div className="text-center py-10 text-white text-xl">
         Gagal memuat berita.
@@ -32,26 +32,26 @@ const NewsSection = async () => {
     );
   }
 
+  if (!articles.length) {
+    return (
+      <div className="text-center py-10 text-white text-xl">
+        Tidak ada artikel
+      </div>
+    );
+  }
+
   return (
-    <section className="bg-[#0253AE] w-full lg:min-h-screen py-9 relative flex items-center">
-      {/* Scroll Container */}
-      <div className="flex overflow-x-auto scrollbar-hide scroll-smooth snap-x snap-mandatory gap-2">
+    <section className="bg-[#0253AE] w-full py-9 relative">
+      <NewsSlider>
         {articles.map((item) => (
           <div
             key={item.id}
             className="news-item flex-shrink-0 snap-center mx-auto w-[300px] sm:w-[360px] md:w-[420px] lg:w-[500px]"
           >
-            <NewsCard
-              category={item.category}
-              title={item.title}
-              image={item.image}
-              link={item.link}
-            />
+            <NewsCard {...item} />
           </div>
         ))}
-      </div>
+      </NewsSlider>
     </section>
   );
-};
-
-export default NewsSection;
+}
