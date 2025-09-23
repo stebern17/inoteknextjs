@@ -3,11 +3,11 @@ import Tabs from "../components/TabsProduct";
 async function getCatalogData() {
   const [typesRes, variantsRes] = await Promise.all([
     fetch(
-      "https://reassuring-horses-d6fc23943c.strapiapp.com/api/types?populate=*",
+      "https://sublime-animal-0e42b737fe.strapiapp.com/api/types?populate=*",
       { cache: "force-cache" } // ❌ tidak akan refetch lagi
     ),
     fetch(
-      "https://reassuring-horses-d6fc23943c.strapiapp.com/api/variants?populate=*",
+      "https://sublime-animal-0e42b737fe.strapiapp.com/api/variants?populate=*",
       { cache: "force-cache" }
     ),
   ]);

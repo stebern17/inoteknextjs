@@ -3,7 +3,7 @@ import NewsSlider from "../components/NewsSlider";
 
 async function getNewsArticles() {
   const res = await fetch(
-    "https://reassuring-horses-d6fc23943c.strapiapp.com/api/articles?populate=*",
+    "https://sublime-animal-0e42b737fe.strapiapp.com/api/articles?populate=*",
     { cache: "force-cache" }
   );
   if (!res.ok) throw new Error("Gagal fetch data");
