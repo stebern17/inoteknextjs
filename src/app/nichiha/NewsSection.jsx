@@ -4,9 +4,7 @@ import NewsSlider from "../components/NewsSlider";
 async function getNewsArticles() {
   const res = await fetch(
     "https://reassuring-horses-d6fc23943c.strapiapp.com/api/articles?populate=*",
-    {
-      next: { revalidate: 86400 }, // regenerate setiap 1 hari
-    }
+    { cache: "force-cache" }
   );
   if (!res.ok) throw new Error("Gagal fetch data");
   const data = await res.json();
