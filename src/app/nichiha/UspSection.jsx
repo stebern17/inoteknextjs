@@ -9,28 +9,45 @@ const uspData = [
     title: "Premium Japanese Standard",
     icon: "/icons/QualityIcon.png",
     image: "/images/PremiumJapanese.png",
+    desc: ["Jaminan Mutu", "Presisi & Kontrol Kulitas Tinggi"],
   },
   {
     title: "Ease of Installation & Maintenance",
     icon: "/icons/MaintenanceIcon.png",
     image: "/images/Maintenance.png",
+    desc: [
+      "Perawatan Mudah",
+      "Instalasi Mudah dengan Clip System",
+      "Panel Sudah Finishing",
+    ],
   },
   {
     title: "High-Durability Material",
     icon: "/icons/DurabilityIcon.png",
     image: "/images/Eco.png",
+    desc: ["Material Kuat", "Awet & Tahan Lama"],
   },
   {
     title: "Any Weather Product",
     icon: "/icons/WeatherIcon.png",
     image: "/images/Weather.png",
+    desc: ["Tahan Hujan", "Tahan Jamur", "Anti Rayap"],
   },
   {
-    title: "No Mortar, No Mess",
-    icon: "/icons/NomeshIcon.png",
+    title: "High-End Design",
+    icon: "/icons/HighEndDesign.png",
     image: "/images/Nomesh.png",
+    desc: ["Motif Eksklusif & Beragam", "Tampilan Premium & Modern"],
+  },
+  {
+    title: "Fire Resistant",
+    icon: "/icons/FireResistant.png",
+    image: "/images/fireresistant.png",
+    desc: ["Tahan Api", "Standar Keamanan Bangunan"],
   },
 ];
+
+console.log(uspData);
 
 function UspSection() {
   return (
@@ -61,6 +78,7 @@ function UspSection() {
             image={usp.image}
             title={usp.title}
             icon={usp.icon}
+            desc={usp.desc}
             reverse={index % 2 !== 0}
           />
         </motion.div>

@@ -13,7 +13,7 @@ function NavbarHeader() {
 
   const menus = [
     { label: "BERANDA", path: "/nichiha" },
-    { label: "COMPANY PROFILE", path: "/companyprofile" },
+    { label: "PROFIL PERUSAHAAN", path: "/companyprofile" },
     { label: "PRODUK", path: "/product" },
   ];
 
