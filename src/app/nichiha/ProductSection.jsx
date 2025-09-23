@@ -1,3 +1,5 @@
+"use client";
+
 import React, { useState, useEffect } from "react";
 import { HR } from "flowbite-react";
 import ImageMagnifier from "../components/ImageMagnifier";

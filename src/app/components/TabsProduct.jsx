@@ -1,73 +1,16 @@
+// @ts-nocheck
 "use client";
 
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import Link from "next/link";
-import { motion } from "motion/react";
+import { motion } from "framer-motion";
 
-export default function Tabs() {
-  const [catalogData, setCatalogData] = useState([]);
+export default function Tabs({ initialData }) {
   const [activeProduct, setActiveProduct] = useState("EX Series 1820");
   const [activeCategory, setActiveCategory] = useState("Simple");
 
-  useEffect(() => {
-    async function fetchCatalog() {
-      try {
-        const [typesRes, variantsRes] = await Promise.all([
-          fetch(
-            "https://reassuring-horses-d6fc23943c.strapiapp.com/api/types?populate=*"
-          ),
-          fetch(
-            "https://reassuring-horses-d6fc23943c.strapiapp.com/api/variants?populate=*"
-          ),
-        ]);
+  const catalogData = initialData;
 
-        if (!typesRes.ok || !variantsRes.ok) {
-          throw new Error("Gagal fetch data");
-        }
-
-        const typesJson = await typesRes.json();
-        const variantsJson = await variantsRes.json();
-
-        const variantMap = {};
-        variantsJson.data.forEach((v) => {
-          // Use the full URL from VarianImage.formats.small.url or fallback to VarianImage.url
-          const img =
-            v.VarianImage?.formats?.small?.url ||
-            v.VarianImage?.formats?.thumbnail?.url ||
-            v.VarianImage?.url ||
-            null;
-          variantMap[v.id] = {
-            id: v.id,
-            name: v.Name,
-            image: img, // full URL, no prefix needed
-            category: v.typevariant?.Kind || null,
-          };
-        });
-
-        const mapped = typesJson.data.map((t) => ({
-          id: t.id,
-          product: t.product?.Name || "Unknown",
-          category: t.Kind || "Uncategorized",
-          coverImage: t.CoverImage?.url || null,
-          link: `/product/productdetail/${t.id}`, // use full URL directly
-          variants: (t.variants || [])
-            .map((tv) => {
-              const variant = variantMap[tv.id];
-              return variant || null;
-            })
-            .filter(Boolean),
-        }));
-
-        setCatalogData(mapped);
-      } catch (err) {
-        console.error("Error fetch:", err);
-      }
-    }
-
-    fetchCatalog();
-  }, []);
-
-  // ---------------- STÁTIS ----------------
   const productList = [
     "EX Series 1820",
     "EX Series 3030",
@@ -85,7 +28,6 @@ export default function Tabs() {
       "Tile/Brick",
     ],
   };
-  // -----------------------------------------
 
   const filteredData = catalogData.filter(
     (item) => item.product === activeProduct && item.category === activeCategory
