@@ -47,8 +47,6 @@ const uspData = [
   },
 ];
 
-console.log(uspData);
-
 function UspSection() {
   return (
     <section className="content grid grid-cols-1 gap-12 w-full">

@@ -18,7 +18,10 @@ const carouselTheme = createTheme({
   },
 
   indicators: {
-    wrapper: "hidden",
+    active: {
+      off: "bg-white/90 hover:bg-white/60",
+      on: "bg-white/50",
+    },
   },
 });
 
@@ -27,12 +30,12 @@ function CarouselSection() {
     // bissa min h-screen
     <section className="relative">
       <Carousel
-        slideInterval={5000}
+        slideInterval={1500}
         leftControl={
-          <IoIosArrowBack className="text-white opacity-60 size-10 hidden lg:block" />
+          <IoIosArrowBack className="text-white opacity-60 size-10 hidden" />
         }
         rightControl={
-          <IoIosArrowForward className="text-white opacity-60 size-10 hidden lg:block" />
+          <IoIosArrowForward className="text-white opacity-60 size-10 hidden" />
         }
         className="h-screen"
         theme={carouselTheme}
