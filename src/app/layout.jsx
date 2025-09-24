@@ -1,14 +1,15 @@
 import "./globals.css";
 import NavbarHeader from "./blocks/Navbar";
 import Footer from "./blocks/Footer";
+import { ThemeInit } from "../../.flowbite-react/init";
 
 export const metadata = {
   title: "Inotek Nichiha",
   description: "Distributor resmi Inotek Nichiha",
   icons: {
-    icon: "/logo-inotek.svg", // favicon utama
+    icon: "/logo-inotek.svg",
     shortcut: "/logo-inotek.svg",
-    apple: "/logo-inotek.svg", // opsional untuk iOS
+    apple: "/logo-inotek.svg",
   },
 };
 

@@ -39,7 +39,7 @@ export default async function NewsSection() {
   }
 
   return (
-    <section className="bg-[#0253AE] w-full py-9 relative">
+    <section className="bg-[#0253AE] w-full py-9 relative select-none">
       <NewsSlider>
         {articles.map((item) => (
           <div

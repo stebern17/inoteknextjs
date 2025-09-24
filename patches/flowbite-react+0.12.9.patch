@@ -1,0 +1,16 @@
+diff --git a/node_modules/flowbite-react/dist/cli/utils/create-init-logger.js b/node_modules/flowbite-react/dist/cli/utils/create-init-logger.js
+index acdfe24..4be4342 100644
+--- a/node_modules/flowbite-react/dist/cli/utils/create-init-logger.js
++++ b/node_modules/flowbite-react/dist/cli/utils/create-init-logger.js
+@@ -10,8 +10,9 @@ function createInitLogger(config) {
+       return this.config.dark !== defaultConfig.dark || this.config.prefix !== defaultConfig.prefix || this.config.version !== defaultConfig.version;
+     },
+     get showWarning() {
+-      return this.checkedMap.values().find((value) => value) === void 0;
+-    },
++  return [...this.checkedMap.values()].find((value) => value) === void 0;
++}
++,
+     /**
+      * Checks if `<ThemeInit />` component is used in the given file content
+      *
