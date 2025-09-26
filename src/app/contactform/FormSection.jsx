@@ -24,18 +24,11 @@ export default function ContactFormPage() {
     e.preventDefault();
 
     try {
-      const res = await fetch(
-        "https://sublime-animal-0e42b737fe.strapiapp.com/api/user-forms",
-        {
-          method: "POST",
-          headers: {
-            "Content-Type": "application/json",
-          },
-          body: JSON.stringify({
-            data: formData,
-          }),
-        }
-      );
+      const res = await fetch("/api/contact", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ data: formData }), // sudah benar
+      });
 
       if (!res.ok) {
         throw new Error("Failed to submit form");

@@ -12,27 +12,8 @@ export default function CompanyProfile() {
     <>
       <CarouselSection />
       <CompanyIntroduce />
-      <div className="overflow-x-hidden">
-        {/* Muncul dari kiri */}
-        <motion.div
-          initial={{ x: -100, opacity: 0 }}
-          whileInView={{ x: 0, opacity: 1 }}
-          viewport={{ amount: 0.1, once: true }}
-          transition={{ duration: 0.3, ease: "easeIn" }}
-        >
-          <VisiMisiSection />
-        </motion.div>
-
-        {/* Muncul dari kanan */}
-        <motion.div
-          initial={{ x: 100, opacity: 0 }}
-          whileInView={{ x: 0, opacity: 1 }}
-          viewport={{ amount: 0.1, once: true }}
-          transition={{ duration: 0.3, ease: "easeIn" }}
-        >
-          <InotekSection />
-        </motion.div>
-      </div>
+      <VisiMisiSection />
+      <InotekSection />
     </>
   );
 }
