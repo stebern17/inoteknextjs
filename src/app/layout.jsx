@@ -17,6 +17,12 @@ export const metadata = {
 export default function RootLayout({ children }) {
   return (
     <html lang="en">
+      <head>
+        <link rel="preload" as="video" href="/videos/VideoProfile.mp4" />
+        <link rel="preload" as="image" href="/images/company profile-1.jpg" />
+        <link rel="preload" as="image" href="/images/company profile-2.jpg" />
+        <link rel="preload" as="image" href="/images/company profile-3.jpg" />
+      </head>
       <body>
         <ThemeInit />
         <SpeedInsights />
