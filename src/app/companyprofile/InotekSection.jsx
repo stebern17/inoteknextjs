@@ -5,7 +5,7 @@ function InotekSection() {
   return (
     <section className="content bg-[#00408A] w-full flex flex-col justify-center lg:min-h-screen py-24 lg:py-0">
       <motion.img
-        src="/images/NilaiBudaya.png"
+        src="/images/NilaiBudayaHorizontal.svg"
         alt="Nilai Budaya"
         className="mx-auto object-cover hidden md:block"
         initial={{ x: 100, opacity: 0 }}

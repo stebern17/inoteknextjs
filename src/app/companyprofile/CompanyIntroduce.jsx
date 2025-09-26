@@ -1,6 +1,7 @@
 import React from "react";
 import { List, ListItem, createTheme } from "flowbite-react";
 import { FaCircle } from "react-icons/fa";
+import { motion } from "motion/react";
 
 function CompanyIntroduce() {
   4;
@@ -27,7 +28,13 @@ function CompanyIntroduce() {
       </div>
       <div className="grid grid-cols-1 md:grid-cols-2 gap-4 min-h-[30vh]">
         {/* kiri */}
-        <div className="bg-gray-200 p-4 rounded-xl flex flex-col h-full border border-[#0253AE]">
+        <motion.div
+          className="bg-gray-200 p-4 rounded-xl flex flex-col h-full border border-[#0253AE]"
+          initial={{ x: -100, opacity: 0 }}
+          whileInView={{ x: 0, opacity: 1 }}
+          viewport={{ amount: 0.3, once: true }}
+          transition={{ type: "spring", stiffness: 90, damping: 20 }}
+        >
           <h3 className="font-semibold text-[#0253AE] mb-2 md:text-2xl text-xl ">
             PT. Inotek Karya Mandiri siap membantu Anda dengan layanan terbaik :
           </h3>
@@ -45,9 +52,15 @@ function CompanyIntroduce() {
               </p>
             </ListItem>
           </List>
-        </div>
+        </motion.div>
         {/* kanan */}
-        <div className="bg-gray-200 p-4 rounded-xl flex flex-col h-full border border-[#0253AE] border-opacity-50">
+        <motion.div
+          className="bg-gray-200 p-4 rounded-xl flex flex-col h-full border border-[#0253AE] border-opacity-50"
+          initial={{ x: 100, opacity: 0 }}
+          whileInView={{ x: 0, opacity: 1 }}
+          viewport={{ amount: 0.3, once: true }}
+          transition={{ type: "spring", stiffness: 90, damping: 20 }}
+        >
           <h3 className="font-semibold text-[#0253AE] mb-2 md:text-2xl text-xl">
             Nichiha Wall Panel menjadi solusi fasad yang mengedepankan:
           </h3>
@@ -71,7 +84,7 @@ function CompanyIntroduce() {
               </p>
             </ListItem>
           </List>
-        </div>
+        </motion.div>
       </div>
       <div className="space-y-4 text-justify md:text-[16px] text-sm">
         <p>
