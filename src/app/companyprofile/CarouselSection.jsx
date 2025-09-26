@@ -5,10 +5,9 @@ import React from "react";
 import { IoIosArrowForward, IoIosArrowBack } from "react-icons/io";
 
 const crslitem = [
-  { src: "/images/crsl1.jpg", alt: "Slide 1" },
-  { src: "/images/crsl2.jpg", alt: "Slide 2" },
-  { src: "/images/crsl3.jpg", alt: "Slide 3" },
-  { src: "/images/crsl4.jpg", alt: "Slide 4" },
+  { src: "/images/company profile-1.jpg", alt: "Slide 1" },
+  { src: "/images/company profile-2.jpg", alt: "Slide 2" },
+  { src: "/images/company profile-3.jpg", alt: "Slide 3" },
 ];
 
 const carouselTheme = createTheme({
@@ -51,17 +50,14 @@ function CarouselSection() {
         ))}
       </Carousel>
 
-      {/* <img
-        src="/images/LogoHeader.png"
-        alt="Header Nichiha Inotek"
-        className="
-          absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2
-          w-24 h-auto
-          md:w-48 md:h-auto
-          lg:w-96 lg:h-auto lg:top-1/4 lg:-translate-y-0
-          pointer-events-none
-        "
-      /> */}
+      <div className="flex flex-col absolute top-1/2 -translate-y-1/2 md:mx-20 text-white text-center px-4 items-start font-display md:w-[30vw] w-[80vw]">
+        <h3 className="text-xl md:text-5xl font-bold text-start">
+          MAKE LIVING SIMPLE
+        </h3>
+        <span className="text-sm md:text-xl text-start">
+          Bersaman Inotek, wujudkan bangunan modern dengan fasad praktis Nichiha
+        </span>
+      </div>
     </section>
   );
 }

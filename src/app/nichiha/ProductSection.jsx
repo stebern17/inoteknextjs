@@ -57,7 +57,7 @@ function ProductSection() {
               dikombinasikan dengan partikel kayu berserat, lalu dicetak dengan
               tekstur permukaan khusus.
             </p>
-            <HR />
+            <HR className="bg-gray-600 my-8 border-0" />
             <p className="size-lg">
               Panel ini tersedia dengan ukuran panjang standar{" "}
               <span className="font-bold">3030 mm</span> atau{" "}

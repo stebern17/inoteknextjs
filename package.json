@@ -9,6 +9,7 @@
     "lint": "eslint"
   },
   "dependencies": {
+    "@vercel/speed-insights": "^1.2.0",
     "flowbite": "^3.1.2",
     "flowbite-react": "^0.12.9",
     "motion": "^12.23.16",

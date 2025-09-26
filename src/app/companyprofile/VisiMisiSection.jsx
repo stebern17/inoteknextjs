@@ -1,6 +1,7 @@
 import React from "react";
 import { List, ListItem } from "flowbite-react";
 import { FaCircle } from "react-icons/fa";
+import VisiMisiCard from "../components/VisiMisiCard";
 import { motion } from "motion/react";
 
 function VisiMisiSection() {
@@ -12,43 +13,41 @@ function VisiMisiSection() {
     [5]: "Berkomitmen pada keberlanjutan dan nilai tambah bangunan",
   };
   return (
-    <section className="content flex flex-col lg:flex-row font-display bg-[#0253AE] text-white justify-center gap-10 w-full lg:py-24 p-6">
+    <section className="content grid grid-cols-1 lg:grid-cols-2 gap-10 py-5 min-h-[70vh]">
       <motion.div
-        className="flex flex-col gap-2"
         initial={{ x: -100, opacity: 0 }}
         whileInView={{ x: 0, opacity: 1 }}
         viewport={{ amount: 0.3, once: true }}
         transition={{ type: "spring", stiffness: 90, damping: 10 }}
       >
-        <h2 className="text-xl md:text-5xl md:text-left text-center font-bold mx-auto">
-          Visi
-        </h2>
-        <p className="text-center md:text-xl text-base my-auto">
-          Menjadi perusahaan distribusi terdepan dalam penyediaan material
-          dinding eksterior inovatif dan berestetika di Indonesia
-        </p>
+        <VisiMisiCard title="Visi" textAlign="text-center lg:text-justify">
+          <p>
+            Menjadi perusahaan distribusi terdepan dalam penyediaan material
+            dinding eksterior inovatif dan berestetika di Indonesia
+          </p>
+        </VisiMisiCard>
       </motion.div>
+
       <motion.div
-        className="flex flex-col gap-3"
-        initial={{ x: -100, opacity: 0 }}
+        initial={{ x: 100, opacity: 0 }}
         whileInView={{ x: 0, opacity: 1 }}
         viewport={{ amount: 0.3, once: true }}
         transition={{ type: "spring", stiffness: 90, damping: 10 }}
       >
-        <h2 className="text-xl md:text-5xl md:text-left text-center font-bold mx-auto">
-          Misi
-        </h2>
-        <List>
-          {Object.keys(misiList).map((key) => (
-            <ListItem
-              key={key}
-              className="text-white flex gap-2 text-justify md:text-xl text-base"
-              icon={FaCircle}
-            >
-              <p>{misiList[key]}</p>
-            </ListItem>
-          ))}
-        </List>
+        <VisiMisiCard title="Misi">
+          <List className="list-disc list-inside space-y-2">
+            {Object.entries(misiList).map(([key, value]) => (
+              <ListItem
+                key={key}
+                icon={FaCircle}
+                theme={{ icon: "me-2 h-2 w-2" }}
+                className="text-white flex gap-2"
+              >
+                <p>{value}</p>
+              </ListItem>
+            ))}
+          </List>
+        </VisiMisiCard>
       </motion.div>
     </section>
   );

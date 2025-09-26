@@ -57,9 +57,9 @@ function NavbarHeader() {
         </ul>
 
         {/* Button Desktop */}
-        <div className="hidden lg:block">
+        <Link href="/contactform" className="hidden lg:block">
           <motion.div
-            className="block rounded-xl font-display font-bold py-2 px-4 text-lg tracking-widest text-white bg-[#0F8F36] cursor-pointer text-center"
+            className="rounded-xl font-display font-bold py-2 px-4 text-lg tracking-widest text-white bg-[#0F8F36] cursor-pointer text-center"
             whileHover={{
               scale: 1.05,
               backgroundColor: "#074D1D",
@@ -67,11 +67,9 @@ function NavbarHeader() {
             whileTap={{ scale: 0.9 }}
             transition={{ type: "spring", stiffness: 300, damping: 20 }}
           >
-            <Link href="/contactform" className="w-full h-full block">
-              HUBUNGI KAMI
-            </Link>
+            HUBUNGI KAMI
           </motion.div>
-        </div>
+        </Link>
 
         {/* Hamburger (Mobile) */}
         <button className="lg:hidden text-2xl" onClick={toggleMenu}>
