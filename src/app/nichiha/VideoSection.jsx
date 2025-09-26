@@ -16,6 +16,7 @@ function VideoSection() {
         loop
         playsInline
         onContextMenu={(e) => e.preventDefault()}
+        preload="auto"
       ></video>
       <video
         src="/videos/VideoProfilePotrait.mp4"
@@ -27,6 +28,7 @@ function VideoSection() {
         loop
         playsInline
         onContextMenu={(e) => e.preventDefault()}
+        preload="auto"
       ></video>
     </section>
   );
