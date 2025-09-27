@@ -58,46 +58,47 @@ export default function ContactFormPage() {
       {status === "error" && (
         <Alert color="failure">Gagal mengirim form. Silakan coba lagi.</Alert>
       )}
-      <div className="flex flex-col">
-        <Label htmlFor="name">
-          Nama <span className="text-red-500">*</span>
-        </Label>
-        <TextInput
-          type="text"
-          value={formData.name}
-          onChange={handleChange}
-          id="name"
-          name="name"
-          required
-        />
-      </div>
+      <div className="grid grid-cols-2 gap-5">
+        <div className="flex flex-col w-full">
+          <Label htmlFor="name" className="text-[#1E40AF]">
+            Nama <span className="text-red-500">*</span>
+          </Label>
+          <TextInput
+            type="text"
+            value={formData.name}
+            onChange={handleChange}
+            id="name"
+            name="name"
+            required
+          />
+        </div>
 
-      <div>
-        <Label htmlFor="email">
-          Email <span className="text-red-500">*</span>
-        </Label>
-        <TextInput
-          type="email"
-          value={formData.email}
-          onChange={handleChange}
-          id="email"
-          name="email"
-          required
-        />
-      </div>
-
-      <div>
-        <Label htmlFor="phone">
-          No.Telp <span className="text-red-500">*</span>
-        </Label>
-        <TextInput
-          type="tel"
-          value={formData.phone}
-          onChange={handleChange}
-          id="phone"
-          name="phone"
-          required
-        />
+        <div className="flex flex-col w-full">
+          <Label htmlFor="email" className="text-[#1E40AF]">
+            Email <span className="text-red-500">*</span>
+          </Label>
+          <TextInput
+            type="email"
+            value={formData.email}
+            onChange={handleChange}
+            id="email"
+            name="email"
+            required
+          />
+        </div>
+        <div className="flex flex-col w-full">
+          <Label htmlFor="phone">
+            No.Telp <span className="text-red-500">*</span>
+          </Label>
+          <TextInput
+            type="tel"
+            value={formData.phone}
+            onChange={handleChange}
+            id="phone"
+            name="phone"
+            required
+          />
+        </div>
       </div>
 
       <div>
@@ -114,7 +115,7 @@ export default function ContactFormPage() {
         />
       </div>
 
-      <Button type="submit" className="text-lg mt-4">
+      <Button type="submit" className="text-lg mt-4 max-w-[50%]">
         Kirim
       </Button>
     </form>
