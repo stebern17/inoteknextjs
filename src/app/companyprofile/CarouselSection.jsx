@@ -45,6 +45,8 @@ function CarouselSection() {
               src={item.src}
               alt={item.alt}
               className="w-full h-full object-cover"
+              width={1920}
+              height={1080}
             />
           </div>
         ))}

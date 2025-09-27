@@ -2,6 +2,7 @@ import React from "react";
 import FormSection from "./FormSection";
 import CTASection from "./CTASection";
 import VerticalLine from "../components/VerticalLine";
+import { HRText } from "flowbite-react";
 
 export default function ContactandCTA() {
   return (
@@ -12,9 +13,11 @@ export default function ContactandCTA() {
             HUBUNGI KAMI UNTUK INFORMASI DAN PEMESANAN
           </h1>
         </div>
-        <section className="flex w-full justify-between items-center gap-24">
+        <section className="flex w-full flex-col md:flex-row justify-between items-center gap-24">
           <FormSection />
           <VerticalLine text="Atau" />
+          <HRText text="Atau" className="block md:hidden bg-gray-400" />
+
           <CTASection />
         </section>
       </div>

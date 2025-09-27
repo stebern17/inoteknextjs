@@ -13,6 +13,8 @@ function UspCard({ image, title, icon, reverse, desc }) {
               src={image}
               alt={title}
               className="absolute inset-0 w-full h-full object-center object-cover"
+              width={500}
+              height={400}
             />
           </div>
 
@@ -50,6 +52,8 @@ function UspCard({ image, title, icon, reverse, desc }) {
               src={image}
               alt={title}
               className="absolute inset-0 w-full h-full object-cover object-center"
+              width={500}
+              height={400}
             />
           </div>
         </>

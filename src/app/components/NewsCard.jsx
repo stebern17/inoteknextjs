@@ -9,6 +9,8 @@ export default function NewsCard({ category, title, image, link }) {
           src={image}
           alt={title}
           className="w-full h-[200px] sm:h-[250px] md:h-[300px] mx-auto object-cover object-center rounded-xl"
+          width={500}
+          height={300}
         />
       </div>
 

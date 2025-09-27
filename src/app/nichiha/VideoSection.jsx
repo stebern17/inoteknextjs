@@ -31,6 +31,8 @@ function VideoSection() {
         onContextMenu={(e) => e.preventDefault()}
         preload="auto"
         poster="/images/company profile-1.jpg"
+        width={1920}
+        height={1080}
       ></video>
       <video
         src="/videos/VideoProfilePotrait.webm"
@@ -44,6 +46,8 @@ function VideoSection() {
         onContextMenu={(e) => e.preventDefault()}
         preload="auto"
         poster="/images/company profile-1.jpg"
+        width={1080}
+        height={1920}
       ></video>
     </section>
   );

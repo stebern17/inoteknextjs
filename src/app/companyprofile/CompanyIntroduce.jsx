@@ -29,7 +29,7 @@ function CompanyIntroduce() {
       <div className="grid grid-cols-1 md:grid-cols-2 gap-4 min-h-[30vh]">
         {/* kiri */}
         <motion.div
-          className="bg-gray-200 p-4 rounded-xl flex flex-col h-full border border-[#0253AE]"
+          className="bg-gray-100 p-4 rounded-xl flex flex-col h-full border border-[#0253AE] drop-shadow-lg"
           initial={{ x: -100, opacity: 0 }}
           whileInView={{ x: 0, opacity: 1 }}
           viewport={{ amount: 0.3, once: true }}
@@ -55,7 +55,7 @@ function CompanyIntroduce() {
         </motion.div>
         {/* kanan */}
         <motion.div
-          className="bg-gray-200 p-4 rounded-xl flex flex-col h-full border border-[#0253AE] border-opacity-50"
+          className="bg-gray-100 p-4 rounded-xl flex flex-col h-full border border-[#0253AE] drop-shadow-lg"
           initial={{ x: 100, opacity: 0 }}
           whileInView={{ x: 0, opacity: 1 }}
           viewport={{ amount: 0.3, once: true }}
