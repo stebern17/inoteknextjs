@@ -5,7 +5,7 @@ function InotekSection() {
   return (
     <section className="content bg-[#00408A] w-full flex flex-col justify-center lg:min-h-screen py-24 lg:py-0">
       <motion.img
-        src="/images/NilaiBudayaHorizontal.svg"
+        src="/images/NilaiBudayaHorizontal.png"
         alt="Nilai Budaya"
         className="mx-auto object-cover hidden md:block"
         initial={{ x: 100, opacity: 0 }}
@@ -14,7 +14,7 @@ function InotekSection() {
         transition={{ type: "spring", stiffness: 90, damping: 10 }}
       />
       <motion.img
-        src="/images/nilaibudaya-potrait.png"
+        src="/images/NilaiBudayaVertical.png"
         alt="Nilai Budaya"
         className="mx-auto object-cover block md:hidden"
         initial={{ x: 100, opacity: 0 }}
