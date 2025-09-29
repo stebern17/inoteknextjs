@@ -1,23 +1,23 @@
 import React from "react";
 import FormSection from "./FormSection";
 import CTASection from "./CTASection";
-import VerticalLine from "../components/VerticalLine";
-import { HRText } from "flowbite-react";
 
 export default function ContactandCTA() {
   return (
     <>
-      <div className="flex flex-col gap-6 justify-center w-full border-2 border-gray-300 p-16 rounded-xl font-display">
+      <div className="flex flex-col gap-6 justify-center w-full rounded-xl font-display">
         <div className="self-start">
-          <h1 className="text-2xl font-semibold text-[#1E40AF]">
-            HUBUNGI KAMI UNTUK INFORMASI DAN PEMESANAN
+          <h1 className="text-4xl font-semibold text-[#1E40AF]">
+            HUBUNGI KAMI
           </h1>
+          <p className="text-[#1E40AF] text-2xl max-w-[50%] text-justify">
+            Silakan isi formulir di bawah ini untuk menghubungi kami. Kami siap
+            membantu Anda dengan pertanyaan atau kebutuhan terkait produk dan
+            layanan kami.
+          </p>
         </div>
-        <section className="flex w-full flex-col md:flex-row justify-between items-center gap-24">
+        <section className="grid grid-cols-1 md:grid-cols-2 w-full justify-between items-center gap-8">
           <FormSection />
-          <VerticalLine text="Atau" />
-          <HRText text="Atau" className="block md:hidden bg-gray-400" />
-
           <CTASection />
         </section>
       </div>
