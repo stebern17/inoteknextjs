@@ -21,9 +21,21 @@ export default function CTASection() {
         </div>
       </div>
       <div className="flex flex-col justify-center items-center w-full gap-4">
-        <AdminButton link="#" text="Admin 1" className="w-[30%] text-xl" />
-        <AdminButton link="#" text="Admin 2" className="w-[30%] text-xl" />
-        <AdminButton link="#" text="Admin 3" className="w-[30%] text-xl" />
+        <AdminButton
+          link="#"
+          text="Admin 1"
+          className="w-[80%] md:w-[40%]  text-xl"
+        />
+        <AdminButton
+          link="#"
+          text="Admin 2"
+          className="w-[80%] md:w-[40%] text-xl"
+        />
+        <AdminButton
+          link="#"
+          text="Admin 3"
+          className="w-[80%] md:w-[40%]  text-xl"
+        />
       </div>
     </section>
   );

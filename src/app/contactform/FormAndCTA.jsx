@@ -10,13 +10,11 @@ export default function ContactandCTA() {
           <h1 className="text-4xl font-semibold text-[#1E40AF]">
             HUBUNGI KAMI
           </h1>
-          <p className="text-[#1E40AF] text-2xl max-w-[50%] text-justify">
-            Silakan isi formulir di bawah ini untuk menghubungi kami. Kami siap
-            membantu Anda dengan pertanyaan atau kebutuhan terkait produk dan
-            layanan kami.
+          <p className="text-[#1E40AF] text-2xl text-justify">
+            Silakan isi formulir di bawah ini untuk menghubungi kami.
           </p>
         </div>
-        <section className="grid grid-cols-1 md:grid-cols-2 w-full justify-between items-center gap-8">
+        <section className="grid grid-cols-1 lg:grid-cols-2 w-full justify-between items-center gap-8">
           <FormSection />
           <CTASection />
         </section>
