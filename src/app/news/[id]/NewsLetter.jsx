@@ -1,9 +1,12 @@
+"use client";
 import React from "react";
+import { FaArrowRightLong } from "react-icons/fa6";
+import { motion } from "framer-motion";
 
 export default function NewsLetter() {
   return (
     <>
-      <section className="content flex flex-col items-center justify-center mb-10 min-h-[70vh] font-display">
+      <section className="content flex flex-col items-center justify-center mb-10 min-h-[70vh] font-display gap-26">
         <div className="flex flex-col items-center text-center mb-6 gap-4">
           <h3 className="text-center text-4xl font-semibold text-[#0253AE]">
             Subscribe to our Newsletter
@@ -15,21 +18,16 @@ export default function NewsLetter() {
             molestiae quo repellat! Tenetur
           </p>
         </div>
-        <div className="flex">
-          <form action="">
-            <input
-              type="email"
-              placeholder="Enter your email"
-              className="border border-gray-300 rounded-l-md px-4 py-2 focus:outline-none focus:ring-2 focus:ring-blue-500"
-            />
-            <button
-              type="submit"
-              className="bg-blue-500 text-white rounded-r-md px-4 py-2 hover:bg-blue-600"
-            >
-              Subscribe
-            </button>
-          </form>
-        </div>
+        <form action="submit" className="w-full max-w-lg flex border-b p-2">
+          <input
+            type="email"
+            placeholder="Enter your email address"
+            className="border-none outline-none flex-1 text-[#0253AE] placeholder:text-[#0253AE] font-medium"
+          />
+          <motion.button type="submit" whileHover={{ scale: 1.2 }}>
+            <FaArrowRightLong size={25} className="text-[#0253AE]" />
+          </motion.button>
+        </form>
       </section>
     </>
   );

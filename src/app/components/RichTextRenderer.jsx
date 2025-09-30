@@ -8,7 +8,7 @@ export default function RichTextRenderer({ content }) {
       content={content}
       blocks={{
         paragraph: ({ children }) => (
-          <p className="leading-relaxed text-gray-800 text-justify">
+          <p className="leading-relaxed text-gray-800 mb-4 text-justify">
             {children}
           </p>
         ),
