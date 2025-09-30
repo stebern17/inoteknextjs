@@ -10,7 +10,7 @@ function ClosingSection() {
         className="flex justify-center"
         initial={{ opacity: 0, x: 50 }}
         whileInView={{ opacity: 1, x: 0 }}
-        viewport={{ amount: 0.5 }}
+        viewport={{ amount: 0.3 }}
         transition={{ type: "spring", stiffness: 90, damping: 10 }}
       >
         <img
