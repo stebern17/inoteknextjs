@@ -9,7 +9,7 @@ export default async function ArticleSection({ id }) {
     {
       method: "GET",
       headers: { Authorization: `Bearer ${process.env.NEXT_TOKEN_STRAPI}` },
-      cache: "no-store",
+      cache: "force-cache",
     }
   );
 
