@@ -17,11 +17,7 @@ export const metadata = {
 export default function RootLayout({ children }) {
   return (
     <html lang="en">
-      <head>
-        <link rel="preload" as="image" href="/images/company profile-1.jpg" />
-        <link rel="preload" as="image" href="/images/company profile-2.jpg" />
-        <link rel="preload" as="image" href="/images/company profile-3.jpg" />
-      </head>
+      <head></head>
       <body>
         <ThemeInit />
         <SpeedInsights />

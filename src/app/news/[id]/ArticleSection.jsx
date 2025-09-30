@@ -9,7 +9,7 @@ export default async function ArticleSection({ id }) {
     {
       method: "GET",
       headers: { Authorization: `Bearer ${process.env.NEXT_TOKEN_STRAPI}` },
-      cache: "force-cache",
+      cache: "no-store",
     }
   );
 
@@ -43,10 +43,10 @@ export default async function ArticleSection({ id }) {
         <img
           src={data.image.url}
           alt={data.image.alternativeText || ""}
-          className="w-full object-cover rounded-2xl"
+          className="w-full object-cover rounded-2xl md:h-[600px] h-[300px]"
         />
       </div>
-      <div className="grid md:grid-cols-3 grid-cols-1 gap-8 mt-8">
+      <div className="grid md:grid-cols-3 grid-cols-1 md:gap-8 gap-3 mt-8">
         <div className="col-span-2">
           <RichTextRenderer content={data.newscontent} />
         </div>
