@@ -9,6 +9,7 @@
     "lint": "eslint"
   },
   "dependencies": {
+    "@strapi/blocks-react-renderer": "^1.0.2",
     "@vercel/speed-insights": "^1.2.0",
     "flowbite": "^3.1.2",
     "flowbite-react": "^0.12.9",

@@ -3,23 +3,24 @@ import { revalidatePath } from "next/cache";
 
 export async function POST(request) {
   try {
-    const body = await request.json();
-    const { secret, model, entry } = body; // payload Strapi biasanya ada model + entry
+    const authHeader = request.headers.get("authorization");
 
-    // Validasi secret
-    if (secret !== process.env.REVALIDATE_SECRET) {
+    if (authHeader !== `Bearer ${process.env.REVALIDATE_SECRET}`) {
       return NextResponse.json({ message: "Invalid token" }, { status: 401 });
     }
 
-    // Tentukan halaman mana yang perlu diregenerate
-    // Misal: selalu refresh home & listing news
+    const body = await request.json();
+    const { model, entry } = body;
+
+    // Revalidate paths
     revalidatePath("/nichiha");
     revalidatePath("/product");
+    revalidatePath("/news");
 
-    // // Kalau model article & ada id → revalidate detail page
-    // if (model === "article" && entry?.id) {
-    //   revalidatePath(`/news/${entry.id}`);
-    // }
+    // Revalidate detail jika perlu
+    if (model === "article" && entry?.id) {
+      revalidatePath(`/news/${entry.id}`);
+    }
 
     return NextResponse.json({ revalidated: true });
   } catch (err) {

@@ -1,0 +1,46 @@
+import React from "react";
+import Link from "next/link";
+import { getNewsArticles } from "@/app/nichiha/NewsSection";
+
+export default async function RelatedNews({ currentCategory, currentId }) {
+  const articles = await getNewsArticles();
+
+  const filtered = articles.filter(
+    (article) =>
+      article.category === currentCategory &&
+      article.link !== `/news/${currentId}`
+  );
+  return (
+    <div className="flex flex-col gap-4">
+      <h2 className="text-2xl font-bold">Berita Lainnya</h2>
+      <div className="flex flex-col gap-3">
+        {filtered.length === 0 && (
+          <p className="text-sm text-gray-400">Tidak ada berita terkait</p>
+        )}
+        {filtered.map((article) => (
+          <Link
+            key={article.id}
+            href={article.link}
+            className="flex md:flex-col lg:flex-row items-center gap-3 hover:opacity-80"
+          >
+            {article.image && (
+              <img
+                src={article.image}
+                alt={article.title}
+                width={100}
+                height={60}
+                className="rounded-md object-cover h-24 w-34 lg:w-34 md:w-full flex-shrink-0"
+              />
+            )}
+            <div className="lg:self-start md:text-center lg:text-start  ">
+              <p className="text-sm text-gray-500">{article.category}</p>
+              <h3 className="font-semibold text-sm xl:text-lg">
+                {article.title}
+              </h3>
+            </div>
+          </Link>
+        ))}
+      </div>
+    </div>
+  );
+}
