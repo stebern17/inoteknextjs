@@ -13,7 +13,10 @@ function VisiMisiSection() {
     [5]: "Berkomitmen pada keberlanjutan dan nilai tambah bangunan",
   };
   return (
-    <section className="content grid grid-cols-1 lg:grid-cols-2 gap-10 py-5 min-h-[70vh]">
+    <section
+      id="visimisi"
+      className="content grid grid-cols-1 lg:grid-cols-2 gap-10 py-5 md:min-h-[70vh]"
+    >
       <motion.div
         initial={{ x: -100, opacity: 0 }}
         whileInView={{ x: 0, opacity: 1 }}

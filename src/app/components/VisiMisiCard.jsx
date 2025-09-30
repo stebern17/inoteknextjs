@@ -33,14 +33,14 @@ export default function VisiMisiCard({ title, children, textAlign }) {
       </svg>
 
       <div
-        className="font-display h-full flex flex-col bg-[#00408A] rounded-3xl shadow-lg clip-rounded-lg"
+        className="font-display md:h-full md:py-0 py-10 flex flex-col bg-[#00408A] rounded-3xl shadow-lg clip-rounded-lg"
         style={{
           clipPath: "url(#rounded-clip)",
         }}
       >
         {/* Tab Judul */}
         <div className="py-2 sm:py-3 rounded-t-xl relative lg:w-2/6">
-          <h2 className="text-white ms-2 font-bold text-3xl  md:text-4xl lg:text-6xl tracking-wider text-center">
+          <h2 className="text-white ms-2 md:mt-5  font-bold text-3xl  md:text-4xl lg:text-6xl tracking-wider text-center">
             {title}
           </h2>
         </div>

@@ -49,7 +49,7 @@ const uspData = [
 
 function UspSection() {
   return (
-    <section className="content grid grid-cols-1 gap-12 w-full">
+    <section id="keunggulan" className="content grid grid-cols-1 gap-12 w-full">
       {uspData.map((usp, index) => (
         <motion.div
           key={index}

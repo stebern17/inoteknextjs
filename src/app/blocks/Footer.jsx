@@ -1,5 +1,3 @@
-"use client";
-
 import React from "react";
 import Link from "next/link";
 
@@ -56,7 +54,7 @@ function Footer() {
             </li>
             <li>
               <Link
-                href="/companyprofile"
+                href="/companyprofile#visimisi"
                 className="inline-block hover:scale-110 transition-transform duration-300"
               >
                 Visi & Misi
@@ -64,7 +62,7 @@ function Footer() {
             </li>
             <li>
               <Link
-                href="/companyprofile"
+                href="/companyprofile#budaya"
                 className="inline-block hover:scale-110 transition-transform duration-300"
               >
                 Budaya
@@ -79,7 +77,7 @@ function Footer() {
           <ul className="flex flex-col gap-2 text-sm">
             <li>
               <Link
-                href="/companyprofile"
+                href="/product"
                 className="inline-block hover:scale-110 transition-transform duration-300"
               >
                 Produk Kami
@@ -87,7 +85,7 @@ function Footer() {
             </li>
             <li>
               <Link
-                href="/companyprofile"
+                href="/nichiha#keunggulan"
                 className="inline-block hover:scale-110 transition-transform duration-300"
               >
                 Keunggulan
@@ -95,7 +93,7 @@ function Footer() {
             </li>
             <li>
               <Link
-                href="/companyprofile"
+                href="/product"
                 className="inline-block hover:scale-110 transition-transform duration-300"
               >
                 EX Series 1820
@@ -103,7 +101,7 @@ function Footer() {
             </li>
             <li>
               <Link
-                href="/companyprofile"
+                href="/product"
                 className="inline-block hover:scale-110 transition-transform duration-300"
               >
                 EX Series 3030
@@ -111,7 +109,7 @@ function Footer() {
             </li>
             <li>
               <Link
-                href="/companyprofile"
+                href="/product"
                 className="inline-block hover:scale-110 transition-transform duration-300"
               >
                 EX Series 3030 New Introduction

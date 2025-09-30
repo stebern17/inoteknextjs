@@ -3,7 +3,10 @@ import { motion } from "motion/react";
 
 function InotekSection() {
   return (
-    <section className="content bg-[#00408A] w-full flex flex-col justify-center lg:min-h-screen py-24 lg:py-0">
+    <section
+      id="budaya"
+      className="content bg-[#00408A] w-full flex flex-col justify-center lg:min-h-screen py-24 lg:py-0"
+    >
       <motion.img
         src="/images/NilaiBudayaHorizontal.png"
         alt="Nilai Budaya"
