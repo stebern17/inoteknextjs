@@ -5,7 +5,7 @@ import { Label, Textarea, TextInput, Button, Alert } from "flowbite-react";
 export default function ContactFormPage() {
   const [formData, setFormData] = useState({
     name: "",
-    email: "",
+    useremail: "",
     phone: "",
     message: "",
   });
@@ -37,7 +37,7 @@ export default function ContactFormPage() {
       setStatus("success");
       setFormData({
         name: "",
-        email: "",
+        useremail: "",
         phone: "",
         message: "",
       });
@@ -79,10 +79,10 @@ export default function ContactFormPage() {
           </Label>
           <TextInput
             type="email"
-            value={formData.email}
+            value={formData.useremail}
             onChange={handleChange}
-            id="email"
-            name="email"
+            id="useremail"
+            name="useremail"
             required
           />
         </div>
