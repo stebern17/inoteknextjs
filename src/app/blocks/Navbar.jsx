@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useState } from "react";
+import React, { useState, useRef, useEffect } from "react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { Button } from "flowbite-react";
@@ -10,6 +10,30 @@ import { motion, AnimatePresence } from "motion/react";
 function NavbarHeader() {
   const [isOpen, setIsOpen] = useState(false);
   const pathname = usePathname();
+  const navRef = useRef(null);
+
+  // Set CSS var for anchor offset so hash scroll positions account for navbar height
+  useEffect(() => {
+    const applyOffset = () => {
+      if (navRef.current) {
+        const h = navRef.current.offsetHeight;
+        document.documentElement.style.setProperty(
+          "--nav-offset",
+          h + 8 + "px"
+        ); // 8px breathing room
+      }
+    };
+    applyOffset();
+    window.addEventListener("resize", applyOffset);
+    return () => window.removeEventListener("resize", applyOffset);
+  }, []);
+
+  // Recalculate when mobile menu toggles as height changes
+  useEffect(() => {
+    if (!navRef.current) return;
+    const h = navRef.current.offsetHeight;
+    document.documentElement.style.setProperty("--nav-offset", h + 8 + "px");
+  }, [isOpen]);
 
   const menus = [
     { label: "BERANDA", path: "/nichiha" },
@@ -20,7 +44,10 @@ function NavbarHeader() {
   const toggleMenu = () => setIsOpen(!isOpen);
 
   return (
-    <nav className="sticky top-0 left-0 w-full z-50 bg-white text-[#013774]">
+    <nav
+      ref={navRef}
+      className="sticky top-0 left-0 w-full z-50 bg-white text-[#013774]"
+    >
       <div className="content mx-auto flex justify-between items-center py-4 px-6">
         <Link href="/nichiha">
           <img

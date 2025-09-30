@@ -3,21 +3,8 @@
 import React, { useState, useEffect } from "react";
 
 function VideoSection() {
-  const [isMobile, setIsMobile] = useState(false);
-
-  useEffect(() => {
-    const handleResize = () => {
-      setIsMobile(window.innerWidth < 1024); // Adjust the breakpoint as needed
-    };
-    window.addEventListener("resize", handleResize);
-    handleResize(); // Check initial size
-    return () => {
-      window.removeEventListener("resize", handleResize);
-    };
-  }, []);
-
   return (
-    <section className="flex justify-center items-center">
+    <section id="companyprocrsl" className="flex justify-center items-center">
       {/* change the video source based on screen size */}
       <video
         src="/videos/VideoProfile.webm"

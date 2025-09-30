@@ -9,10 +9,17 @@
   .content {
     @apply mx-auto px-4 sm:px-10 lg:px-16 xl:px-32;
   }
+  .anchor-offset { scroll-margin-top: var(--nav-offset, 5rem); }
 }
 
 .content {
   overflow-x: hidden;
+}
+
+:root {
+  --nav-offset: 5rem; /* default; updated dynamically by navbar */
+  scroll-padding-top: var(--nav-offset);
+  scroll-behavior: smooth;
 }
 
 

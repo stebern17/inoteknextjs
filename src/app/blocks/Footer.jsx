@@ -46,7 +46,7 @@ function Footer() {
           <ul className="flex flex-col gap-2 text-sm">
             <li>
               <Link
-                href="/companyprofile"
+                href="/companyprofile#companyprocrsl"
                 className="inline-block hover:scale-110 transition-transform duration-300"
               >
                 Tentang Kami
@@ -66,6 +66,14 @@ function Footer() {
                 className="inline-block hover:scale-110 transition-transform duration-300"
               >
                 Budaya
+              </Link>
+            </li>
+            <li>
+              <Link
+                href="/contactform#contact-form"
+                className="inline-block hover:scale-110 transition-transform duration-300"
+              >
+                Hubungi Kami
               </Link>
             </li>
           </ul>
