@@ -35,7 +35,7 @@ function NavbarHeader() {
           {menus.map((menu) => (
             <motion.li
               key={menu.path}
-              whileHover={{ scale: 1.2 }}
+              whileHover={{ textcolor: "#0253AE" }}
               transition={{
                 duration: 0.2,
                 ease: "easeIn",

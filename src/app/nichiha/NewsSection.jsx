@@ -1,9 +1,9 @@
 import NewsCard from "../components/NewsCard";
 import NewsSlider from "../components/NewsSlider";
 
-async function getNewsArticles() {
+export async function getNewsArticles() {
   const res = await fetch(
-    "https://sublime-animal-0e42b737fe.strapiapp.com/api/articles?populate=*",
+    `${process.env.NEXT_PUBLIC_API_URL}/api/articles?populate=*`,
     { cache: "force-cache" }
   );
   if (!res.ok) throw new Error("Gagal fetch data");
@@ -14,7 +14,7 @@ async function getNewsArticles() {
     title: item.title,
     category: item.category?.category || "News",
     image: item.image?.formats?.medium?.url || item.cover?.url || null,
-    link: `/news/${item.id}`,
+    link: `/news/${item.documentId}`,
   }));
 }
 

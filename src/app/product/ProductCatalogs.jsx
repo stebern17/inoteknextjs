@@ -3,13 +3,12 @@ import Tabs from "../components/TabsProduct";
 async function getCatalogData() {
   const [typesRes, variantsRes] = await Promise.all([
     fetch(
-      "https://sublime-animal-0e42b737fe.strapiapp.com/api/types?populate=*",
+      `${process.env.NEXT_PUBLIC_API_URL}/api/types?populate=*`,
       { cache: "force-cache" } // ❌ tidak akan refetch lagi
     ),
-    fetch(
-      "https://sublime-animal-0e42b737fe.strapiapp.com/api/variants?populate=*",
-      { cache: "force-cache" }
-    ),
+    fetch(`${process.env.NEXT_PUBLIC_API_URL}/api/variants?populate=*`, {
+      cache: "force-cache",
+    }),
   ]);
 
   if (!typesRes.ok || !variantsRes.ok) {

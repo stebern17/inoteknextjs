@@ -81,7 +81,7 @@ export default function NewsSlider({ children }) {
       <button
         onClick={scrollLeft}
         aria-label="Scroll left"
-        className="md:flex hidden absolute top-1/2 left-4 -translate-y-1/2 z-20 bg-white text-blue-600 p-3 rounded-full shadow hover:bg-blue-100"
+        className="cursor-pointer md:flex hidden absolute top-1/2 left-4 -translate-y-1/2 z-20 bg-white text-blue-600 p-3 rounded-full shadow hover:bg-blue-100"
       >
         <FaChevronLeft size={20} />
       </button>
@@ -90,7 +90,7 @@ export default function NewsSlider({ children }) {
       <button
         onClick={scrollRight}
         aria-label="Scroll right"
-        className="md:flex hidden absolute top-1/2 right-4 -translate-y-1/2 z-20 bg-white text-blue-600 p-3 rounded-full shadow hover:bg-blue-100"
+        className="cursor-pointer md:flex hidden absolute top-1/2 right-4 -translate-y-1/2 z-20 bg-white text-blue-600 p-3 rounded-full shadow hover:bg-blue-100"
       >
         <FaChevronRight size={20} />
       </button>
