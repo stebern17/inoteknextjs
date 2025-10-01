@@ -39,6 +39,7 @@ function NavbarHeader() {
     { label: "BERANDA", path: "/nichiha" },
     { label: "PROFIL PERUSAHAAN", path: "/companyprofile" },
     { label: "PRODUK", path: "/product" },
+    { label: "DISTRIBUTOR", path: "/distributor" },
   ];
 
   const toggleMenu = () => setIsOpen(!isOpen);
