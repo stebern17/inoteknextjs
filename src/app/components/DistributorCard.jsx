@@ -7,7 +7,7 @@ export default function DistributorCard({
   city,
 }) {
   return (
-    <div className="border bg-[#0253AE] p-4 rounded-xl text-white flex flex-col gap-2 drop-shadow-xl h-[230px]">
+    <div className="border bg-[#0253AE] p-4 rounded-xl text-white flex flex-col gap-2 drop-shadow-xl h-[250px]">
       <h2 className="font-bold text-2xl">{name}</h2>
       <div className="font-light text-sm flex flex-col gap-2">
         <div>
