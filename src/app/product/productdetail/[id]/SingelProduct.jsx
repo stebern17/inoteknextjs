@@ -46,7 +46,7 @@ export default async function SingelProduct({ id }) {
                     <img
                       src={spec.url} // Gunakan spec.url
                       alt={spec.description} // Gunakan deskripsi untuk alt text
-                      className="h-16 object-cover mx-auto"
+                      className="w-full object-cover mx-auto"
                     />
 
                     <div className="absolute bottom-full mb-2 w-max max-w-xs px-3 py-1.5 bg-gray-900 text-white text-sm rounded-md opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none">
