@@ -74,7 +74,7 @@ export default function DistributorSection() {
               initial="hidden"
               animate="visible"
               exit="exit"
-              layout // Properti penting untuk menganimasikan perpindahan posisi
+              layout
             >
               <DistributorCard
                 name={distributor.name}
