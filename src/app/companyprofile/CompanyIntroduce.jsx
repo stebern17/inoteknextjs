@@ -40,7 +40,7 @@ function CompanyIntroduce() {
           </h3>
           <List className="mx-4 text-[#0253AE] md:text-xl text-lg">
             <ListItem icon={FaCircle} theme={lisTheme} className=" flex gap-1">
-              <p>Tim DIstrubutor dan Customer Service yang profesional</p>
+              <p>Tim Distrubutor dan Customer Service yang profesional</p>
             </ListItem>
             <ListItem icon={FaCircle} theme={lisTheme} className=" flex gap-1">
               <p>Layanan distribusi nasional dengan jangkauan se-Indonesia</p>

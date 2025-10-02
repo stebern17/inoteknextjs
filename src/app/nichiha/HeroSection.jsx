@@ -17,8 +17,6 @@ function HeroSection() {
           sekadar pelindung bangunan, sistem panel fasad Nichiha merupakan karya
           arsitektur yang menghadirkan estetika serta meningkatkan nilai hunian
           dan bangunan. Dengan filosofi
-        </span>
-        <span>
           <span className="font-bold"> “Makes Living Simple”</span>, Inotek
           bersama Nichiha menyediakan solusi fasad yang praktis, kuat, dan
           indah, sehingga memudahkan arsitek, kontraktor, hingga pemilik rumah
