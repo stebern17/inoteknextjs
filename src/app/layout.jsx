@@ -18,7 +18,7 @@ export default function RootLayout({ children }) {
   return (
     <html lang="en">
       <head></head>
-      <body className="smooth-scroll">
+      <body>
         <ThemeInit />
         <SpeedInsights />
         <NavbarHeader />

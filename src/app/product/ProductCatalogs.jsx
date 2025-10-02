@@ -1,24 +1,27 @@
-import Tabs from "../components/TabsProduct";
+import Tabs from "./TabsProduct";
 
-async function getCatalogData() {
-  const [typesRes, variantsRes] = await Promise.all([
-    fetch(
-      `${process.env.NEXT_PUBLIC_API_URL}/api/types?populate=*`,
-      { cache: "force-cache" } // ❌ tidak akan refetch lagi
-    ),
+export async function getCatalogData() {
+  const [typesRes, variantsRes, productsRes] = await Promise.all([
+    fetch(`${process.env.NEXT_PUBLIC_API_URL}/api/types?populate=*`, {
+      cache: "force-cache",
+    }),
     fetch(`${process.env.NEXT_PUBLIC_API_URL}/api/variants?populate=*`, {
+      cache: "force-cache",
+    }),
+    fetch(`${process.env.NEXT_PUBLIC_API_URL}/api/products?populate=*`, {
       cache: "force-cache",
     }),
   ]);
 
-  if (!typesRes.ok || !variantsRes.ok) {
+  if (!typesRes.ok || !variantsRes.ok || !productsRes.ok) {
     throw new Error("Gagal fetch data");
   }
 
   const typesJson = await typesRes.json();
   const variantsJson = await variantsRes.json();
+  const productsJson = await productsRes.json();
 
-  // Build variant map
+  // Buat variant map
   const variantMap = {};
   variantsJson.data.forEach((v) => {
     const img =
@@ -29,30 +32,48 @@ async function getCatalogData() {
 
     variantMap[v.id] = {
       id: v.id,
+      documentId: v.documentId,
       name: v.Name,
       image: img,
       category: v.typevariant?.Kind || null,
     };
   });
 
-  // Map types + variants
-  return typesJson.data.map((t) => ({
-    id: t.id,
-    product: t.product?.Name || "Unknown",
-    category: t.Kind || "Uncategorized",
-    coverImage: t.CoverImage?.url || null,
-    link: `/product/productdetail/${t.id}`,
-    variants: (t.variants || [])
-      .map((tv) => variantMap[tv.id] || null)
-      .filter(Boolean),
-  }));
+  // Gabungkan types + variants + products
+  return typesJson.data.map((t) => {
+    const relatedProduct = productsJson.data.find(
+      (p) => p.id === t.product?.id
+    );
+
+    return {
+      id: t.id,
+      documentId: t.documentId,
+      product: t.product?.Name || "Unknown",
+      productSize: t.product?.Size || "Standard",
+      productWeight: t.product?.Weight || "Standard",
+      productPackaging: t.product?.Packaging || "Standard",
+      category: t.Kind || "Uncategorized",
+      coverImage: t.CoverImage?.url || null,
+      headerImage: t.HeaderImage?.url || null,
+      link: `/product/productdetail/${t.id}`,
+      variants: (t.variants || [])
+        .map((tv) => variantMap[tv.id] || null)
+        .filter(Boolean),
+      productSpecs:
+        relatedProduct?.Specifiation?.map((s) => ({
+          url:
+            s.formats?.small?.url || s.formats?.thumbnail?.url || s.url || null,
+          description: s.alternativeText || s.caption || "No description",
+        })).filter((spec) => spec.url) || [],
+    };
+  });
 }
 
 export default async function ProductCatalogPage() {
   const catalogData = await getCatalogData();
 
   return (
-    <section className="lg:px-40 px-4 py-6 lg:min-h-screen content w-full">
+    <section className="lg:px-40 px-4 py-6 min-h-screen content w-full">
       <Tabs initialData={catalogData} />
     </section>
   );

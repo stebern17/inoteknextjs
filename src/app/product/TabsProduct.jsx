@@ -97,7 +97,10 @@ export default function Tabs({ initialData }) {
       <div className="mt-8 grid grid-cols-2 lg:grid-cols-3 gap-4">
         {filteredData.length > 0 ? (
           filteredData.map((item) => (
-            <Link key={item.id} href={item.link}>
+            <Link
+              key={item.id}
+              href={`/product/productdetail/${item.documentId}`}
+            >
               <div className="border-t border-s border-gray-300 rounded-xl overflow-hidden mx-auto p-3 shadow-[4px_4px_2px_0_rgba(0,0,0,0.25)] hover:shadow-lg transition-shadow duration-300 w-full max-w-xs">
                 {item.coverImage && (
                   <img
