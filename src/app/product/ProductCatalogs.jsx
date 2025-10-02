@@ -3,7 +3,7 @@ import Tabs from "./TabsProduct";
 export async function getCatalogData() {
   const typesRes = await fetch(
     `${process.env.NEXT_PUBLIC_API_URL}/api/types?populate=*`,
-    { cache: "no-store" }
+    { cache: "force-cache" }
   );
 
   if (!typesRes.ok) {
