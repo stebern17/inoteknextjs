@@ -2,21 +2,27 @@ import React from "react";
 import { getCatalogData } from "@/app/product/ProductCatalogs";
 import { HR } from "flowbite-react";
 import BackButton from "@/app/components/BackButton";
+import { notFound } from "next/navigation"; // Import notFound dari Next.js
 
 export default async function SingelProduct({ id }) {
   const catalogData = await getCatalogData();
   const product = catalogData.find((item) => item.documentId === id);
 
+  // PERBAIKAN: Tambahkan pengecekan jika produk tidak ditemukan
+  if (!product) {
+    notFound(); // Tampilkan halaman 404 jika ID tidak valid
+  }
+
   return (
     <div className="w-[60vw] mx-auto my-10 flex flex-col gap-6">
       <BackButton />
       <div className="p-6 flex flex-col font-display border-t border-s border-gray-300 shadow-[8px_8px_16px_rgba(0,0,0,0.15)] rounded-2xl">
-        <div className="grid grid-cols-2 gap-10">
+        <div className="grid md:grid-cols-2 grid-cols-1 gap-10">
           {/* Header Image */}
           <img
             src={product.headerImage}
             alt={product.product}
-            className="rounded-2xl"
+            className="rounded-2xl w-full object-cover"
           />
 
           {/* Detail */}
@@ -29,48 +35,52 @@ export default async function SingelProduct({ id }) {
                   <p>Packaging</p>
                 </div>
                 <div>
-                  <p>: {product.productSize}</p>
-                  <p>: {product.productWeight}</p>
-                  <p>: {product.productPackaging}</p>
+                  {/* PERBAIKAN: Gunakan nama properti yang benar */}
+                  <p>: {product.size}</p>
+                  <p>: {product.weight}</p>
+                  <p>: {product.packaging}</p>
                 </div>
               </div>
-              <HR className="bg-gray-600" />
+              <HR className="my-4 bg-gray-600" />
             </div>
 
             {/* Product Specs Images */}
-            <div className="grid grid-cols-6 gap-4 relative">
-              {product.productSpecs &&
-                product.productSpecs.map((spec, index) => (
-                  // 1. Tambahkan div pembungkus dengan class "group" dan "relative"
-                  <div key={index} className=" flex justify-center group">
-                    <img
-                      src={spec.url} // Gunakan spec.url
-                      alt={spec.description} // Gunakan deskripsi untuk alt text
-                      className="w-full object-cover mx-auto"
-                    />
-
-                    <div className="absolute bottom-full mb-2 w-max max-w-xs px-3 py-1.5 bg-gray-900 text-white text-sm rounded-md opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none">
-                      {spec.description}
-
-                      <div className="absolute left-1/2 -translate-x-1/2 top-full w-0 h-0 border-x-4 border-x-transparent border-t-4 border-t-gray-900"></div>
-                    </div>
+            <div className="grid grid-cols-4 md:grid-cols-6 gap-4 relative">
+              {/* PERBAIKAN: Gunakan 'product.specifications' */}
+              {product.specifications?.map((spec, index) => (
+                <div key={index} className="flex justify-center group">
+                  <img
+                    src={spec.url}
+                    // PERBAIKAN: Gunakan 'spec.caption'
+                    alt={spec.caption}
+                    className="w-full object-cover mx-auto"
+                  />
+                  <div className="absolute bottom-full mb-2 w-max max-w-xs px-3 py-1.5 bg-gray-900 text-white text-sm rounded-md opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none">
+                    {/* PERBAIKAN: Gunakan 'spec.caption' */}
+                    {spec.caption}
+                    <div className="absolute left-1/2 -translate-x-1/2 top-full w-0 h-0 border-x-4 border-x-transparent border-t-4 border-t-gray-900"></div>
                   </div>
-                ))}
+                </div>
+              ))}
             </div>
           </div>
         </div>
-        <HR className="bg-gray-600" />
+        <HR className="my-6 bg-gray-600" />
         <div className="flex flex-col gap-4">
           <h3 className="text-3xl font-medium tracking-wide">Varian Produk</h3>
-          <div className="grid grid-cols-3 gap-6">
-            {product.variants.map((variant) => (
+          <div className="grid grid-cols-2 md:grid-cols-3 gap-6">
+            {/* PERBAIKAN: Gunakan 'product.colours' */}
+            {product.colours?.map((variant) => (
               <div key={variant.id} className="flex flex-col items-center">
                 <img
-                  src={variant.image}
-                  alt={variant.name}
-                  className="rounded-lg h-24 object-cover"
+                  // PERBAIKAN: Gunakan 'variant.url'
+                  src={variant.url}
+                  // PERBAIKAN: Gunakan 'variant.caption'
+                  alt={variant.caption}
+                  className="rounded-lg h-24 w-full object-cover"
                 />
-                <p className="mt-2 text-center">{variant.name}</p>
+                {/* PERBAIKAN: Gunakan 'variant.caption' */}
+                <p className="mt-2 text-center">{variant.caption}</p>
               </div>
             ))}
           </div>

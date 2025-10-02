@@ -26,8 +26,8 @@ function UspCard({ image, title, icon, reverse, desc }) {
               className="md:size-28 size-20"
             />
             <div className="flex flex-col items-center gap-2 md:gap-0">
-              <h2 className="text-xs md:text-xl font-bold">{title}</h2>
-              <p className="text-xs md:text-sm">{desc.join(" | ")}</p>
+              <h2 className="text-xs md:text-2xl font-bold">{title}</h2>
+              {/* <p className="text-xs md:text-sm">{desc.join(" | ")}</p> */}
             </div>
           </div>
         </>
@@ -41,8 +41,8 @@ function UspCard({ image, title, icon, reverse, desc }) {
               className="md:size-28 size-20"
             />
             <div className="flex flex-col items-center gap-2 md:gap-0">
-              <h2 className="text-xs md:text-xl font-bold">{title}</h2>
-              <p className="text-xs md:text-sm">{desc.join(" | ")}</p>
+              <h2 className="text-xs md:text-2xl font-bold">{title}</h2>
+              {/* <p className="text-xs md:text-sm">{desc.join(" | ")}</p> */}
             </div>
           </div>
 

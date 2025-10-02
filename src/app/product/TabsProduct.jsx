@@ -18,8 +18,8 @@ export default function Tabs({ initialData }) {
   ];
 
   const categoryMap = {
-    "EX Series 1820": ["Simple", "Designers", "Wood", "Stone", "Tile/Brick"],
-    "EX Series 3030": ["Simple", "Designers", "Wood", "Stone", "Tile/Brick"],
+    "EX Series 1820": ["Simple", "Designer", "Wood", "Stone", "Tile/Brick"],
+    "EX Series 3030": ["Simple", "Designer", "Wood", "Stone", "Tile/Brick"],
     "EX Series 3030 New Introduction": [
       "Simple",
       "Designers",
@@ -101,30 +101,32 @@ export default function Tabs({ initialData }) {
               key={item.id}
               href={`/product/productdetail/${item.documentId}`}
             >
-              <div className="border-t border-s border-gray-300 rounded-xl overflow-hidden mx-auto p-3 shadow-[4px_4px_2px_0_rgba(0,0,0,0.25)] hover:shadow-lg transition-shadow duration-300 w-full max-w-xs">
+              <div className="border-t border-s border-gray-300 h-full rounded-xl overflow-hidden mx-auto p-3 shadow-[4px_4px_2px_0_rgba(0,0,0,0.25)] hover:shadow-lg transition-shadow duration-300 w-full max-w-xs">
                 {item.coverImage && (
                   <img
                     src={item.coverImage}
                     alt={`${item.product} - ${item.category}`}
-                    className="w-full h-40 object-cover rounded-xl"
+                    className="rounded-xl"
                   />
                 )}
-                {/* List varian */}
+
+                {/* List varian - STRUKTUR YANG SUDAH DIPERBAIKI */}
                 <div className="mt-2 grid grid-cols-3 gap-2">
-                  {item.variants.map((v) => (
-                    <div key={v.id} className="text-center">
-                      {v.image ? (
+                  {/* buat hanya ambil 6 colour */}
+                  {item.colours.slice(0, 6).map((c) => (
+                    <div key={c.id} className="text-center">
+                      {c.url ? (
                         <img
-                          src={v.image}
-                          alt={v.name}
+                          src={c.url}
+                          alt={c.caption}
                           className="w-full h-20 object-cover rounded-md border border-gray-400"
                         />
                       ) : (
                         <div className="w-full h-20 flex items-center justify-center bg-gray-100 text-xs text-gray-500 rounded-md">
-                          {v.name}
+                          {c.caption || "No Image"}
                         </div>
                       )}
-                      <p className="text-xs mt-1">{v.name}</p>
+                      <p className="text-sm mt-1">{c.caption}</p>
                     </div>
                   ))}
                 </div>
