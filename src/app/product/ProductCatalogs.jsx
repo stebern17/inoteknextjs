@@ -2,8 +2,8 @@ import Tabs from "./TabsProduct";
 
 export async function getCatalogData() {
   const typesRes = await fetch(
-    `${process.env.NEXT_PUBLIC_API_URL}/api/types?populate=*`,
-    { cache: "no-store" }
+    `${process.env.NEXT_PUBLIC_API_URL}/api/types?populate=*&pagination[pageSize]=1000`, // Tambahkan ini
+    { cache: "force-cache" } // Kita akan bahas ini nanti
   );
 
   if (!typesRes.ok) {
