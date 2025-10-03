@@ -8,7 +8,7 @@ function Footer() {
         {/* Header Logo & Company Info */}
         <div className="flex flex-col items-start gap-4 mb-10">
           <img
-            src="/logo-inotek.svg"
+            src="/headerfootelogo.png"
             alt="Inotek Karya Mandiri"
             className="w-40 h-auto"
           />
