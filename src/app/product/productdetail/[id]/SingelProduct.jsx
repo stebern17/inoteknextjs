@@ -14,7 +14,7 @@ export default async function SingelProduct({ id }) {
   }
 
   return (
-    <div className="w-[60vw] mx-auto my-10 flex flex-col gap-6">
+    <div className="md:w-[60vw] w-[90vw] mx-auto my-10 flex flex-col gap-6">
       <BackButton />
       <div className="p-6 flex flex-col font-display border-t border-s border-gray-300 shadow-[8px_8px_16px_rgba(0,0,0,0.15)] rounded-2xl">
         <div className="grid md:grid-cols-2 grid-cols-1 gap-10">
