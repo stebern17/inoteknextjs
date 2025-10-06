@@ -1,39 +1,26 @@
 "use client";
-import { React, useState, useEffect, useRef } from "react";
+import { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "motion/react";
 import { Dropdown, DropdownItem } from "flowbite-react";
 import DistributorCard from "@/app/components/DistributorCard";
 
-export async function getDistributors() {
-  const res = await fetch(
-    `${process.env.NEXT_PUBLIC_API_URL}/api/distributors?populate=*`,
-    { cache: "no-store" }
-  );
-  if (!res.ok) throw new Error("Gagal fetch data");
-  const data = await res.json();
-
-  return data.data.map((item) => ({
-    id: item.id,
-    name: item.namadistributor,
-    address: item.alamat,
-    phone: item.phone,
-    email: item.email,
-    website: item.website,
-    city: item.city,
-  }));
-}
 export default function DistributorSection() {
   const [distributors, setDistributors] = useState([]);
+  const [selectedCity, setSelectedCity] = useState("Pilih Kota ....");
 
   useEffect(() => {
     async function fetchDistributors() {
-      const data = await getDistributors();
-      setDistributors(data);
+      try {
+        const res = await fetch("/api/distributor", { cache: "no-store" });
+        if (!res.ok) throw new Error("Gagal fetch data distributor");
+        const { data } = await res.json();
+        setDistributors(data);
+      } catch (err) {
+        console.error(err);
+      }
     }
     fetchDistributors();
   }, []);
-
-  const [selectedCity, setSelectedCity] = useState("Pilih Kota ....");
 
   const uniqueCities = ["Semua", ...new Set(distributors.map((d) => d.city))];
 
@@ -53,6 +40,8 @@ export default function DistributorSection() {
       <h1 className="font-semibold text-3xl text-[#0253AE]">
         Distributor Terdekat
       </h1>
+
+      {/* Dropdown Filter */}
       <div className="flex gap-4">
         <Dropdown
           label={selectedCity}
@@ -65,11 +54,13 @@ export default function DistributorSection() {
           ))}
         </Dropdown>
       </div>
+
+      {/* Card Grid */}
       <motion.div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-4 gap-4">
         <AnimatePresence>
           {filteredDistributors.map((distributor) => (
             <motion.div
-              key={distributor.name}
+              key={distributor.id}
               variants={cardVariants}
               initial="hidden"
               animate="visible"

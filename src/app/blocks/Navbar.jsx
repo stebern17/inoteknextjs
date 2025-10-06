@@ -59,7 +59,7 @@ function NavbarHeader() {
         </Link>
 
         {/* Menu Desktop */}
-        <ul className="hidden lg:flex md:space-x-8 lg:space-x-16 font-display text-lg font-medium">
+        <ul className="hidden lg:flex md:space-x-8 lg:space-x-16 font-display text-lg">
           {menus.map((menu) => (
             <motion.li
               key={menu.path}
