@@ -110,7 +110,6 @@ export default function Tabs({ initialData }) {
                   />
                 )}
 
-                {/* List varian - STRUKTUR YANG SUDAH DIPERBAIKI */}
                 <div className="mt-2 grid grid-cols-3 gap-5">
                   {item.colours.slice(0, 3).map((c) => (
                     <div key={c.id} className="text-center">
