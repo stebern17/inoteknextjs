@@ -2,7 +2,7 @@
 export async function getNewsArticles() {
   const baseUrl = process.env.NEXT_PUBLIC_API_URL;
   const res = await fetch(`${baseUrl}/api/articles?populate=*`, {
-    cache: "no-store",
+    cache: "force-cache",
   });
 
   if (!res.ok) {
@@ -34,7 +34,7 @@ export async function getArticleByDocumentId(documentId) {
   const res = await fetch(
     `${baseUrl}/api/articles?filters[documentId][$eq]=${documentId}&populate=*`,
     {
-      cache: "no-store",
+      cache: "force-cache",
     }
   );
 
