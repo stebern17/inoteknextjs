@@ -1,15 +1,19 @@
 import React from "react";
 import Link from "next/link";
-import { getNewsArticles } from "@/app/nichiha/NewsSection";
+import { getNewsArticles } from "@/services/newsService";
 
-export default async function RelatedNews({ currentCategory, currentId }) {
+export default async function RelatedNews({
+  currentCategory,
+  currentDocumentId,
+}) {
   const articles = await getNewsArticles();
 
   const filtered = articles.filter(
     (article) =>
       article.category === currentCategory &&
-      article.link !== `/news/${currentId}`
+      article.link !== `/news/${currentDocumentId}`
   );
+
   return (
     <div className="flex flex-col gap-4">
       <h2 className="text-2xl font-bold">Berita Lainnya</h2>
@@ -17,13 +21,13 @@ export default async function RelatedNews({ currentCategory, currentId }) {
         {filtered.length === 0 && (
           <p className="text-sm text-gray-400">Tidak ada berita terkait</p>
         )}
-        {filtered.map((article) => (
+        {filtered.slice(0, 5).map((article) => (
           <Link
             key={article.id}
             href={article.link}
             className="flex md:flex-col lg:flex-row items-center gap-3 hover:opacity-80"
           >
-            {article.image && (
+            {article.image ? (
               <img
                 src={article.image}
                 alt={article.title}
@@ -31,8 +35,10 @@ export default async function RelatedNews({ currentCategory, currentId }) {
                 height={60}
                 className="rounded-md object-cover h-24 w-34 lg:w-34 md:w-full flex-shrink-0"
               />
+            ) : (
+              <div className="rounded-md bg-gray-200 h-24 w-34 lg:w-34 md:w-full flex-shrink-0"></div>
             )}
-            <div className="lg:self-start md:text-center lg:text-start  ">
+            <div className="lg:self-start md:text-center lg:text-start">
               <p className="text-sm text-gray-500">{article.category}</p>
               <h3 className="font-semibold text-sm xl:text-lg">
                 {article.title}

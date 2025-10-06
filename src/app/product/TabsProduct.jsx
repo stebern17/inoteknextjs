@@ -44,7 +44,7 @@ export default function Tabs({ initialData }) {
               setActiveProduct(prod);
               setActiveCategory(categoryMap[prod][0]);
             }}
-            className="relative px-6 py-2 text-xs lg:text-lg font-medium w-full"
+            className="relative px-6 py-2 text-xs lg:text-lg w-full"
           >
             {activeProduct === prod && (
               <motion.div
