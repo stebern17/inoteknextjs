@@ -47,7 +47,7 @@ function ProductSection() {
         </div>
         <div className="flex flex-col md:w-[50%] w-full space-y-4">
           <img
-            src="/images/LogoNichihaExSeries.png"
+            src="/images/LogoNichihaExSeries.webp"
             alt="LogoNichiha"
             className="w-[30%]"
           />
@@ -69,7 +69,7 @@ function ProductSection() {
             </p>
           </div>
           <img
-            src="/images/ExSeries3030.png"
+            src="/images/ExSeries3030.webp"
             alt="ExSeries3030"
             className="w-[80%] h-auto"
           />

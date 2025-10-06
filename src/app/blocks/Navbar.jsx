@@ -52,14 +52,14 @@ function NavbarHeader() {
       <div className="content mx-auto flex justify-between items-center py-4 px-6">
         <Link href="/nichiha">
           <img
-            src="/logo-inotek.svg"
+            src="/headerfootelogo.png"
             alt="Inotek Karya Mandiri"
             className="lg:h-10 h-8"
           />
         </Link>
 
         {/* Menu Desktop */}
-        <ul className="hidden lg:flex md:space-x-8 lg:space-x-16 font-display text-lg font-medium">
+        <ul className="hidden lg:flex md:space-x-8 lg:space-x-16 font-display text-lg">
           {menus.map((menu) => (
             <motion.li
               key={menu.path}

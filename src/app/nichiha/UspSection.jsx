@@ -8,26 +8,26 @@ const uspData = [
   {
     title: "Premium Japanese Standard",
     icon: "/icons/premium-quality.png",
-    image: "/images/PremiumJapanese.png",
+    image: "/images/PremiumJapanese.jpg",
     desc: ["Jaminan Mutu", "Presisi & Kontrol Kulitas Tinggi"],
   },
 
   {
     title: "High-End Design",
     icon: "/icons/modern-house.png",
-    image: "/images/Eco.png",
+    image: "/images/HighEnd.jpg",
     desc: ["Material Kuat", "Awet & Tahan Lama"],
   },
   {
     title: "High-Durability Material",
     icon: "/icons/reliability.png",
-    image: "/images/Weather.png",
+    image: "/images/HighDur.jpg",
     desc: ["Tahan Hujan", "Tahan Jamur", "Anti Rayap"],
   },
   {
     title: "Easy Maintenance",
     icon: "/icons/house.png",
-    image: "/images/Nomesh.png",
+    image: "/images/EasyMaintenance.jpg",
     desc: ["Motif Eksklusif & Beragam", "Tampilan Premium & Modern"],
   },
   {

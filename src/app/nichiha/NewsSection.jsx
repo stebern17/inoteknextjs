@@ -1,39 +1,14 @@
 import NewsCard from "../components/NewsCard";
 import NewsSlider from "../components/NewsSlider";
-
-export async function getNewsArticles() {
-  const res = await fetch(
-    `${process.env.NEXT_PUBLIC_API_URL}/api/articles?populate=*`,
-    { cache: "force-cache" }
-  );
-  if (!res.ok) throw new Error("Gagal fetch data");
-  const data = await res.json();
-
-  return data.data.map((item) => ({
-    id: item.id,
-    title: item.title,
-    category: item.category?.category || "News",
-    image: item.image?.formats?.medium?.url || item.cover?.url || null,
-    link: `/news/${item.documentId}`,
-  }));
-}
+import { getNewsArticles } from "@/services/newsService";
 
 export default async function NewsSection() {
-  let articles = [];
-  try {
-    articles = await getNewsArticles();
-  } catch (error) {
-    return (
-      <div className="text-center py-10 text-white text-xl">
-        Gagal memuat berita.
-      </div>
-    );
-  }
+  const articles = await getNewsArticles();
 
-  if (!articles.length) {
+  if (!articles || articles.length === 0) {
     return (
-      <div className="text-center py-10 text-white text-xl">
-        Tidak ada artikel
+      <div className="text-center bg-[#0253AE] py-10 text-white text-xl">
+        Tidak ada artikel berita saat ini.
       </div>
     );
   }
