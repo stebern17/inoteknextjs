@@ -46,15 +46,15 @@ function UspSection() {
           key={index}
           initial={{
             opacity: 0,
-            x: index % 2 === 0 ? -150 : 150, // zigzag awal
+            x: index % 2 === 0 ? -150 : 150,
           }}
           whileInView={{
             opacity: 1,
-            x: 0, // posisi normal
+            x: 0,
           }}
           exit={{
             opacity: 0,
-            x: index % 2 === 0 ? 150 : -150, // zigzag keluar
+            x: index % 2 === 0 ? 150 : -150,
           }}
           viewport={{ amount: 0.3 }}
           transition={{

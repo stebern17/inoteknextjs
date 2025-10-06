@@ -3,7 +3,7 @@ import ArticleSection from "./ArticleSection";
 import NewsLetter from "./NewsLetter";
 
 export default async function NewsDetail({ params }) {
-  const { id } = await params; // documentId dari URL
+  const { id } = await params;
   return (
     <>
       <ArticleSection id={id} />

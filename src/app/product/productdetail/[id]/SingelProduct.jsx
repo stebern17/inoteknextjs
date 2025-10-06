@@ -2,15 +2,14 @@ import React from "react";
 import { getCatalogData } from "@/app/product/ProductCatalogs";
 import { HR } from "flowbite-react";
 import BackButton from "@/app/components/BackButton";
-import { notFound } from "next/navigation"; // Import notFound dari Next.js
+import { notFound } from "next/navigation";
 
 export default async function SingelProduct({ id }) {
   const catalogData = await getCatalogData();
   const product = catalogData.find((item) => item.documentId === id);
 
-  // PERBAIKAN: Tambahkan pengecekan jika produk tidak ditemukan
   if (!product) {
-    notFound(); // Tampilkan halaman 404 jika ID tidak valid
+    notFound();
   }
 
   return (
@@ -69,17 +68,14 @@ export default async function SingelProduct({ id }) {
         <div className="flex flex-col gap-4">
           <h3 className="text-3xl font-medium tracking-wide">Varian Produk</h3>
           <div className="grid grid-cols-2 md:grid-cols-3 gap-6">
-            {/* PERBAIKAN: Gunakan 'product.colours' */}
             {product.colours?.map((variant) => (
               <div key={variant.id} className="flex flex-col items-center">
                 <img
-                  // PERBAIKAN: Gunakan 'variant.url'
                   src={variant.url}
-                  // PERBAIKAN: Gunakan 'variant.caption'
                   alt={variant.caption}
                   className="rounded-lg h-24 w-full object-cover"
                 />
-                {/* PERBAIKAN: Gunakan 'variant.caption' */}
+
                 <p className="mt-2 text-center">{variant.caption}</p>
               </div>
             ))}

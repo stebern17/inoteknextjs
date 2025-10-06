@@ -22,7 +22,7 @@ export const metadata = {
   creator: "Inotek Karya Mandiri",
   publisher: "Inotek Karya Mandiri",
   alternates: {
-    canonical: "https://inotekkaryamandiri.com/", // ganti ke domain kamu
+    canonical: "https://inotekkaryamandiri.com/",
   },
   openGraph: {
     title: "Inotek Nichiha | Distributor Resmi Panel Fasad Jepang di Indonesia",
@@ -34,7 +34,7 @@ export const metadata = {
     type: "website",
     images: [
       {
-        url: "/headerfootelogo.png", // taruh di public/
+        url: "/headerfootelogo.png",
         width: 1200,
         height: 630,
         alt: "Inotek Nichiha - Panel Fasad Jepang",

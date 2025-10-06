@@ -5,14 +5,13 @@ import RelatedNews from "./RelatedNews";
 import { getArticleByDocumentId } from "@/services/newsService";
 
 export default async function ArticleSection({ id }) {
-  // 🔹 ambil artikel lewat service, bukan fetch manual
   const article = await getArticleByDocumentId(id);
 
   if (!article) {
     return <div className="content text-center mx-auto">Not Found</div>;
   }
 
-  const category = article.category?.category || "News"; // ✅ kategori fallback
+  const category = article.category?.category || "News";
 
   return (
     <article className="content w-full min-h-screen my-10 flex flex-col font-display">
@@ -49,7 +48,6 @@ export default async function ArticleSection({ id }) {
         <div className="flex gap-4">
           <VerticalLine />
           <div>
-            {/* ✅ kirim kategori & documentId ke RelatedNews */}
             <RelatedNews
               currentCategory={category}
               currentDocumentId={article.documentId}

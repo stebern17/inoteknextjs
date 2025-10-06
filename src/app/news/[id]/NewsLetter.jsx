@@ -22,45 +22,42 @@ const ArrowRightLongIcon = () => (
 
 export default function NewsLetter() {
   const [useremail, setEmail] = useState("");
-  // State untuk melacak status form: null, 'success', atau 'error'
+
   const [status, setStatus] = useState(null);
 
-  // useEffect untuk menghilangkan alert setelah beberapa detik
   useEffect(() => {
     if (status) {
       const timer = setTimeout(() => {
         setStatus(null);
-      }, 2000); // Alert akan hilang setelah 5 detik
+      }, 2000);
 
-      // Cleanup function untuk membersihkan timer jika komponen unmount
       return () => clearTimeout(timer);
     }
   }, [status]);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    if (!useremail) return; // Jangan submit jika email kosong
+    if (!useremail) return;
 
     try {
       const res = await fetch("/api/newsletter", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ data: { useremail } }), // Kirim dalam format { data: { ... } } untuk Strapi
+        body: JSON.stringify({ data: { useremail } }),
       });
       if (!res.ok) {
         throw new Error("Gagal mengirim email");
       }
-      setStatus("success"); // Set status berhasil
-      setEmail(""); // Kosongkan input setelah berhasil
+      setStatus("success");
+      setEmail("");
     } catch (error) {
       console.error("Error submitting email:", error);
-      setStatus("error"); // Set status gagal
+      setStatus("error");
     }
   };
 
   return (
     <>
-      {/* Container untuk Alert yang diposisikan di pojok kanan atas */}
       <div className="fixed top-5 right-5 z-50 min-w-[300px]">
         {status === "success" && (
           <motion.div

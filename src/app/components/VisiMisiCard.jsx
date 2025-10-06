@@ -4,7 +4,6 @@ import React from "react";
 export default function VisiMisiCard({ title, children, textAlign }) {
   return (
     <>
-      {/* SVG Definition for rounded clip path */}
       <svg
         width="0"
         height="0"

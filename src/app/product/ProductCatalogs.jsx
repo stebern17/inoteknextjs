@@ -2,8 +2,8 @@ import Tabs from "./TabsProduct";
 
 export async function getCatalogData() {
   const typesRes = await fetch(
-    `${process.env.NEXT_PUBLIC_API_URL}/api/types?populate=*&pagination[pageSize]=1000`, // Tambahkan ini
-    { cache: "force-cache" } // Kita akan bahas ini nanti
+    `${process.env.NEXT_PUBLIC_API_URL}/api/types?populate=*&pagination[pageSize]=1000`,
+    { cache: "force-cache" }
   );
 
   if (!typesRes.ok) {
@@ -12,7 +12,7 @@ export async function getCatalogData() {
 
   const typesJson = await typesRes.json();
 
-  // Mapping dilakukan langsung dari objek 't'
+  // Mapping
   return typesJson.data.map((t) => {
     const colours =
       t.Colour?.map((col) => ({
@@ -53,7 +53,6 @@ export default async function ProductCatalogPage() {
   return (
     <section className="lg:px-40 px-4 py-6 min-h-screen content w-full">
       <Tabs initialData={types} />
-      {/* atau bisa diteruskan ke <Tabs initialData={types} /> */}
     </section>
   );
 }

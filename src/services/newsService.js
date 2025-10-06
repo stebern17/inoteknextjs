@@ -14,7 +14,7 @@ export async function getNewsArticles() {
   if (!data) return [];
 
   return data.map((item) => {
-    const doc = item; // langsung flat tanpa attributes
+    const doc = item;
 
     return {
       id: doc.id,

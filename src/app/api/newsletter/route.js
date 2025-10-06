@@ -4,10 +4,10 @@ const resend = new Resend(process.env.RESEND_API_KEY);
 
 export async function POST(request) {
   try {
-    // 1. Ambil objek 'data' dari body request terlebih dahulu
+    
     const { data } = await request.json();
 
-    // 2. Lakukan validasi: pastikan 'data' dan 'data.useremail' ada
+   
     if (!data || !data.useremail) {
       return new Response(
         JSON.stringify({ error: "Email is required in the data object." }),
@@ -15,12 +15,12 @@ export async function POST(request) {
       );
     }
 
-    // 3. Sekarang, ekstrak 'useremail' dari objek 'data'
+ 
     const { useremail } = data;
 
     console.log("📩 Email received in Next.js API:", useremail);
 
-    // 4. Siapkan payload untuk dikirim ke Strapi
+   
     const payload = {
       data: {
         useremail: useremail,
@@ -35,11 +35,11 @@ export async function POST(request) {
           "Content-Type": "application/json",
           Authorization: `Bearer ${process.env.NEXT_TOKEN_STRAPI}`,
         },
-        body: JSON.stringify(payload), // Gunakan payload yang sudah disiapkan
+        body: JSON.stringify(payload),
       }
     );
 
-    const responseData = await res.json(); // Gunakan .json() untuk melihat respons dari Strapi
+    const responseData = await res.json();
 
     if (!res.ok) {
       console.error("❌ Strapi Error:", responseData);
