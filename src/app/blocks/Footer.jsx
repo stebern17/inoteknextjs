@@ -141,6 +141,9 @@ function Footer() {
                   EX Series 3030 New Introduction
                 </Link>
               </li>
+              <li>
+                <Link href="#">Download Catalog</Link>
+              </li>
             </ul>
           </div>
         </div>
