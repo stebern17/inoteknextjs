@@ -1,17 +1,9 @@
+"use client";
 import React from "react";
-import { getCatalogData } from "@/app/product/ProductCatalogs";
 import { HR } from "flowbite-react";
 import BackButton from "@/app/components/BackButton";
-import { notFound } from "next/navigation";
 
-export default async function SingelProduct({ id }) {
-  const catalogData = await getCatalogData();
-  const product = catalogData.find((item) => item.documentId === id);
-
-  if (!product) {
-    notFound();
-  }
-
+export default function SingelProduct({ product }) {
   return (
     <div className="md:w-[60vw] w-[90vw] mx-auto my-10 flex flex-col gap-6">
       <BackButton />
@@ -34,7 +26,6 @@ export default async function SingelProduct({ id }) {
                   <p>Packaging</p>
                 </div>
                 <div>
-                  {/* PERBAIKAN: Gunakan nama properti yang benar */}
                   <p>: {product.size}</p>
                   <p>: {product.weight}</p>
                   <p>: {product.packaging}</p>
@@ -45,17 +36,14 @@ export default async function SingelProduct({ id }) {
 
             {/* Product Specs Images */}
             <div className="grid grid-cols-4 md:grid-cols-6 gap-4 relative">
-              {/* PERBAIKAN: Gunakan 'product.specifications' */}
               {product.specifications?.map((spec, index) => (
                 <div key={index} className="flex justify-center group">
                   <img
                     src={spec.url}
-                    // PERBAIKAN: Gunakan 'spec.caption'
                     alt={spec.caption}
                     className="w-full object-cover mx-auto"
                   />
                   <div className="absolute bottom-full mb-2 w-max max-w-xs px-3 py-1.5 bg-gray-900 text-white text-sm rounded-md opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none">
-                    {/* PERBAIKAN: Gunakan 'spec.caption' */}
                     {spec.caption}
                     <div className="absolute left-1/2 -translate-x-1/2 top-full w-0 h-0 border-x-4 border-x-transparent border-t-4 border-t-gray-900"></div>
                   </div>
@@ -75,7 +63,6 @@ export default async function SingelProduct({ id }) {
                   alt={variant.caption}
                   className="rounded-lg h-24 w-full object-cover"
                 />
-
                 <p className="mt-2 text-center">{variant.caption}</p>
               </div>
             ))}
