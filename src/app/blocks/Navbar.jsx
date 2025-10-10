@@ -3,16 +3,19 @@
 import React, { useState, useRef, useEffect } from "react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { Button } from "flowbite-react";
 import { FaBars, FaTimes } from "react-icons/fa";
+import { IoIosArrowDown } from "react-icons/io";
 import { motion, AnimatePresence } from "motion/react";
 
 function NavbarHeader() {
   const [isOpen, setIsOpen] = useState(false);
   const pathname = usePathname();
   const navRef = useRef(null);
+  const [activeDropdown, setActiveDropdown] = useState(null);
+  const [dropdownPosition, setDropdownPosition] = useState({ left: 0, top: 0 });
+  const menuRefs = useRef({});
+  const [mobileDropdown, setMobileDropdown] = useState(null);
 
-  // Set CSS var for anchor offset so hash scroll positions account for navbar height
   useEffect(() => {
     const applyOffset = () => {
       if (navRef.current) {
@@ -20,7 +23,7 @@ function NavbarHeader() {
         document.documentElement.style.setProperty(
           "--nav-offset",
           h + 8 + "px"
-        ); // 8px breathing room
+        );
       }
     };
     applyOffset();
@@ -28,7 +31,6 @@ function NavbarHeader() {
     return () => window.removeEventListener("resize", applyOffset);
   }, []);
 
-  // Recalculate when mobile menu toggles as height changes
   useEffect(() => {
     if (!navRef.current) return;
     const h = navRef.current.offsetHeight;
@@ -38,11 +40,27 @@ function NavbarHeader() {
   const menus = [
     { label: "BERANDA", path: "/nichiha" },
     { label: "PROFIL PERUSAHAAN", path: "/companyprofile" },
-    { label: "PRODUK", path: "/product" },
+    {
+      label: "PRODUK",
+      path: "/product",
+      children: [{ label: "E-Catalog", path: "/catalog" }],
+    },
     { label: "DISTRIBUTOR", path: "/distributor" },
   ];
 
   const toggleMenu = () => setIsOpen(!isOpen);
+
+  const handleMouseEnter = (menu) => {
+    if (menu.children && menuRefs.current[menu.path]) {
+      const rect = menuRefs.current[menu.path].getBoundingClientRect();
+      const navRect = navRef.current.getBoundingClientRect();
+      setDropdownPosition({
+        left: rect.left,
+        top: navRect.bottom + 8,
+      });
+      setActiveDropdown(menu.path);
+    }
+  };
 
   return (
     <nav
@@ -63,7 +81,10 @@ function NavbarHeader() {
           {menus.map((menu) => (
             <motion.li
               key={menu.path}
-              whileHover={{ textcolor: "#0253AE" }}
+              ref={(el) => (menuRefs.current[menu.path] = el)}
+              onMouseEnter={() => handleMouseEnter(menu)}
+              onMouseLeave={() => setActiveDropdown(null)}
+              whileHover={{ color: "#0253AE" }}
               transition={{
                 duration: 0.2,
                 ease: "easeIn",
@@ -72,13 +93,20 @@ function NavbarHeader() {
             >
               <Link
                 href={menu.path}
-                className={`${
+                className={`flex items-center ${
                   pathname === menu.path
                     ? "text-[#0253AE] font-bold"
                     : "hover:text-[#0253AE]"
                 }`}
               >
                 {menu.label}
+                {menu.children && (
+                  <IoIosArrowDown
+                    className={`inline ml-1 transition-transform duration-200 ${
+                      activeDropdown === menu.path ? "rotate-180" : ""
+                    }`}
+                  />
+                )}
               </Link>
             </motion.li>
           ))}
@@ -105,6 +133,41 @@ function NavbarHeader() {
         </button>
       </div>
 
+      {/* Dropdown Menu - Fixed positioning */}
+      <AnimatePresence>
+        {activeDropdown &&
+          menus.find((m) => m.path === activeDropdown)?.children && (
+            <motion.div
+              initial={{ opacity: 0, y: -50, x: -10 }}
+              animate={{ opacity: 1, y: -30, x: -10 }}
+              exit={{ opacity: 0, y: -50, x: -10 }}
+              transition={{ duration: 0.2 }}
+              className="fixed z-[60]"
+              style={{
+                left: `${dropdownPosition.left}px`,
+                top: `${dropdownPosition.top}px`,
+              }}
+              onMouseEnter={() => setActiveDropdown(activeDropdown)}
+              onMouseLeave={() => setActiveDropdown(null)}
+            >
+              <ul className="w-48 bg-white shadow-lg rounded-md overflow-hidden border border-gray-200">
+                {menus
+                  .find((m) => m.path === activeDropdown)
+                  ?.children.map((child) => (
+                    <li key={child.path} className="border-b last:border-b-0">
+                      <Link
+                        href={child.path}
+                        className="block px-4 py-2 text-gray-800 hover:bg-gray-100 hover:text-[#0253AE]"
+                      >
+                        {child.label}
+                      </Link>
+                    </li>
+                  ))}
+              </ul>
+            </motion.div>
+          )}
+      </AnimatePresence>
+
       {/* Mobile Menu */}
       <AnimatePresence>
         {isOpen && (
@@ -120,7 +183,7 @@ function NavbarHeader() {
               overflowY: "auto",
             }}
           >
-            <ul className="flex flex-col items-center space-y-4 py-6 font-display text-lg font-medium">
+            <ul className="flex flex-col items-center space-y-4 py-6 font-display text-lg font-medium overflow-hidden">
               {menus.map((menu) => (
                 <motion.li
                   key={menu.path}
@@ -128,18 +191,64 @@ function NavbarHeader() {
                   animate={{ opacity: 1, y: 0 }}
                   transition={{ type: "spring", stiffness: 200, damping: 10 }}
                   whileTap={{ scale: 0.9 }}
+                  className="w-full text-center"
                 >
-                  <Link
-                    href={menu.path}
-                    onClick={() => setIsOpen(false)}
-                    className={`${
-                      pathname === menu.path
-                        ? "text-[#0253AE] font-semibold border-b-2 border-[#0253AE]"
-                        : "hover:text-[#0253AE]"
-                    }`}
-                  >
-                    {menu.label}
-                  </Link>
+                  <div className="flex flex-col items-center">
+                    <div className="flex items-center gap-2">
+                      <Link
+                        href={menu.path}
+                        onClick={() => !menu.children && setIsOpen(false)}
+                        className={`${
+                          pathname === menu.path
+                            ? "text-[#0253AE] font-semibold border-b-2 border-[#0253AE]"
+                            : "hover:text-[#0253AE]"
+                        }`}
+                      >
+                        {menu.label}
+                      </Link>
+                      {menu.children && (
+                        <button
+                          onClick={() =>
+                            setMobileDropdown(
+                              mobileDropdown === menu.path ? null : menu.path
+                            )
+                          }
+                          className="text-[#013774] hover:text-[#0253AE]"
+                        >
+                          <IoIosArrowDown
+                            className={`transition-transform duration-200 ${
+                              mobileDropdown === menu.path ? "rotate-180" : ""
+                            }`}
+                          />
+                        </button>
+                      )}
+                    </div>
+
+                    {/* Mobile Dropdown for children */}
+                    <AnimatePresence>
+                      {menu.children && mobileDropdown === menu.path && (
+                        <motion.ul
+                          initial={{ opacity: 0, height: 0 }}
+                          animate={{ opacity: 1, height: "auto" }}
+                          exit={{ opacity: 0, height: 0 }}
+                          transition={{ duration: 0.2 }}
+                          className="mt-2 space-y-2 overflow-hidden"
+                        >
+                          {menu.children.map((child) => (
+                            <li key={child.path}>
+                              <Link
+                                href={child.path}
+                                onClick={() => setIsOpen(false)}
+                                className="text-sm text-gray-600 hover:text-[#0253AE] block py-1"
+                              >
+                                {child.label}
+                              </Link>
+                            </li>
+                          ))}
+                        </motion.ul>
+                      )}
+                    </AnimatePresence>
+                  </div>
                 </motion.li>
               ))}
               <motion.li
