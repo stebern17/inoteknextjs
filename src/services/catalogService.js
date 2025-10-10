@@ -8,7 +8,7 @@ export async function getCatalogData() {
       headers: {
         Authorization: `Bearer ${StrapiToken}`,
       },
-      cache: "no-store", // agar selalu fetch data terbaru
+      cache: "no-store",
     });
 
     if (!res.ok) {
