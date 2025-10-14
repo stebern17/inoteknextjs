@@ -1,7 +1,6 @@
 "use client";
 
 import React from "react";
-import { motion } from "motion/react";
 import CarouselSection from "./CarouselSection";
 import CompanyIntroduce from "./CompanyIntroduce";
 import VisiMisiSection from "./VisiMisiSection";

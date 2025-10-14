@@ -39,14 +39,14 @@ export default function VisiMisiCard({ title, children, textAlign }) {
       >
         {/* Tab Judul */}
         <div className="py-2 sm:py-3 rounded-t-xl relative lg:w-2/6">
-          <h2 className="text-white ms-2 md:mt-5  font-bold text-3xl  md:text-4xl lg:text-6xl tracking-wider text-center">
+          <h2 className="text-white ms-2 md:mt-5  font-bold text-2xl  md:text-3xl lg:text-5xl tracking-wider text-center">
             {title}
           </h2>
         </div>
 
         {/* Isi Konten */}
         <div
-          className={`text-white p-3 sm:p-4 md:p-6 text-sm sm:text-base md:text-xl lg:text-2xl leading-relaxed ${textAlign}`}
+          className={`text-white p-3 sm:p-4 md:p-6 text-sm sm:text-base md:text-lg lg:text-xl lg:mt-10 mt-0 leading-relaxed ${textAlign}`}
         >
           {children}
         </div>

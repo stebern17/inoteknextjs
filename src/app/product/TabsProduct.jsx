@@ -1,11 +1,14 @@
-// @ts-nocheck
 "use client";
 
-import { useState } from "react";
+import { useState, useEffect } from "react";
+import { useSearchParams } from "next/navigation";
 import Link from "next/link";
 import { motion } from "framer-motion";
 
 export default function Tabs({ initialData }) {
+  const searchParams = useSearchParams();
+  const seriesFromURL = searchParams.get("series");
+
   const [activeProduct, setActiveProduct] = useState("EX Series 1820");
   const [activeCategory, setActiveCategory] = useState("Simple");
 
@@ -28,6 +31,14 @@ export default function Tabs({ initialData }) {
       "Tile/Brick",
     ],
   };
+
+  // 🧩 Set tab awal dari query param
+  useEffect(() => {
+    if (seriesFromURL && productList.includes(seriesFromURL)) {
+      setActiveProduct(seriesFromURL);
+      setActiveCategory(categoryMap[seriesFromURL][0]);
+    }
+  }, [seriesFromURL]);
 
   const filteredData = catalogData.filter(
     (item) => item.product === activeProduct && item.category === activeCategory
@@ -63,8 +74,7 @@ export default function Tabs({ initialData }) {
           </button>
         ))}
       </div>
-
-      {/* Tab Kategori */}
+      w{/* Tab Kategori */}
       <div className="flex justify-evenly gap-8 mt-6 relative">
         {categoryMap[activeProduct].map((cat) => (
           <button
@@ -92,7 +102,6 @@ export default function Tabs({ initialData }) {
           </button>
         ))}
       </div>
-
       {/* Konten */}
       <div className="mt-8 grid grid-cols-2 lg:grid-cols-4 gap-12">
         {filteredData.length > 0 ? (

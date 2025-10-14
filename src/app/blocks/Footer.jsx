@@ -23,7 +23,7 @@ function Footer() {
         </div>
 
         {/* Grid Section */}
-        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-6 gap-12">
+        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-6 gap-5">
           {/* Kantor Pusat */}
           <div className="space-y-3">
             <h2 className="text-lg font-semibold text-[#0253AE]">
@@ -31,7 +31,7 @@ function Footer() {
             </h2>
             <p className="text-sm text-gray-700">
               Jl. Kenanga 256 Maguwoharjo Depok, Sleman <br /> DI Yogyakarta
-              <br /> 0274 4332395
+              <br /> 0851 6884 2909
             </p>
           </div>
 
@@ -58,7 +58,9 @@ function Footer() {
             <h2 className="text-lg font-semibold text-[#0253AE]">Kontak</h2>
             <div className="flex items-center gap-2 text-sm text-gray-700">
               <img src="/icons/Email.svg" alt="email" className="w-5 h-5" />
-              info@inotekkaryamandiri.com
+              <p className="break-all leading-snug">
+                info@inotekkaryamandiri.com
+              </p>
             </div>
             <div className="flex items-center gap-2 text-sm text-gray-700">
               <img
@@ -72,38 +74,35 @@ function Footer() {
 
           {/* Perusahaan */}
           <div className="space-y-3">
-            <h2 className="text-lg font-semibold text-[#0253AE]">Perusahaan</h2>
+            <h2 className="text-lg font-semibold text-[#0253AE]">
+              Social Media
+            </h2>
             <ul className="flex flex-col gap-2 text-sm text-gray-700">
               <li>
                 <Link
-                  href="/companyprofile#companyprocrsl"
+                  href="https://www.instagram.com/inotek_nichiha/"
                   className="hover:text-[#0253AE] transition-colors"
+                  target="_blank"
                 >
-                  Tentang Kami
+                  Instagram
                 </Link>
               </li>
               <li>
                 <Link
-                  href="/companyprofile#visimisi"
+                  href="https://www.facebook.com/profile.php?id=61582034552515"
                   className="hover:text-[#0253AE] transition-colors"
+                  target="_blank"
                 >
-                  Visi & Misi
+                  Facebook
                 </Link>
               </li>
               <li>
                 <Link
-                  href="/companyprofile#budaya"
+                  href="https://www.linkedin.com/company/inotekkaryamandiri/"
                   className="hover:text-[#0253AE] transition-colors"
+                  target="_blank"
                 >
-                  Budaya
-                </Link>
-              </li>
-              <li>
-                <Link
-                  href="/contactform#contact-form"
-                  className="hover:text-[#0253AE] transition-colors"
-                >
-                  Hubungi Kami
+                  LinkedIn
                 </Link>
               </li>
             </ul>
@@ -127,20 +126,30 @@ function Footer() {
                 </Link>
               </li>
               <li>
-                <Link href="/product" className="hover:text-[#0253AE]">
+                <Link
+                  href="/product?series=EX Series 1820"
+                  className="hover:text-[#0253AE]"
+                >
                   EX Series 1820
                 </Link>
               </li>
               <li>
-                <Link href="/product" className="hover:text-[#0253AE]">
+                <Link
+                  href="/product?series=EX Series 3030"
+                  className="hover:text-[#0253AE]"
+                >
                   EX Series 3030
                 </Link>
               </li>
               <li>
-                <Link href="/product" className="hover:text-[#0253AE]">
+                <Link
+                  href="/product?series=EX Series 3030 New Introduction"
+                  className="hover:text-[#0253AE]"
+                >
                   EX Series 3030 New Introduction
                 </Link>
               </li>
+
               <li>
                 <Link href="/catalog" className="hover:text-[#0253AE]">
                   Download Catalog

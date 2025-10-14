@@ -39,11 +39,30 @@ function NavbarHeader() {
 
   const menus = [
     { label: "BERANDA", path: "/nichiha" },
-    { label: "PROFIL PERUSAHAAN", path: "/companyprofile" },
+    {
+      label: "PROFIL PERUSAHAAN",
+      path: "/companyprofile",
+      children: [
+        {
+          label: "Tentang Kami",
+          path: "/companyprofile#tentang-kami",
+        },
+        { label: "Visi & Misi", path: "/companyprofile#visimisi" },
+        { label: "Budaya", path: "/companyprofile#budaya" },
+      ],
+    },
     {
       label: "PRODUK",
       path: "/product",
-      children: [{ label: "E-Catalog", path: "/catalog" }],
+      children: [
+        { label: "E-Catalog", path: "/catalog" },
+        { label: "Ex Series 1820", path: "/product?series=EX Series 1820" },
+        { label: "Ex Series 3030", path: "/product?series=EX Series 3030" },
+        {
+          label: "Ex Series 3030 New Introduction",
+          path: "/product?series=EX Series 3030 New Introduction",
+        },
+      ],
     },
     { label: "DISTRIBUTOR", path: "/distributor" },
   ];
@@ -154,7 +173,7 @@ function NavbarHeader() {
                 {menus
                   .find((m) => m.path === activeDropdown)
                   ?.children.map((child) => (
-                    <li key={child.path} className="border-b last:border-b-0">
+                    <li key={child.path}>
                       <Link
                         href={child.path}
                         className="block px-4 py-2 text-gray-800 hover:bg-gray-100 hover:text-[#0253AE]"

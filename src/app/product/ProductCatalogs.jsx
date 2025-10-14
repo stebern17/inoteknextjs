@@ -1,4 +1,5 @@
 import Tabs from "./TabsProduct";
+import { Suspense } from "react";
 
 export async function getCatalogData() {
   const typesRes = await fetch(
@@ -52,7 +53,9 @@ export default async function ProductCatalogPage() {
 
   return (
     <section className="lg:px-40 px-4 py-6 min-h-screen content w-full">
-      <Tabs initialData={types} />
+      <Suspense>
+        <Tabs initialData={types} />
+      </Suspense>
     </section>
   );
 }

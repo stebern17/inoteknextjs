@@ -17,7 +17,7 @@ export async function GET() {
   try {
     const res = await fetch(`${STRAPI_URL}/api/distributors?populate=*`, {
       headers: STRAPI_TOKEN ? { Authorization: `Bearer ${STRAPI_TOKEN}` } : {},
-      next: "force-cache", // cache optional
+      cache: "force-cache",
     });
 
     if (!res.ok) {
