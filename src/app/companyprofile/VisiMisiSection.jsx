@@ -23,7 +23,10 @@ function VisiMisiSection() {
         viewport={{ amount: 0.3, once: true }}
         transition={{ type: "spring", stiffness: 90, damping: 10 }}
       >
-        <VisiMisiCard title="Visi" textAlign="text-center lg:text-justify">
+        <VisiMisiCard
+          title="Visi"
+          textAlign="text-center lg:text-justify self-center"
+        >
           <p>
             Menjadi perusahaan distribusi terdepan dalam penyediaan material
             dinding eksterior inovatif dan berestetika di Indonesia

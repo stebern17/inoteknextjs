@@ -11,7 +11,10 @@ function CompanyIntroduce() {
   });
 
   return (
-    <section className="content flex flex-col font-display justify-center md:pt-16 gap-3">
+    <section
+      className="content flex flex-col font-display justify-center md:pt-16 gap-3"
+      id="tentang-kami"
+    >
       <div className="space-y-4 text-justify md:text-[16px] text-sm">
         <p>
           PT Inotek Karya Mandiri adalah perusahaan distributor resmi nasional
