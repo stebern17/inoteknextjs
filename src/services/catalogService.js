@@ -1,9 +1,4 @@
 // services/downloadCatalog.jsx
-
-// 👇 Tambahkan deklarasi ini
-export const dynamic = "force-dynamic"; // Paksa SSR, hindari static prerender
-export const revalidate = 0; // Tidak pernah diregenerate
-
 export async function getCatalogData() {
   const StrapiURL = process.env.NEXT_PUBLIC_API_URL;
   const StrapiToken = process.env.NEXT_TOKEN_STRAPI;
@@ -13,8 +8,6 @@ export async function getCatalogData() {
       headers: {
         Authorization: `Bearer ${StrapiToken}`,
       },
-      // Tetap SSR penuh
-      cache: "no-store",
     });
 
     if (!res.ok) {
