@@ -8,6 +8,7 @@ export async function getCatalogData() {
       headers: {
         Authorization: `Bearer ${StrapiToken}`,
       },
+      cache: "no-store",
     });
 
     if (!res.ok) {
