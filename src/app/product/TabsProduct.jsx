@@ -74,7 +74,7 @@ export default function Tabs({ initialData }) {
           </button>
         ))}
       </div>
-      w{/* Tab Kategori */}
+      {/* Tab Kategori */}
       <div className="flex justify-evenly gap-8 mt-6 relative">
         {categoryMap[activeProduct].map((cat) => (
           <button

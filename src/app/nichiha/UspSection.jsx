@@ -11,19 +11,6 @@ const uspData = [
     image: "/images/PremiumJapanese.jpg",
     desc: ["Jaminan Mutu", "Presisi & Kontrol Kulitas Tinggi"],
   },
-
-  {
-    title: "High-End Design",
-    icon: "/icons/modern-house.png",
-    image: "/images/HighEnd.jpg",
-    desc: ["Material Kuat", "Awet & Tahan Lama"],
-  },
-  {
-    title: "High-Durability Material",
-    icon: "/icons/reliability.png",
-    image: "/images/HighDur.jpg",
-    desc: ["Tahan Hujan", "Tahan Jamur", "Anti Rayap"],
-  },
   {
     title: "Easy Maintenance",
     icon: "/icons/house.png",
@@ -35,6 +22,18 @@ const uspData = [
     icon: "/icons/easy-installation.png",
     image: "/images/fireresistant.png",
     desc: ["Tahan Api", "Standar Keamanan Bangunan"],
+  },
+  {
+    title: "High-Durability Material",
+    icon: "/icons/reliability.png",
+    image: "/images/HighDur.jpg",
+    desc: ["Tahan Hujan", "Tahan Jamur", "Anti Rayap"],
+  },
+  {
+    title: "High-End Design",
+    icon: "/icons/modern-house.png",
+    image: "/images/HighEnd.jpg",
+    desc: ["Material Kuat", "Awet & Tahan Lama"],
   },
 ];
 

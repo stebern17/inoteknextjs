@@ -33,7 +33,7 @@ export async function GET() {
       phone: doc.phone,
       email: doc.email,
       website: doc.website,
-      city: doc.city,
+      city: doc.distributionarea,
     }));
 
     return NextResponse.json({ data: distributors });

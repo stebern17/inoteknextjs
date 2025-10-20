@@ -47,8 +47,11 @@ export default function DistributorSection() {
           label={selectedCity}
           className="bg-white border-[#0253AE] border text-[#0253AE] hover:text-white w-64 justify-between"
         >
-          {uniqueCities.map((city) => (
-            <DropdownItem key={city} onClick={() => setSelectedCity(city)}>
+          {uniqueCities.map((city, index) => (
+            <DropdownItem
+              key={`${city}-${index}`}
+              onClick={() => setSelectedCity(city)}
+            >
               {city}
             </DropdownItem>
           ))}
@@ -73,7 +76,6 @@ export default function DistributorSection() {
                 phone={distributor.phone}
                 email={distributor.email}
                 website={distributor.website}
-                city={distributor.city}
               />
             </motion.div>
           ))}

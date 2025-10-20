@@ -23,7 +23,7 @@ function Footer() {
         </div>
 
         {/* Grid Section */}
-        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-6 gap-5">
+        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 xl:grid-cols-4 2xl:grid-cols-6 gap-5">
           {/* Kantor Pusat */}
           <div className="space-y-3">
             <h2 className="text-lg font-semibold text-[#0253AE]">
@@ -31,7 +31,7 @@ function Footer() {
             </h2>
             <p className="text-sm text-gray-700">
               Jl. Kenanga 256 Maguwoharjo Depok, Sleman <br /> DI Yogyakarta
-              <br /> 0851 6884 2909
+              <br /> 0274 4332395
             </p>
           </div>
 
@@ -68,7 +68,7 @@ function Footer() {
                 alt="phone"
                 className="w-5 h-5"
               />
-              (0274) 4332395
+              0851 6884 2909
             </div>
           </div>
 
