@@ -55,7 +55,7 @@ function NavbarHeader() {
       label: "PRODUK",
       path: "/product",
       children: [
-        { label: "E-Catalog", path: "/catalog" },
+        { label: "E-Catalog", path: "/download" },
         { label: "Ex Series 1820", path: "/product?series=EX Series 1820" },
         { label: "Ex Series 3030", path: "/product?series=EX Series 3030" },
         {
