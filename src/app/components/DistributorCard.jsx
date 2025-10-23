@@ -14,7 +14,7 @@ export default function DistributorCard({
         </div>
         <div>
           <p className="font-semibold">Contact</p>
-          <p>{phone}</p>
+          <p>0{phone}</p>
           <p>{email}</p>
           <p>{website}</p>
         </div>
