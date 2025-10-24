@@ -4,6 +4,10 @@ import { HR } from "flowbite-react";
 import BackButton from "@/app/components/BackButton";
 
 export default function SingelProduct({ product }) {
+  if (!product) {
+    return <p className="text-center text-gray-500">Memuat produk...</p>;
+  }
+
   return (
     <div className="md:w-[60vw] w-[90vw] mx-auto my-10 flex flex-col gap-6">
       <BackButton />

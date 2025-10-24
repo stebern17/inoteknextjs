@@ -1,12 +1,10 @@
 "use client";
 
-import { use } from "react";
 import { useEffect, useState } from "react";
+import { use } from "react";
 import SingelProduct from "./SingelProduct";
-import { getCatalogData } from "@/app/product/ProductCatalogs";
 
 export default function ProductDetailPage({ params }) {
-  // ✅ Gunakan React.use() untuk unwrap Promise params
   const { id } = use(params);
 
   const [product, setProduct] = useState(null);
@@ -15,8 +13,53 @@ export default function ProductDetailPage({ params }) {
   useEffect(() => {
     async function fetchProduct() {
       try {
-        const catalogData = await getCatalogData();
-        const found = catalogData.find((item) => item.documentId === id);
+        const STRAPI_URL = process.env.NEXT_PUBLIC_API_URL;
+
+        const res = await fetch(
+          `${STRAPI_URL}/api/types?populate=*&pagination[pageSize]=1000`,
+          { cache: "no-store" }
+        );
+        if (!res.ok) throw new Error("Gagal fetch data catalog");
+
+        const json = await res.json();
+
+        // Mapping data Strapi
+        const mapped = json.data.map((t) => {
+          const colours =
+            t.Colour?.map((col) => ({
+              id: col.id,
+              caption: col.caption || "",
+              url:
+                col.formats?.small?.url ||
+                col.formats?.thumbnail?.url ||
+                col.url ||
+                null,
+            })) ?? [];
+
+          const specifications =
+            t.Specifiation?.map((spec) => ({
+              id: spec.id,
+              caption: spec.caption || "",
+              url: spec.formats?.thumbnail?.url || spec.url || null,
+            })) ?? [];
+
+          return {
+            id: t.id,
+            documentId: t.documentId,
+            product: t.product?.Name || "",
+            size: t.Size || "N/A",
+            weight: t.Weight || "N/A",
+            packaging: t.Packaging || "N/A",
+            category: t.Kind || "Uncategorized",
+            coverImage: t.CoverImage?.url || null,
+            headerImage: t.HeaderImage?.url || null,
+            colours,
+            specifications,
+          };
+        });
+
+        // Cari produk sesuai id
+        const found = mapped.find((item) => item.documentId === id);
         setProduct(found);
       } catch (err) {
         console.error("Error fetching product:", err);

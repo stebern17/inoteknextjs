@@ -1,7 +1,22 @@
+"use client";
+
+import { useEffect, useState } from "react";
 import { getCatalogData } from "@/services/catalogService";
 
-export default async function CatalogPage() {
-  const catalogs = await getCatalogData();
+export default function CatalogPage() {
+  const [catalogs, setCatalogs] = useState([]);
+  const [loading, setLoading] = useState(true);
+
+  useEffect(() => {
+    getCatalogData().then((data) => {
+      setCatalogs(data);
+      setLoading(false);
+    });
+  }, []);
+
+  if (loading) {
+    return <p className="text-center text-gray-600">Loading catalogs...</p>;
+  }
 
   return (
     <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-3 2xl:grid-cols-4 gap-6 p-6">
@@ -19,7 +34,7 @@ export default async function CatalogPage() {
               alt={catalog.title}
               className="h-[85%] w-full object-cover"
             />
-            <p className="text-center font-semibold text-2xl text-[#0253AE] items-center my-auto">
+            <p className="text-center font-semibold text-2xl text-[#0253AE] my-auto">
               {catalog.title}
             </p>
           </div>
