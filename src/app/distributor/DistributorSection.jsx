@@ -8,19 +8,36 @@ export default function DistributorSection() {
   const [distributors, setDistributors] = useState([]);
   const [selectedCity, setSelectedCity] = useState("Pilih Kota ....");
 
+  const STRAPI_URL = process.env.NEXT_PUBLIC_API_URL;
+
   useEffect(() => {
     async function fetchDistributors() {
       try {
-        const res = await fetch("/api/distributor", { cache: "no-store" });
+        const res = await fetch(`${STRAPI_URL}/api/distributors?populate=*`, {
+          cache: "no-store",
+        });
+
         if (!res.ok) throw new Error("Gagal fetch data distributor");
         const { data } = await res.json();
-        setDistributors(data);
+
+        const mapped = data.map((doc) => ({
+          id: doc.id,
+          name: doc.namadistributor,
+          address: doc.alamat,
+          phone: doc.phone,
+          email: doc.email,
+          website: doc.website,
+          city: doc.distributionarea,
+        }));
+
+        setDistributors(mapped);
       } catch (err) {
-        console.error(err);
+        console.error("❌ Error fetching distributors:", err);
       }
     }
+
     fetchDistributors();
-  }, []);
+  }, [STRAPI_URL]);
 
   const uniqueCities = ["Semua", ...new Set(distributors.map((d) => d.city))];
 

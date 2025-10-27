@@ -11,29 +11,24 @@ export async function POST(request) {
     const body = await request.json();
     const { model, entry } = body;
 
-    // Selalu revalidate halaman list/utama
-    revalidatePath("/nichiha");
-    revalidatePath("/product");
-    revalidatePath("/news");
+    if (model === "article") {
+      // Revalidate daftar berita dan homepage
+      revalidatePath("/news");
+      revalidatePath("/nichiha");
 
-    // Revalidate halaman detail jika ada update pada model tertentu
-    if (entry && entry.id) {
-      // Untuk detail News (jika modelnya 'article')
-      if (model === "article") {
-        revalidatePath(`/news/${entry.id}`); // Asumsi URL detail news menggunakan id
-      }
-
-      // [TAMBAHAN] Untuk detail Product (jika modelnya 'type')
-      // Gunakan field yang menjadi slug di URL, misalnya 'documentId' atau 'slug'
-      if (model === "type" && entry.documentId) {
-        revalidatePath(`/product/${entry.documentId}`);
-        console.log(`Revalidated product: /product/${entry.documentId}`);
+      // Revalidate detail berita
+      const docId = entry?.documentId || entry?.id || entry?._id;
+      if (docId) {
+        revalidatePath(`/news/${docId}`);
+        console.log(`✅ Revalidated news detail: /news/${docId}`);
+      } else {
+        console.log("⚠️ No documentId found in webhook entry");
       }
     }
 
-    return NextResponse.json({ revalidated: true });
+    return NextResponse.json({ revalidated: true, timestamp: Date.now() });
   } catch (err) {
-    console.error("Revalidate error:", err);
+    console.error("❌ Revalidate error:", err);
     return NextResponse.json(
       { message: "Error revalidating", error: err.message },
       { status: 500 }
