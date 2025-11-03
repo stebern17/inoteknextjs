@@ -48,12 +48,9 @@ export const metadata = {
     images: ["/headerfootelogo.png"],
   },
   icons: {
-    icon: [
-      { url: "/headerfootelogo.png", type: "image/png" },
-      { url: "/headerfootelogo.png", type: "image/png" },
-    ],
-    apple: [{ url: "/headerfootelogo.png", type: "image/png" }],
-    shortcut: "/headerfootelogo.png",
+    icon: [{ url: "/favicon.ico" }],
+    apple: [{ url: "/apple-touch-icon.png", sizes: "180x180" }],
+    shortcut: "/favicon.ico",
   },
 };
 
