@@ -49,12 +49,10 @@ export const metadata = {
   },
   icons: {
     icon: [
-      { url: "/headerfootelogo.png", sizes: "32x32", type: "image/png" },
-      { url: "/headerfootelogo.png", sizes: "192x192", type: "image/png" },
+      { url: "/headerfootelogo.png", type: "image/png" },
+      { url: "/headerfootelogo.png", type: "image/png" },
     ],
-    apple: [
-      { url: "/headerfootelogo.png", sizes: "180x180", type: "image/png" },
-    ],
+    apple: [{ url: "/headerfootelogo.png", type: "image/png" }],
     shortcut: "/headerfootelogo.png",
   },
 };
