@@ -21,7 +21,7 @@ export default async function ArticleSection({ id }) {
         </h1>
         <div className="flex gap-3">
           <p className="text-gray-500 text-lg">
-            {new Date(article.publishedAt).toLocaleDateString("id-ID", {
+            {new Date(article.createdAt).toLocaleDateString("id-ID", {
               day: "2-digit",
               month: "long",
               year: "numeric",
