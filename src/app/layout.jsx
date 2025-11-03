@@ -49,11 +49,13 @@ export const metadata = {
   },
   icons: {
     icon: [
-      { url: "/logo-inotek.svg", sizes: "16x16" },
-      { url: "/logo-inotek.svg", sizes: "32x32" },
+      { url: "/headerfootelogo.png", sizes: "32x32", type: "image/png" },
+      { url: "/headerfootelogo.png", sizes: "192x192", type: "image/png" },
     ],
-    apple: [{ url: "/logo-inotek.svg", sizes: "180x180" }],
-    shortcut: "/logo-inotek.svg",
+    apple: [
+      { url: "/headerfootelogo.png", sizes: "180x180", type: "image/png" },
+    ],
+    shortcut: "/headerfootelogo.png",
   },
 };
 
