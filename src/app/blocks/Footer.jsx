@@ -151,7 +151,7 @@ function Footer() {
               </li>
 
               <li>
-                <Link href="/catalog" className="hover:text-[#0253AE]">
+                <Link href="/download" className="hover:text-[#0253AE]">
                   Download Catalog
                 </Link>
               </li>
