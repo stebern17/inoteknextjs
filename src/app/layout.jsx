@@ -2,7 +2,6 @@ import "./globals.css";
 import NavbarHeader from "./blocks/Navbar";
 import Footer from "./blocks/Footer";
 import { ThemeInit } from "../../.flowbite-react/init";
-import { SpeedInsights } from "@vercel/speed-insights/next";
 
 export const metadata = {
   title: "Inotek Nichiha | Distributor Resmi Panel Fasad Jepang di Indonesia",
@@ -61,9 +60,25 @@ export const metadata = {
 export default function RootLayout({ children }) {
   return (
     <html lang="en">
+      <head>
+        {/* Google tag (gtag.js) */}
+        <script
+          async
+          src="https://www.googletagmanager.com/gtag/js?id=G-FJG9TZMHWM"
+        ></script>
+        <script
+          dangerouslySetInnerHTML={{
+            __html: `
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+        gtag('config', 'G-FJG9TZMHWM');
+      `,
+          }}
+        />
+      </head>
       <body>
         <ThemeInit />
-        <SpeedInsights />
         <NavbarHeader />
         <main className="flex flex-col space-y-8">{children}</main>
         <Footer />

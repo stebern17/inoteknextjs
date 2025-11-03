@@ -25,6 +25,7 @@ export async function getNewsArticles() {
         doc.image?.url ||
         null,
       link: `/news/${doc.documentId}`,
+      createdAt: doc.createdAt,
     };
   });
 }

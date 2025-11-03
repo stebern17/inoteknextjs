@@ -13,6 +13,8 @@ export default async function NewsSection() {
     );
   }
 
+  articles.sort((a, b) => new Date(b.createdAt) - new Date(a.createdAt));
+
   return (
     <section className="bg-[#0253AE] w-full py-9 relative select-none">
       <NewsSlider>
