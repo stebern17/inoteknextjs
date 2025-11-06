@@ -48,9 +48,18 @@ export const metadata = {
     images: ["/headerfootelogo.png"],
   },
   icons: {
-    icon: [{ url: "/favicon.ico" }],
-    apple: [{ url: "/apple-touch-icon.png", sizes: "180x180" }],
-    shortcut: "/favicon.ico",
+    icon: [
+      { url: "/favicon.ico", sizes: "any" }, // Default favicon
+      { url: "/favicon-96x96.png", type: "image/png", sizes: "96x96" }, // PNG favicon untuk desktop
+      { url: "/favicon.svg", type: "image/svg+xml" }, // SVG vektor untuk kualitas tinggi
+    ],
+    apple: [
+      { url: "/apple-touch-icon.png", sizes: "180x180" }, // Untuk iOS dan Google mobile
+    ],
+    shortcut: "/favicon.ico", // Backup universal
+    other: [
+      { rel: "manifest", url: "/site.webmanifest" }, // Manifest untuk PWA (opsional)
+    ],
   },
 };
 
