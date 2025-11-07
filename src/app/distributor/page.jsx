@@ -1,7 +1,5 @@
 import DistributorSection from "./DistributorSection";
 
-export const revalidate = 21600; // cache 6 jam (ISR)
-
 export default async function DistributorPage() {
   const STRAPI_URL = process.env.NEXT_PUBLIC_API_URL;
 
