@@ -120,8 +120,11 @@ export default function Tabs({ initialData }) {
                 )}
 
                 <div className="mt-2 grid grid-cols-3 gap-5">
-                  {item.colours.slice(0, 3).map((c) => (
-                    <div key={c.id} className="text-center">
+                  {(Array.isArray(item.colours)
+                    ? item.colours.slice(0, 3)
+                    : []
+                  ).map((c) => (
+                    <div key={c.id || Math.random()} className="text-center">
                       {c.url ? (
                         <img
                           src={c.url}
