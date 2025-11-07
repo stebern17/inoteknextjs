@@ -1,50 +1,22 @@
 "use client";
-import { useState, useEffect } from "react";
+
+import { useState } from "react";
 import { motion, AnimatePresence } from "motion/react";
 import { Dropdown, DropdownItem } from "flowbite-react";
 import DistributorCard from "@/app/components/DistributorCard";
 
-export default function DistributorSection() {
-  const [distributors, setDistributors] = useState([]);
+export default function DistributorSection({ initialDistributors }) {
   const [selectedCity, setSelectedCity] = useState("Pilih Kota ....");
 
-  const STRAPI_URL = process.env.NEXT_PUBLIC_API_URL;
-
-  useEffect(() => {
-    async function fetchDistributors() {
-      try {
-        const res = await fetch(`${STRAPI_URL}/api/distributors?populate=*`, {
-          cache: "no-store",
-        });
-
-        if (!res.ok) throw new Error("Gagal fetch data distributor");
-        const { data } = await res.json();
-
-        const mapped = data.map((doc) => ({
-          id: doc.id,
-          name: doc.namadistributor,
-          address: doc.alamat,
-          phone: doc.phone,
-          email: doc.email,
-          website: doc.website,
-          city: doc.distributionarea,
-        }));
-
-        setDistributors(mapped);
-      } catch (err) {
-        console.error("❌ Error fetching distributors:", err);
-      }
-    }
-
-    fetchDistributors();
-  }, [STRAPI_URL]);
-
-  const uniqueCities = ["Semua", ...new Set(distributors.map((d) => d.city))];
+  const uniqueCities = [
+    "Semua",
+    ...new Set(initialDistributors.map((d) => d.city)),
+  ];
 
   const filteredDistributors =
     selectedCity === "Semua" || selectedCity === "Pilih Kota ...."
-      ? distributors
-      : distributors.filter((d) => d.city === selectedCity);
+      ? initialDistributors
+      : initialDistributors.filter((d) => d.city === selectedCity);
 
   const cardVariants = {
     hidden: { y: 20, opacity: 0 },
@@ -75,7 +47,7 @@ export default function DistributorSection() {
         </Dropdown>
       </div>
 
-      {/* Card Grid */}
+      {/* Card Grid dengan animasi */}
       <motion.div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-4 gap-4">
         <AnimatePresence>
           {filteredDistributors.map((distributor) => (

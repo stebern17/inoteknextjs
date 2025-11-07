@@ -1,10 +1,10 @@
-"use client";
+// /services/catalogService.js  ← ubah jadi .js
 export async function getCatalogData() {
   const StrapiURL = process.env.NEXT_PUBLIC_API_URL;
 
   try {
     const res = await fetch(`${StrapiURL}/api/download-catalogs?populate=*`, {
-      cache: "no-store",
+      next: { revalidate: 21600 }, // Cache hasil fetch selama 6 jam
     });
 
     if (!res.ok) {

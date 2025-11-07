@@ -2,7 +2,7 @@
 export async function getNewsArticles() {
   const baseUrl = process.env.NEXT_PUBLIC_API_URL;
   const res = await fetch(`${baseUrl}/api/articles?populate=*`, {
-    next: { revalidate: 1800 }, // 30 minutes
+    next: { revalidate: 21600 }, // Cache hasil fetch selama 6 jam
   });
 
   if (!res.ok) {
