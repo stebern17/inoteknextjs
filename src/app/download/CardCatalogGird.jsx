@@ -1,21 +1,11 @@
-"use client";
-
-import { useEffect, useState } from "react";
+// /app/catalog/page.jsx
 import { getCatalogData } from "@/services/catalogService";
 
-export default function CatalogPage() {
-  const [catalogs, setCatalogs] = useState([]);
-  const [loading, setLoading] = useState(true);
+export default async function CatalogPage() {
+  const catalogs = await getCatalogData();
 
-  useEffect(() => {
-    getCatalogData().then((data) => {
-      setCatalogs(data);
-      setLoading(false);
-    });
-  }, []);
-
-  if (loading) {
-    return <p className="text-center text-gray-600">Loading catalogs...</p>;
+  if (!catalogs || catalogs.length === 0) {
+    return <p className="text-center text-gray-600">No catalogs available.</p>;
   }
 
   return (
