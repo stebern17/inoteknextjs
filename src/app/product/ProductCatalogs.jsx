@@ -1,15 +1,13 @@
 import { Suspense } from "react";
 import Tabs from "./TabsProduct";
 
-export const revalidate = 21600;
-
 export default async function ProductCatalogPage() {
   const StrapiURL = process.env.NEXT_PUBLIC_API_URL;
 
   try {
     const res = await fetch(
       `${StrapiURL}/api/types?populate=*&pagination[pageSize]=1000`,
-      { next: { revalidate: 21600 } }
+      { cache: "force-cache" }
     );
 
     if (!res.ok) throw new Error("Gagal fetch data");
