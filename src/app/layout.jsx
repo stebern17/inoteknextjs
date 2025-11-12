@@ -3,7 +3,10 @@ import NavbarHeader from "./blocks/Navbar";
 import Footer from "./blocks/Footer";
 import { ThemeInit } from "../../.flowbite-react/init";
 
+const siteURL = process.env.NEXT_PUBLIC_SITE_URL || "http://localhost:3000";
+
 export const metadata = {
+  metadataBase: new URL(siteURL),
   title: "Inotek Nichiha | Distributor Resmi Panel Fasad Jepang di Indonesia",
   description:
     "Inotek Karya Mandiri adalah distributor resmi Nichiha di Indonesia. Menyediakan panel fasad berkualitas dari Jepang untuk hunian dan bangunan komersial.",
@@ -21,19 +24,19 @@ export const metadata = {
   creator: "Inotek Karya Mandiri",
   publisher: "Inotek Karya Mandiri",
   alternates: {
-    canonical: "https://inotekkaryamandiri.com/",
+    canonical: `${siteURL}/`,
   },
   openGraph: {
     title: "Inotek Nichiha | Distributor Resmi Panel Fasad Jepang di Indonesia",
     description:
       "Inotek Karya Mandiri adalah distributor resmi Nichiha di Indonesia. Menyediakan panel fasad berkualitas dari Jepang untuk hunian dan bangunan komersial.",
-    url: "https://inotekkaryamandiri.com/",
+    url: `${siteURL}/`,
     siteName: "Inotek Nichiha",
     locale: "id_ID",
     type: "website",
     images: [
       {
-        url: "/headerfootelogo.png",
+        url: `${siteURL}/headerfootelogo.png`,
         width: 1200,
         height: 630,
         alt: "Inotek Nichiha - Panel Fasad Jepang",
@@ -45,21 +48,17 @@ export const metadata = {
     title: "Inotek Nichiha | Distributor Resmi Panel Fasad Jepang di Indonesia",
     description:
       "Panel fasad Nichiha dari Jepang, kini hadir resmi di Indonesia bersama Inotek Karya Mandiri.",
-    images: ["/headerfootelogo.png"],
+    images: [`${siteURL}/headerfootelogo.png`],
   },
   icons: {
     icon: [
-      { url: "/favicon.ico", sizes: "any" }, // Default favicon
-      { url: "/favicon-96x96.png", type: "image/png", sizes: "96x96" }, // PNG favicon untuk desktop
-      { url: "/favicon.svg", type: "image/svg+xml" }, // SVG vektor untuk kualitas tinggi
+      { url: "/favicon.ico", sizes: "any" },
+      { url: "/favicon-96x96.png", type: "image/png", sizes: "96x96" },
+      { url: "/favicon.svg", type: "image/svg+xml" },
     ],
-    apple: [
-      { url: "/apple-touch-icon.png", sizes: "180x180" }, // Untuk iOS dan Google mobile
-    ],
-    shortcut: "/favicon.ico", // Backup universal
-    other: [
-      { rel: "manifest", url: "/site.webmanifest" }, // Manifest untuk PWA (opsional)
-    ],
+    apple: [{ url: "/apple-touch-icon.png", sizes: "180x180" }],
+    shortcut: "/favicon.ico",
+    other: [{ rel: "manifest", url: "/site.webmanifest" }],
   },
 };
 
