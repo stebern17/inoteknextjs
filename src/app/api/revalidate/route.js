@@ -3,70 +3,72 @@ import { revalidatePath } from "next/cache";
 
 export async function POST(request) {
   try {
-    // 🔒 Cek token keamanan
+    // ====== TOKEN VERIFICATION ======
     const authHeader = request.headers.get("authorization");
     if (authHeader !== `Bearer ${process.env.REVALIDATE_SECRET}`) {
+      console.log("❌ Invalid token:", authHeader);
       return NextResponse.json({ message: "Invalid token" }, { status: 401 });
     }
 
-    // 🧩 Ambil data dari webhook body
-    const body = await request.json();
-    const { model, entry } = body;
+    // ====== SAFE BODY PARSER ======
+    let body = {};
+    try {
+      const text = await request.text();
+      body = text ? JSON.parse(text) : {};
+    } catch (err) {
+      console.log("⚠️ JSON parse failed:", err);
+      body = {};
+    }
 
-    // 🕵️ Logging untuk debugging
-    console.log("🔄 Webhook received:", model, entry?.documentId);
+    console.log("📦 Incoming webhook body:", body);
 
-    // 📰 Article update
-     if (model === "article") {
-      // Revalidate daftar berita dan homepage
+    const { entry } = body;
+
+    // MODEL bisa berasal dari body OR dari header "path"
+    const model =
+      body?.model ||
+      request.headers.get("path")?.replace("/", "") || // contoh: "/product" → "product"
+      null;
+
+    console.log("🧩 Model detected:", model);
+
+    if (!model) {
+      console.log("⚠️ No model received.");
+      return NextResponse.json({ ok: true, info: "No model" });
+    }
+
+    // ====== NEWS / ARTICLE ======
+    if (model === "article" || model === "news") {
       revalidatePath("/news");
       revalidatePath("/nichiha");
-
-      // Revalidate detail berita
-      const docId = entry?.documentId || entry?.id || entry?._id;
-      if (docId) {
-        revalidatePath(`/news/${docId}`);
-        console.log(`✅ Revalidated news detail: /news/${docId}`);
-      } else {
-        console.log("⚠️ No documentId found in webhook entry");
-      }
+      revalidatePath("/");
+      const docId = entry?.documentId || entry?.id;
+      if (docId) revalidatePath(`/news/${docId}`);
     }
 
-
-    // 🧱 Distributor update
-    if (model === "distributor") {
-      revalidatePath("/distributor");
-      console.log("✅ Revalidated page: /distributor");
-    }
-
-    // 📘 Download Catalog update
-    if (model === "download-catalog" || model === "downloadcatalog") {
-      revalidatePath("/download");
-      console.log("✅ Revalidated page: /download");
-    }
-
-    // 🏗️ Product update
-    if (model === "type" || model === "product") {
+    // ====== PRODUCT ======
+    if (model.includes("product") || model.includes("type")) {
       revalidatePath("/product");
-      console.log("✅ Revalidated page: /product");
-
-      // Jika ada detail produk dengan documentId, revalidate juga detail-nya
-      const docId = entry?.documentId || entry?.id || entry?._id;
-      if (docId) {
-        revalidatePath(`/product/productdetail/${docId}`);
-        console.log(`✅ Revalidated product detail: /product/productdetail/${docId}`);
-      } else {
-        console.log("⚠️ No documentId found in product entry");
-      }
+      const docId = entry?.documentId || entry?.id;
+      if (docId) revalidatePath(`/product/productdetail/${docId}`);
     }
 
-    // 🔄 Tambahkan model lain jika perlu (misal "article", "news" sudah ada di versi sebelumnya)
+    // ====== DISTRIBUTOR ======
+    if (model.includes("distributor")) {
+      revalidatePath("/distributor");
+    }
 
-    return NextResponse.json({ revalidated: true, timestamp: Date.now() });
+    // ====== DOWNLOAD ======
+    if (model.includes("download")) {
+      revalidatePath("/download");
+    }
+
+    return NextResponse.json({ revalidated: true });
+
   } catch (err) {
-    console.error("❌ Revalidate error:", err);
+    console.error("🔥 WEBHOOK CRASH:", err);
     return NextResponse.json(
-      { message: "Error revalidating", error: err.message },
+      { message: "Internal webhook error", error: err.message },
       { status: 500 }
     );
   }
