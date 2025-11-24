@@ -16,6 +16,22 @@ export async function POST(request) {
     // 🕵️ Logging untuk debugging
     console.log("🔄 Webhook received:", model, entry?.documentId);
 
+    // 📰 Article update
+    if (model === "article" || model === "news") {
+      console.log("🔄 Revalidating article...");
+      
+      revalidatePath("/news"); // halaman list berita
+
+      const docId = entry?.documentId || entry?.id || entry?._id;
+      if (docId) {
+        revalidatePath(`/news/${docId}`); // halaman detail
+        console.log(`✅ Revalidated article detail: /news/${docId}`);
+      } else {
+        console.log("⚠ No documentId found for news");
+      }
+    }
+
+
     // 🧱 Distributor update
     if (model === "distributor") {
       revalidatePath("/distributor");
