@@ -17,17 +17,18 @@ export async function POST(request) {
     console.log("🔄 Webhook received:", model, entry?.documentId);
 
     // 📰 Article update
-    if (model === "article" || model === "news") {
-      console.log("🔄 Revalidating article...");
-      
-      revalidatePath("/news"); // halaman list berita
+     if (model === "article") {
+      // Revalidate daftar berita dan homepage
+      revalidatePath("/news");
+      revalidatePath("/nichiha");
 
+      // Revalidate detail berita
       const docId = entry?.documentId || entry?.id || entry?._id;
       if (docId) {
-        revalidatePath(`/news/${docId}`); // halaman detail
-        console.log(`✅ Revalidated article detail: /news/${docId}`);
+        revalidatePath(`/news/${docId}`);
+        console.log(`✅ Revalidated news detail: /news/${docId}`);
       } else {
-        console.log("⚠ No documentId found for news");
+        console.log("⚠️ No documentId found in webhook entry");
       }
     }
 
