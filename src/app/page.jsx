@@ -1,5 +1,5 @@
-import { redirect } from "next/navigation";
+import NichihaPage from "./nichiha/page";
 
 export default function Home() {
-  redirect("/nichiha");
+  return <NichihaPage />;
 }
