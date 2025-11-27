@@ -1,3 +1,6 @@
+export const dynamic = "force-dynamic";
+export const revalidate = 0;
+
 import VideoSection from "./VideoSection";
 import HeroSection from "./HeroSection";
 import UspSection from "./UspSection";
