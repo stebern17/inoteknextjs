@@ -29,18 +29,17 @@ export default function ProductDetailPage({ params }) {
             t.Colour?.map((col) => ({
               id: col.id,
               caption: col.caption || "",
-              url:
-                col.formats?.small?.url ||
-                col.formats?.thumbnail?.url ||
-                col.url ||
-                null,
+              url: `${STRAPI_URL}${col.formats?.small?.url}` || col.url || null,
             })) ?? [];
 
           const specifications =
             t.Specifiation?.map((spec) => ({
               id: spec.id,
               caption: spec.caption || "",
-              url: spec.formats?.thumbnail?.url || spec.url || null,
+              url:
+                `${STRAPI_URL}${spec.formats?.thumbnail?.url}` ||
+                spec.url ||
+                null,
             })) ?? [];
 
           return {
@@ -51,8 +50,8 @@ export default function ProductDetailPage({ params }) {
             weight: t.Weight || "N/A",
             packaging: t.Packaging || "N/A",
             category: t.Kind || "Uncategorized",
-            coverImage: t.CoverImage?.url || null,
-            headerImage: t.HeaderImage?.url || null,
+            coverImage: `${STRAPI_URL}${t.CoverImage?.url}` || null,
+            headerImage: `${STRAPI_URL}${t.HeaderImage?.url}` || null,
             colours,
             specifications,
           };

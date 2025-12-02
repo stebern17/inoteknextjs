@@ -6,12 +6,13 @@ import Tabs from "./TabsProduct";
 export default function ProductCatalogPage() {
   const [types, setTypes] = useState([]);
   const [loading, setLoading] = useState(true);
+  const baseUrl = process.env.NEXT_PUBLIC_API_URL;
 
   useEffect(() => {
     async function fetchCatalogData() {
       try {
         const res = await fetch(
-          `${process.env.NEXT_PUBLIC_API_URL}/api/types?populate=*&pagination[pageSize]=1000`,
+          `${baseUrl}/api/types?populate=*&pagination[pageSize]=1000`,
           { cache: "no-store" }
         );
 
@@ -23,18 +24,15 @@ export default function ProductCatalogPage() {
             t.Colour?.map((col) => ({
               id: col.id,
               caption: col.caption || "",
-              url:
-                col.formats?.small?.url ||
-                col.formats?.thumbnail?.url ||
-                col.url ||
-                null,
+              url: `${baseUrl}${col.formats?.small?.url}`,
             })) ?? [];
 
           const specifications =
             t.Specifiation?.map((spec) => ({
               id: spec.id,
               caption: spec.caption || "",
-              url: spec.formats?.thumbnail?.url || spec.url || null,
+              url:
+                `${baseUrl}${spec.formats?.thumbnail?.url}` || spec.url || null,
             })) ?? [];
 
           return {
@@ -45,8 +43,8 @@ export default function ProductCatalogPage() {
             weight: t.Weight || "N/A",
             packaging: t.Packaging || "N/A",
             category: t.Kind || "Uncategorized",
-            coverImage: t.CoverImage?.url || null,
-            headerImage: t.HeaderImage?.url || null,
+            coverImage: `${baseUrl}${t.CoverImage?.url}` || null,
+            headerImage: `${baseUrl}${t.HeaderImage?.url}` || null,
             colours,
             specifications,
           };
