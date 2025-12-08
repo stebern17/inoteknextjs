@@ -2,6 +2,7 @@ import "./globals.css";
 import NavbarHeader from "./blocks/Navbar";
 import Footer from "./blocks/Footer";
 import { ThemeInit } from "../../.flowbite-react/init";
+import Script from "next/script";
 
 const siteURL = process.env.NEXT_PUBLIC_SITE_URL || "http://localhost:3000";
 
@@ -81,11 +82,38 @@ export default function RootLayout({ children }) {
       `,
           }}
         />
+        <Script
+          id="meta-pixel"
+          strategy="afterInteractive"
+          dangerouslySetInnerHTML={{
+            __html: `
+      !function(f,b,e,v,n,t,s)
+      {if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+      n.callMethod.apply(n,arguments):n.queue.push(arguments)};
+      if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
+      n.queue=[];t=b.createElement(e);t.async=!0;
+      t.src=v;s=b.getElementsByTagName(e)[0];
+      s.parentNode.insertBefore(t,s)}(window, document,'script',
+      'https://connect.facebook.net/en_US/fbevents.js');
+
+      fbq('init', '1752010645500910');
+      fbq('track', 'PageView');
+    `,
+          }}
+        />
       </head>
       <body>
         <ThemeInit />
         <NavbarHeader />
         <main className="flex flex-col space-y-8">{children}</main>
+        <noscript>
+          <img
+            height="1"
+            width="1"
+            style={{ display: "none" }}
+            src="https://www.facebook.com/tr?id=1752010645500910&ev=PageView&noscript=1"
+          />
+        </noscript>
         <Footer />
       </body>
     </html>
