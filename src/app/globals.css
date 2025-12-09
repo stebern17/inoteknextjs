@@ -2,8 +2,8 @@
 
 
 @import "tailwindcss";
+@import "flowbite-react/plugin/tailwindcss";
 @import 'tailwind-scrollbar-hide/v4';
-@plugin "flowbite-react/plugin/tailwindcss";
 @source "../../.flowbite-react/class-list.json";
 
 @layer utilities {
