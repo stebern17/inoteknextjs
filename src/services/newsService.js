@@ -1,8 +1,21 @@
-// services/newsServices.js
+const getImageUrl = (image, baseUrl) => {
+  const rawUrl =
+    image?.formats?.medium?.url ||
+    image?.url ||
+    null;
+
+  if (!rawUrl) return null;
+
+  return rawUrl.startsWith("http")
+    ? rawUrl
+    : `${baseUrl}${rawUrl}`;
+};
+
 export async function getNewsArticles() {
-  const baseUrl = process.env.NEXT_PUBLIC_API_URL;
+  const baseUrl = process.env.NEXT_PUBLIC_API_URL.replace(/\/$/, "");
+
   const res = await fetch(`${baseUrl}/api/articles?populate=*`, {
-    next: { revalidate: 21600 }, // Cache hasil fetch selama 6 jam
+    next: { revalidate: 21600 }, // 6 jam
   });
 
   if (!res.ok) {
@@ -13,30 +26,22 @@ export async function getNewsArticles() {
   const { data } = await res.json();
   if (!data) return [];
 
-  return data.map((item) => {
-    const doc = item;
-
-    return {
-      id: doc.id,
-      title: doc.title,
-      category: doc.category?.category || "News",
-      image:
-        doc.image?.formats?.medium?.url ||
-        doc.image?.url ||
-        null,
-      link: `/news/${doc.documentId}`,
-      createdAt: doc.createdAt,
-    };
-  });
+  return data.map((doc) => ({
+    id: doc.id,
+    title: doc.title,
+    category: doc.category?.category || "News",
+    image: getImageUrl(doc.image, baseUrl),
+    link: `/news/${doc.documentId}`,
+    createdAt: doc.createdAt,
+  }));
 }
 
 export async function getArticleByDocumentId(documentId) {
-  const baseUrl = process.env.NEXT_PUBLIC_API_URL;
+  const baseUrl = process.env.NEXT_PUBLIC_API_URL.replace(/\/$/, "");
+
   const res = await fetch(
     `${baseUrl}/api/articles?filters[documentId][$eq]=${documentId}&populate=*`,
-    {
-      cache: "force-cache",
-    }
+    { next: { revalidate: 21600 } }
   );
 
   if (!res.ok) {
@@ -45,5 +50,20 @@ export async function getArticleByDocumentId(documentId) {
   }
 
   const { data } = await res.json();
-  return data?.[0] || null;
+  if (!data?.[0]) return null;
+
+  const doc = data[0];
+
+  return {
+    id: doc.id,
+    title: doc.title,
+    category: doc.category?.category || "News",
+    image: {
+      url: getImageUrl(doc.image, baseUrl),
+      alternativeText: doc.image?.alternativeText || "",
+    },
+    newscontent: doc.newscontent,
+    documentId: doc.documentId,
+    createdAt: doc.createdAt,
+  };
 }

@@ -18,11 +18,11 @@ export default async function CatalogPage() {
           rel="noopener noreferrer"
           className="shadow-[4px_4px_2px_0_rgba(0,0,0,0.25)] hover:shadow-lg transition-shadow duration-300 rounded-lg"
         >
-          <div className="bg-white h-[600px] rounded-lg shadow-md overflow-hidden flex flex-col">
+          <div className="bg-white lg:h-[400px] 2xl:h-[600px] rounded-lg shadow-md overflow-hidden flex flex-col">
             <img
               src={catalog.coverImage}
               alt={catalog.title}
-              className="h-[85%] w-full object-cover"
+              className="lg:h-[85%] w-full object-cover"
             />
             <p className="text-center font-semibold text-2xl text-[#0253AE] my-auto">
               {catalog.title}

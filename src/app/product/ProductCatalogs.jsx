@@ -1,20 +1,38 @@
 import { Suspense } from "react";
 import Tabs from "./TabsProduct";
 
+const getStrapiUrl = (file, baseUrl) => {
+  if (!file) return null;
+
+  const rawUrl =
+    // pakai paling besar dulu
+    file?.formats?.large?.url ||
+    file?.formats?.medium?.url ||
+    file?.formats?.small?.url ||
+    file?.url ||
+    null;
+
+  return rawUrl
+    ? rawUrl.startsWith("http")
+      ? rawUrl
+      : `${baseUrl}${rawUrl}`
+    : null;
+};
+
 export default async function ProductCatalogPage() {
-  const StrapiURL = process.env.NEXT_PUBLIC_API_URL;
+  const baseUrl = process.env.NEXT_PUBLIC_API_URL.replace(/\/$/, "");
 
   try {
     const res = await fetch(
-      `${StrapiURL}/api/types?populate=*&pagination[pageSize]=1000`,
-      { cache: "force-cache" }
+      `${baseUrl}/api/types?populate=*&pagination[pageSize]=1000`,
+      { next: { revalidate: 21600 } }
     );
 
     if (!res.ok) throw new Error("Gagal fetch data");
 
-    const typesJson = await res.json();
+    const { data } = await res.json();
 
-    const types = typesJson.data.map((t) => ({
+    const types = data.map((t) => ({
       id: t.id,
       documentId: t.documentId,
       product: t.product?.Name || "",
@@ -22,17 +40,14 @@ export default async function ProductCatalogPage() {
       weight: t.Weight || "N/A",
       packaging: t.Packaging || "N/A",
       category: t.Kind || "Uncategorized",
-      coverImage: t.CoverImage?.url || null,
-      headerImage: t.HeaderImage?.url || null,
+
+      coverImage: getStrapiUrl(t.CoverImage, baseUrl),
+      headerImage: getStrapiUrl(t.HeaderImage, baseUrl),
     }));
 
     return (
-      <section className="lg:px-40 px-4 py-6 min-h-screen content w-full">
-        <Suspense
-          fallback={
-            <p className="text-center text-gray-600">Loading produk...</p>
-          }
-        >
+      <section className="lg:px-40 px-4 py-6 min-h-screen w-full">
+        <Suspense fallback={<p className="text-center">Loading produk...</p>}>
           <Tabs initialData={types} />
         </Suspense>
       </section>
@@ -41,9 +56,7 @@ export default async function ProductCatalogPage() {
     console.error("❌ Error fetching product types:", error);
 
     return (
-      <p className="text-center text-red-500">
-        Gagal memuat katalog produk. Silakan coba lagi nanti.
-      </p>
+      <p className="text-center text-red-500">Gagal memuat katalog produk.</p>
     );
   }
 }

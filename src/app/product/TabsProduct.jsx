@@ -95,7 +95,7 @@ export default function Tabs({ initialData }) {
             {activeCategory === cat && (
               <motion.div
                 layoutId="activeCategoryUnderline"
-                className="absolute bottom-0 left-0 right-0 h-[2px] bg-[#0253AE]"
+                className="absolute bottom-0 left-0 right-0 h-0.5 bg-[#0253AE]"
                 transition={{ type: "spring", stiffness: 300, damping: 20 }}
               />
             )}
@@ -115,7 +115,7 @@ export default function Tabs({ initialData }) {
                   <img
                     src={item.coverImage}
                     alt={`${item.product} - ${item.category}`}
-                    className="rounded-xl"
+                    className="rounded-xl w-full object-cover"
                   />
                 )}
 

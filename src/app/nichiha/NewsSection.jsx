@@ -21,7 +21,7 @@ export default async function NewsSection() {
         {articles.map((item) => (
           <div
             key={item.id}
-            className="news-item flex-shrink-0 snap-center mx-auto w-[300px] sm:w-[360px] md:w-[420px] lg:w-[500px]"
+            className="news-item shrink-0 snap-center mx-auto w-[300px] sm:w-[360px] md:w-[420px] lg:w-[500px]"
           >
             <NewsCard {...item} />
           </div>

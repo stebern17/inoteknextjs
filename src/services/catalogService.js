@@ -1,28 +1,46 @@
-// /services/catalogService.js  ← ubah jadi .js
+const getFileUrl = (file, baseUrl) => {
+  if (!file) return null;
+
+  const rawUrl =
+    file?.formats?.medium?.url ||
+    file?.url ||
+    null;
+
+  if (!rawUrl) return null;
+
+  return rawUrl.startsWith("http")
+    ? rawUrl
+    : `${baseUrl}${rawUrl}`;
+};
+
 export async function getCatalogData() {
-  const StrapiURL = process.env.NEXT_PUBLIC_API_URL;
+  const baseUrl = process.env.NEXT_PUBLIC_API_URL.replace(/\/$/, "");
 
   try {
-    const res = await fetch(`${StrapiURL}/api/download-catalogs?populate=*`, {
-      next: { revalidate: 21600 }, // Cache hasil fetch selama 6 jam
-    });
+    const res = await fetch(
+      `${baseUrl}/api/download-catalogs?populate=*`,
+      {
+        next: { revalidate: 21600 }, // 6 jam
+      }
+    );
 
     if (!res.ok) {
       throw new Error(`Failed to fetch catalog data: ${res.status}`);
     }
 
-    const json = await res.json();
+    const { data } = await res.json();
+    if (!data) return [];
 
-    return json.data.map((item) => ({
+    return data.map((item) => ({
       id: item.id,
       documentId: item.documentId,
       title: item.Title || "Untitled Catalog",
       slug: item.Slug,
-      coverImage:
-        item.CoverImage?.formats?.medium?.url ||
-        item.CoverImage?.url ||
-        null,
-      catalogFile: item.CatalogFile?.url || null,
+
+      coverImage: getFileUrl(item.CoverImage, baseUrl),
+
+      catalogFile: getFileUrl(item.CatalogFile, baseUrl),
+
       createdAt: item.createdAt,
     }));
   } catch (error) {

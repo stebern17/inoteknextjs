@@ -96,7 +96,7 @@ function NavbarHeader() {
         </Link>
 
         {/* Menu Desktop */}
-        <ul className="hidden lg:flex md:space-x-8 lg:space-x-16 font-display text-lg">
+        <ul className="hidden lg:flex md:space-x-8 font-display text-lg">
           {menus.map((menu) => (
             <motion.li
               key={menu.path}
@@ -161,7 +161,7 @@ function NavbarHeader() {
               animate={{ opacity: 1, y: -30, x: -10 }}
               exit={{ opacity: 0, y: -50, x: -10 }}
               transition={{ duration: 0.2 }}
-              className="fixed z-[60]"
+              className="fixed z-60"
               style={{
                 left: `${dropdownPosition.left}px`,
                 top: `${dropdownPosition.top}px`,
