@@ -27,7 +27,7 @@ export default function NewsCard({ category, title, image, link }) {
           </div>
           <a
             href={link}
-            className="rounded-xl inline-block text-blue-600 font-medium text-sm md:text-lg border border-blue-600 px-3 py-1 hover:bg-blue-600 hover:text-white transition-colors duration-200 w-full text-center"
+            className="rounded-xl inline-block text-blue-600 font-medium text-sm md:text-lg border border-blue-600 px-3 py-1 hover:bg-blue-600 hover:text-white transition-all duration-200 w-full text-center active:scale-95 "
             rel="noopener noreferrer"
           >
             Baca Selengkapnya
