@@ -17,8 +17,9 @@ export async function POST(request) {
     console.log("🔄 Webhook received:", model, entry?.documentId);
 
     // 📰 Article update
-     if (model === "article") {
+    if (model === "article") {
       // Revalidate daftar berita dan homepage
+      revalidatePath("/");
       revalidatePath("/news");
       revalidatePath("/nichiha");
 
@@ -31,7 +32,6 @@ export async function POST(request) {
         console.log("⚠️ No documentId found in webhook entry");
       }
     }
-
 
     // 🧱 Distributor update
     if (model === "distributor") {
@@ -54,7 +54,9 @@ export async function POST(request) {
       const docId = entry?.documentId || entry?.id || entry?._id;
       if (docId) {
         revalidatePath(`/product/productdetail/${docId}`);
-        console.log(`✅ Revalidated product detail: /product/productdetail/${docId}`);
+        console.log(
+          `✅ Revalidated product detail: /product/productdetail/${docId}`
+        );
       } else {
         console.log("⚠️ No documentId found in product entry");
       }
