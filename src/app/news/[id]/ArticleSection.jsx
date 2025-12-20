@@ -11,7 +11,7 @@ export default async function ArticleSection({ id }) {
     return <div className="content text-center mx-auto">Not Found</div>;
   }
 
-  const category = article.category?.category || "News";
+  const category = article.category || "News";
 
   return (
     <article className="content w-full min-h-screen my-10 flex flex-col font-display">
