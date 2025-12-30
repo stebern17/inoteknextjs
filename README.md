@@ -4,22 +4,22 @@ This project appears to be a web application built with Next.js, React, and Type
 
 ## Key Features & Benefits
 
-*   **Modern Web Framework:** Built with Next.js, offering server-side rendering, static site generation, and optimized performance.
-*   **Typed JavaScript:** Uses TypeScript for improved code maintainability and reduced runtime errors.
-*   **UI Components:** Integrates Flowbite React for pre-built, responsive UI elements.
-*   **Styling:** Utilizes Tailwind CSS for rapid UI development and customization.
-*   **API Integrations:** Communicates with a Strapi backend for data management and content delivery.
-*   **Contact Form:** Includes a contact form functionality, potentially using Resend for email sending.
-*   **Catalog display:** Displays products fetched from the Strapi backend.
-*   **Distributor Information:** Fetches and displays information about distributors, likely from Strapi.
+- **Modern Web Framework:** Built with Next.js, offering server-side rendering, static site generation, and optimized performance.
+- **Typed JavaScript:** Uses TypeScript for improved code maintainability and reduced runtime errors.
+- **UI Components:** Integrates Flowbite React for pre-built, responsive UI elements.
+- **Styling:** Utilizes Tailwind CSS for rapid UI development and customization.
+- **API Integrations:** Communicates with a Strapi backend for data management and content delivery.
+- **Contact Form:** Includes a contact form functionality, potentially using Resend for email sending.
+- **Catalog display:** Displays products fetched from the Strapi backend.
+- **Distributor Information:** Fetches and displays information about distributors, likely from Strapi.
 
 ## Prerequisites & Dependencies
 
 Before you begin, ensure you have the following installed:
 
-*   **Node.js:** (Version 18 or higher recommended) - [https://nodejs.org/](https://nodejs.org/)
-*   **npm** or **yarn** or **pnpm** or **bun:** Package managers for JavaScript.
-*   **Git:** For version control - [https://git-scm.com/](https://git-scm.com/)
+- **Node.js:** (Version 18 or higher recommended) - [https://nodejs.org/](https://nodejs.org/)
+- **npm** or **yarn** or **pnpm** or **bun:** Package managers for JavaScript.
+- **Git:** For version control - [https://git-scm.com/](https://git-scm.com/)
 
 ## Installation & Setup Instructions
 
@@ -33,26 +33,28 @@ Before you begin, ensure you have the following installed:
 2.  **Install dependencies:**
 
     Choose one of the following package managers:
+    - **npm:**
 
-    *   **npm:**
-        ```bash
-        npm install
-        ```
+      ```bash
+      npm install
+      ```
 
-    *   **yarn:**
-        ```bash
-        yarn install
-        ```
+    - **yarn:**
 
-    *   **pnpm:**
-        ```bash
-        pnpm install
-        ```
+      ```bash
+      yarn install
+      ```
 
-    *   **bun:**
-        ```bash
-        bun install
-        ```
+    - **pnpm:**
+
+      ```bash
+      pnpm install
+      ```
+
+    - **bun:**
+      ```bash
+      bun install
+      ```
 
 3.  **Configure environment variables:**
 
@@ -69,32 +71,49 @@ Before you begin, ensure you have the following installed:
 4.  **Run the development server:**
 
     Choose one of the following package managers:
+    - **npm:**
 
-    *   **npm:**
-        ```bash
-        npm run dev
-        ```
+      ```bash
+      npm run dev
+      ```
 
-    *   **yarn:**
-        ```bash
-        yarn dev
-        ```
+    - **yarn:**
 
-    *   **pnpm:**
-        ```bash
-        pnpm dev
-        ```
+      ```bash
+      yarn dev
+      ```
 
-    *   **bun:**
-        ```bash
-        bun dev
-        ```
+    - **pnpm:**
+
+      ```bash
+      pnpm dev
+      ```
+
+    - **bun:**
+      ```bash
+      bun dev
+      ```
 
 5.  **Access the application:**
 
     Open your browser and navigate to [http://localhost:3000](http://localhost:3000).
 
 ## Usage Examples & API Documentation
+
+### Dynamic Sitemap
+
+This project exposes a dynamic sitemap at `/sitemap.xml` using Next.js App Router.
+
+- Source: [src/app/sitemap.js](src/app/sitemap.js)
+- Includes: static pages, news articles from Strapi, and product detail pages.
+- Base URL: reads `NEXT_PUBLIC_SITE_URL` (falls back to `NEXT_PUBLIC_APP_URL`).
+
+Quick verify locally:
+
+```bash
+npm run dev
+# then visit http://localhost:3000/sitemap.xml
+```
 
 ### Fetching Catalog Data
 
@@ -162,9 +181,9 @@ export async function POST(request) {
         body: JSON.stringify({ data: data }),
       }
     );
-        //rest of code
+    //rest of code
   } catch (error) {
-   //error handling
+    //error handling
   }
 }
 ```
@@ -178,7 +197,6 @@ import { NextResponse } from "next/server";
 
 const STRAPI_URL = process.env.NEXT_PUBLIC_API_URL;
 const STRAPI_TOKEN = process.env.NEXT_TOKEN_STRAPI;
-
 
 export async function GET() {
   if (!STRAPI_URL) {
@@ -195,13 +213,13 @@ export async function GET() {
     });
 
     if (!res.ok) {
-       //error handling
+      //error handling
     }
     const data = await res.json();
 
     return NextResponse.json(data);
   } catch (error) {
-     //error handling
+    //error handling
     return NextResponse.json(
       { error: "Failed to fetch distributor data" },
       { status: 500 }
@@ -214,9 +232,9 @@ export async function GET() {
 
 The project uses several environment variables for configuration:
 
-*   `NEXT_PUBLIC_API_URL`: The URL of your Strapi API.
-*   `NEXT_TOKEN_STRAPI`: Your Strapi API token for authentication.
-*   `RESEND_API_KEY`: Your Resend API key for sending emails.
+- `NEXT_PUBLIC_API_URL`: The URL of your Strapi API.
+- `NEXT_TOKEN_STRAPI`: Your Strapi API token for authentication.
+- `RESEND_API_KEY`: Your Resend API key for sending emails.
 
 You can configure these variables in the `.env.local` file.
 
@@ -238,11 +256,11 @@ The license for this project is not specified. All rights are reserved unless ot
 
 This project uses the following third-party libraries and resources:
 
-*   Next.js: [https://nextjs.org/](https://nextjs.org/)
-*   React: [https://react.dev/](https://react.dev/)
-*   TypeScript: [https://www.typescriptlang.org/](https://www.typescriptlang.org/)
-*   Tailwind CSS: [https://tailwindcss.com/](https://tailwindcss.com/)
-*   Flowbite React: [https://www.flowbite-react.com/](https://www.flowbite-react.com/)
-*   Resend: [https://resend.com/](https://resend.com/)
-*   Strapi: [https://strapi.io/](https://strapi.io/)
-*   Vercel Speed Insights: [https://vercel.com/speed-insights](https://vercel.com/speed-insights)
+- Next.js: [https://nextjs.org/](https://nextjs.org/)
+- React: [https://react.dev/](https://react.dev/)
+- TypeScript: [https://www.typescriptlang.org/](https://www.typescriptlang.org/)
+- Tailwind CSS: [https://tailwindcss.com/](https://tailwindcss.com/)
+- Flowbite React: [https://www.flowbite-react.com/](https://www.flowbite-react.com/)
+- Resend: [https://resend.com/](https://resend.com/)
+- Strapi: [https://strapi.io/](https://strapi.io/)
+- Vercel Speed Insights: [https://vercel.com/speed-insights](https://vercel.com/speed-insights)
