@@ -5,7 +5,7 @@ import { motion, AnimatePresence } from "motion/react";
 import { Dropdown, DropdownItem } from "flowbite-react";
 import DistributorCard from "@/app/components/DistributorCard";
 
-export default function DistributorSection({ initialDistributors }) {
+export default function DistributorSection({ initialDistributors = [] }) {
   const [selectedCity, setSelectedCity] = useState("Pilih Kota ....");
 
   const uniqueCities = [
@@ -65,6 +65,7 @@ export default function DistributorSection({ initialDistributors }) {
                 phone={distributor.phone}
                 email={distributor.email}
                 website={distributor.website}
+                whatsappLink={distributor.whatsappLink}
               />
             </motion.div>
           ))}
