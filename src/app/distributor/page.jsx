@@ -21,6 +21,7 @@ export default async function DistributorPage() {
       email: doc.email,
       website: doc.website,
       city: doc.distributionarea,
+      whatsappLink: doc.whatsapp_link,
     }));
 
     // ⬇️ kirim hasilnya ke komponen client (DistributorSection)
