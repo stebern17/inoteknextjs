@@ -29,7 +29,7 @@ export default function DistributorCard({
                   rel="noopener noreferrer"
                   className="underline hover:text-green-300 block transition-colors duration-300"
                 >
-                  0{phone}
+                  {phone}
                 </a>
               ) : (
                 <span className="block">{phone}</span>
