@@ -32,7 +32,7 @@ export default function DistributorCard({
                   0{phone}
                 </a>
               ) : (
-                <span className="block">0{phone}</span>
+                <span className="block">{phone}</span>
               ))}
 
             {email && <p>{email}</p>}

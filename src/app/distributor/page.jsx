@@ -5,7 +5,7 @@ export default async function DistributorPage() {
 
   try {
     const res = await fetch(`${STRAPI_URL}/api/distributors?populate=*`, {
-      cache: "force-cache",
+      cache: "no-store",
     });
 
     if (!res.ok) throw new Error("Gagal fetch data distributor");
