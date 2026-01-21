@@ -2,7 +2,7 @@
 
 export default function NewsCard({ category, title, image, link }) {
   return (
-    <div className="relative font-display w-full lg:w-[500px] lg:px-6 px-2">
+    <div className="relative font-display w-full">
       {/* Image */}
       <div className="relative">
         <img
@@ -15,8 +15,8 @@ export default function NewsCard({ category, title, image, link }) {
       </div>
 
       {/* Overlay */}
-      <div className="relative -mt-20 sm:-mt-24 z-10 sm:px-6 md:px-5">
-        <div className="p-4 sm:p-5 flex flex-col justify-between gap-3 w-[70%] sm:w-[90%] md:w-[80%] h-80 sm:h-[360px] md:h-[400px] bg-white mx-auto rounded-xl shadow-lg">
+      <div className="relative -mt-16 sm:-mt-20 z-10 px-3 sm:px-6">
+        <div className="p-4 sm:p-5 flex flex-col justify-between gap-3 w-full max-w-[520px] min-h-[260px] sm:min-h-[300px] bg-white mx-auto rounded-xl shadow-lg">
           <div>
             <span className="text-gray-500 font-semibold text-base lg:text-lg">
               {category}

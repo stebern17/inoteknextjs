@@ -13,12 +13,14 @@ export default async function NewsSection() {
     );
   }
 
-  articles.sort((a, b) => new Date(b.createdAt) - new Date(a.createdAt));
+  const newestArticles = [...articles]
+    .sort((a, b) => new Date(b.createdAt) - new Date(a.createdAt))
+    .slice(0, 6);
 
   return (
     <section className="bg-[#0253AE] w-full py-9 relative select-none">
       <NewsSlider>
-        {articles.map((item) => (
+        {newestArticles.map((item) => (
           <div
             key={item.id}
             className="news-item shrink-0 snap-center mx-auto w-[300px] sm:w-[360px] md:w-[420px] lg:w-[500px]"

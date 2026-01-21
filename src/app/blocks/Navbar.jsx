@@ -64,6 +64,7 @@ function NavbarHeader() {
         },
       ],
     },
+    { label: "ARTIKEL", path: "/news" },
     { label: "DISTRIBUTOR", path: "/distributor" },
   ];
 
