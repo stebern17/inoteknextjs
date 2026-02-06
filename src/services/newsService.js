@@ -1,14 +1,9 @@
 const getImageUrl = (image, baseUrl) => {
-  const rawUrl =
-    image?.formats?.medium?.url ||
-    image?.url ||
-    null;
+  const rawUrl = image?.formats?.medium?.url || image?.url || null;
 
   if (!rawUrl) return null;
 
-  return rawUrl.startsWith("http")
-    ? rawUrl
-    : `${baseUrl}${rawUrl}`;
+  return rawUrl.startsWith("http") ? rawUrl : `${baseUrl}${rawUrl}`;
 };
 
 export async function getNewsArticles() {
@@ -31,17 +26,52 @@ export async function getNewsArticles() {
     title: doc.title,
     category: doc.category?.category || "News",
     image: getImageUrl(doc.image, baseUrl),
-    link: `/news/${doc.documentId}`,
+    slug: doc?.slug?.current || doc?.slug || doc.documentId,
+    link: `/news/${doc?.slug?.current || doc?.slug || doc.documentId}`,
     createdAt: doc.createdAt,
   }));
 }
 
+export async function getArticleBySlug(slug) {
+  const baseUrl = process.env.NEXT_PUBLIC_API_URL.replace(/\/$/, "");
+  const encoded = encodeURIComponent(String(slug || ""));
+
+  // Prefer slug, but gracefully fallback to documentId for older content.
+  const slugRes = await fetch(
+    `${baseUrl}/api/articles?filters[slug][$eq]=${encoded}&populate=*`,
+    { next: { revalidate: 21600 } },
+  );
+
+  if (slugRes.ok) {
+    const { data } = await slugRes.json();
+    if (data?.[0]) {
+      const doc = data[0];
+      return {
+        id: doc.id,
+        title: doc.title,
+        category: doc.category?.category || "News",
+        image: {
+          url: getImageUrl(doc.image, baseUrl),
+          alternativeText: doc.image?.alternativeText || "",
+        },
+        newscontent: doc.newscontent,
+        documentId: doc.documentId,
+        slug: doc?.slug?.current || doc?.slug || doc.documentId,
+        createdAt: doc.createdAt,
+      };
+    }
+  }
+
+  return getArticleByDocumentId(slug);
+}
+
 export async function getArticleByDocumentId(documentId) {
   const baseUrl = process.env.NEXT_PUBLIC_API_URL.replace(/\/$/, "");
+  const encoded = encodeURIComponent(String(documentId || ""));
 
   const res = await fetch(
-    `${baseUrl}/api/articles?filters[documentId][$eq]=${documentId}&populate=*`,
-    { next: { revalidate: 21600 } }
+    `${baseUrl}/api/articles?filters[documentId][$eq]=${encoded}&populate=*`,
+    { next: { revalidate: 21600 } },
   );
 
   if (!res.ok) {
@@ -64,6 +94,7 @@ export async function getArticleByDocumentId(documentId) {
     },
     newscontent: doc.newscontent,
     documentId: doc.documentId,
+    slug: doc?.slug?.current || doc?.slug || doc.documentId,
     createdAt: doc.createdAt,
   };
 }

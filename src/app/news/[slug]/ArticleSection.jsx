@@ -2,10 +2,10 @@ import RichTextRenderer from "@/app/components/RichTextRenderer";
 import React from "react";
 import VerticalLine from "@/app/components/VerticalLine";
 import RelatedNews from "./RelatedNews";
-import { getArticleByDocumentId } from "@/services/newsService";
+import { getArticleBySlug } from "@/services/newsService";
 
-export default async function ArticleSection({ id }) {
-  const article = await getArticleByDocumentId(id);
+export default async function ArticleSection({ slug }) {
+  const article = await getArticleBySlug(slug);
 
   if (!article) {
     return <div className="content text-center mx-auto">Not Found</div>;
@@ -50,7 +50,7 @@ export default async function ArticleSection({ id }) {
           <div>
             <RelatedNews
               currentCategory={category}
-              currentDocumentId={article.documentId}
+              currentSlug={article.slug}
             />
           </div>
         </div>

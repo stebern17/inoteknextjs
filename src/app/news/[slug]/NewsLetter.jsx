@@ -70,7 +70,7 @@ export default function NewsLetter() {
               className="flex items-center p-4 text-sm text-green-800 rounded-lg bg-green-100 shadow-lg"
               role="alert"
             >
-              <FaCheckCircle className="flex-shrink-0 inline w-5 h-5 mr-3 text-green-500" />
+              <FaCheckCircle className="shrink-0 inline w-5 h-5 mr-3 text-green-500" />
               <div>
                 <span className="font-medium">Berhasil!</span> Terimakasih telah
                 berlangganan.
@@ -89,7 +89,7 @@ export default function NewsLetter() {
               className="flex items-center p-4 text-sm text-red-800 rounded-lg bg-red-100 shadow-lg"
               role="alert"
             >
-              <FaTimesCircle className="flex-shrink-0 inline w-5 h-5 mr-3 text-red-500" />
+              <FaTimesCircle className="shrink-0 inline w-5 h-5 mr-3 text-red-500" />
               <div>
                 <span className="font-medium">Gagal!</span> Silakan coba
                 beberapa saat lagi.

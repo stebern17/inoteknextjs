@@ -3,10 +3,10 @@ import ArticleSection from "./ArticleSection";
 import NewsLetter from "./NewsLetter";
 
 export default async function NewsDetail({ params }) {
-  const { id } = await params;
+  const { slug } = await params;
   return (
     <>
-      <ArticleSection id={id} />
+      <ArticleSection slug={slug} />
       <NewsLetter />
     </>
   );
