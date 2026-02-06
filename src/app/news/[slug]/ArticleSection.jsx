@@ -4,8 +4,11 @@ import VerticalLine from "@/app/components/VerticalLine";
 import RelatedNews from "./RelatedNews";
 import { getArticleBySlug } from "@/services/newsService";
 
-export default async function ArticleSection({ slug }) {
-  const article = await getArticleBySlug(slug);
+export default async function ArticleSection({
+  slug,
+  article: initialArticle,
+}) {
+  const article = initialArticle || (await getArticleBySlug(slug));
 
   if (!article) {
     return <div className="content text-center mx-auto">Not Found</div>;
@@ -35,7 +38,7 @@ export default async function ArticleSection({ slug }) {
         <div className="w-full mt-5">
           <img
             src={article.image.url}
-            alt={article.image.alternativeText || ""}
+            alt={article.image.alternativeText || article.title}
             className="w-full object-cover rounded-2xl md:h-[600px] h-[300px]"
           />
         </div>

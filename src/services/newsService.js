@@ -50,14 +50,18 @@ export async function getArticleBySlug(slug) {
         id: doc.id,
         title: doc.title,
         category: doc.category?.category || "News",
+        excerpt: doc.excerpt || doc.summary || null,
+        seo: doc.seo || null,
         image: {
           url: getImageUrl(doc.image, baseUrl),
-          alternativeText: doc.image?.alternativeText || "",
+          alternativeText: doc.image?.alternativeText || doc.title || "",
         },
         newscontent: doc.newscontent,
         documentId: doc.documentId,
         slug: doc?.slug?.current || doc?.slug || doc.documentId,
         createdAt: doc.createdAt,
+        updatedAt: doc.updatedAt,
+        publishedAt: doc.publishedAt,
       };
     }
   }
@@ -88,13 +92,17 @@ export async function getArticleByDocumentId(documentId) {
     id: doc.id,
     title: doc.title,
     category: doc.category?.category || "News",
+    excerpt: doc.excerpt || doc.summary || null,
+    seo: doc.seo || null,
     image: {
       url: getImageUrl(doc.image, baseUrl),
-      alternativeText: doc.image?.alternativeText || "",
+      alternativeText: doc.image?.alternativeText || doc.title || "",
     },
     newscontent: doc.newscontent,
     documentId: doc.documentId,
     slug: doc?.slug?.current || doc?.slug || doc.documentId,
     createdAt: doc.createdAt,
+    updatedAt: doc.updatedAt,
+    publishedAt: doc.publishedAt,
   };
 }
