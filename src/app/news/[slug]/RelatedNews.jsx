@@ -2,16 +2,13 @@ import React from "react";
 import Link from "next/link";
 import { getNewsArticles } from "@/services/newsService";
 
-export default async function RelatedNews({
-  currentCategory,
-  currentDocumentId,
-}) {
+export default async function RelatedNews({ currentCategory, currentSlug }) {
   const articles = await getNewsArticles();
 
   const filtered = articles.filter(
     (article) =>
       article.category === currentCategory &&
-      article.link !== `/news/${currentDocumentId}`
+      article.link !== `/news/${currentSlug}`,
   );
 
   return (
@@ -33,10 +30,10 @@ export default async function RelatedNews({
                 alt={article.title}
                 width={100}
                 height={60}
-                className="rounded-md object-cover h-24 w-34 lg:w-34 md:w-full flex-shrink-0"
+                className="rounded-md object-cover h-24 w-34 lg:w-34 md:w-full shrink-0"
               />
             ) : (
-              <div className="rounded-md bg-gray-200 h-24 w-34 lg:w-34 md:w-full flex-shrink-0"></div>
+              <div className="rounded-md bg-gray-200 h-24 w-34 lg:w-34 md:w-full shrink-0"></div>
             )}
             <div className="lg:self-start md:text-center lg:text-start">
               <p className="text-sm text-gray-500">{article.category}</p>

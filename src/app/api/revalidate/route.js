@@ -25,11 +25,21 @@ export async function POST(request) {
 
       // Revalidate detail berita
       const docId = entry?.documentId || entry?.id || entry?._id;
+      const slug = entry?.slug?.current || entry?.slug;
+
+      if (slug) {
+        revalidatePath(`/news/${slug}`);
+        console.log(`✅ Revalidated news detail: /news/${slug}`);
+      }
+
+      // Backwards-compatible: some webhooks may still only provide documentId
       if (docId) {
         revalidatePath(`/news/${docId}`);
-        console.log(`✅ Revalidated news detail: /news/${docId}`);
-      } else {
-        console.log("⚠️ No documentId found in webhook entry");
+        console.log(`✅ Revalidated legacy news detail: /news/${docId}`);
+      }
+
+      if (!slug && !docId) {
+        console.log("⚠️ No slug/documentId found in webhook entry");
       }
     }
 
@@ -55,7 +65,7 @@ export async function POST(request) {
       if (docId) {
         revalidatePath(`/product/productdetail/${docId}`);
         console.log(
-          `✅ Revalidated product detail: /product/productdetail/${docId}`
+          `✅ Revalidated product detail: /product/productdetail/${docId}`,
         );
       } else {
         console.log("⚠️ No documentId found in product entry");
@@ -69,7 +79,7 @@ export async function POST(request) {
     console.error("❌ Revalidate error:", err);
     return NextResponse.json(
       { message: "Error revalidating", error: err.message },
-      { status: 500 }
+      { status: 500 },
     );
   }
 }
