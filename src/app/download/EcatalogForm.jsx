@@ -19,8 +19,7 @@ export default function EcatalogForm({ catalogTitle, onCancel, onSuccess }) {
     "Arsitek",
     "Developer",
     "Kontraktor/Aplikator",
-    "Desainer Interior/Exterior",
-    "Pemilik Proyek",
+    "Desainer (Interior/Exterior)",
     "Home Owner",
     "Lainnya",
   ];
@@ -131,7 +130,7 @@ export default function EcatalogForm({ catalogTitle, onCancel, onSuccess }) {
 
         <div className="flex flex-col w-full sm:col-span-2">
           <Label htmlFor="ecatalog-phone">
-            No. Telp <span className="text-red-500">*</span>
+            No. Telp (Whatsapp) <span className="text-red-500">*</span>
           </Label>
           <TextInput
             id="ecatalog-phone"
