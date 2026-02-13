@@ -4,6 +4,9 @@ import Footer from "./blocks/Footer";
 import { ThemeInit } from "../../.flowbite-react/init";
 
 export const metadata = {
+  metadataBase: new URL(
+    process.env.NEXT_PUBLIC_SITE_URL || "https://inotekkaryamandiri.com",
+  ),
   title: "Inotek Nichiha | Distributor Resmi Panel Fasad Jepang di Indonesia",
   description:
     "Inotek Karya Mandiri adalah distributor resmi Nichiha di Indonesia. Menyediakan panel fasad berkualitas dari Jepang untuk hunian dan bangunan komersial.",
@@ -75,10 +78,10 @@ export default function RootLayout({ children }) {
         gtag('config', 'G-FJG9TZMHWM');
       `,
           }}
-  />
-  <script
-    dangerouslySetInnerHTML={{
-      __html: `
+        />
+        <script
+          dangerouslySetInnerHTML={{
+            __html: `
   !function(f,b,e,v,n,t,s)
   {if(f.fbq)return;n=f.fbq=function(){n.callMethod?
   n.callMethod.apply(n,arguments):n.queue.push(arguments)};
@@ -90,18 +93,17 @@ export default function RootLayout({ children }) {
   fbq('init', '1752010645500910');
   fbq('track', 'PageView');
 `,
-    }}
-  />
-  <noscript>
-    <img
-      height="1"
-      width="1"
-      style={{ display: "none" }}
-      src="https://www.facebook.com/tr?id=1752010645500910&ev=PageView&noscript=1"
-      alt=""
-    />
-  </noscript>
-
+          }}
+        />
+        <noscript>
+          <img
+            height="1"
+            width="1"
+            style={{ display: "none" }}
+            src="https://www.facebook.com/tr?id=1752010645500910&ev=PageView&noscript=1"
+            alt=""
+          />
+        </noscript>
       </head>
       <body>
         <ThemeInit />
