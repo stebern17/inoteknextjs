@@ -19,8 +19,7 @@ export default function EcatalogForm({ catalogTitle, onCancel, onSuccess }) {
     "Arsitek",
     "Developer",
     "Kontraktor/Aplikator",
-    "Desainer Interior/Exterior",
-    "Pemilik Proyek",
+    "Desainer (Interior/Exterior)",
     "Home Owner",
     "Lainnya",
   ];
@@ -131,7 +130,7 @@ export default function EcatalogForm({ catalogTitle, onCancel, onSuccess }) {
 
         <div className="flex flex-col w-full sm:col-span-2">
           <Label htmlFor="ecatalog-phone">
-            No. Telp <span className="text-red-500">*</span>
+            No. Telp (Whatsapp) <span className="text-red-500">*</span>
           </Label>
           <TextInput
             id="ecatalog-phone"
@@ -146,7 +145,7 @@ export default function EcatalogForm({ catalogTitle, onCancel, onSuccess }) {
 
         <div className="flex flex-col w-full sm:col-span-2">
           <Label htmlFor="ecatalog-occupation">
-            Pekerjaan <span className="text-red-500">*</span>
+            Profesi <span className="text-red-500">*</span>
           </Label>
           <select
             name="occupation"
@@ -158,7 +157,7 @@ export default function EcatalogForm({ catalogTitle, onCancel, onSuccess }) {
             className="w-full rounded-lg border border-gray-200 bg-white px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-[#0253AE]/40"
           >
             <option value="" disabled>
-              Pilih pekerjaan
+              Pilih profesi
             </option>
             {occupationOptions.map((option) => (
               <option key={option} value={option}>
@@ -171,7 +170,7 @@ export default function EcatalogForm({ catalogTitle, onCancel, onSuccess }) {
         {formData.occupation === "Lainnya" && (
           <div className="flex flex-col w-full sm:col-span-2">
             <Label htmlFor="ecatalog-occupationOther">
-              Pekerjaan lainnya <span className="text-red-500">*</span>
+              Profesi lainnya <span className="text-red-500">*</span>
             </Label>
             <TextInput
               id="ecatalog-occupationOther"
