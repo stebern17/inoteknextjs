@@ -1,0 +1,114 @@
+"use client";
+
+import { useEffect, useState } from "react";
+import EcatalogForm from "./EcatalogForm";
+
+function triggerDownload(url) {
+  if (!url) return;
+
+  const a = document.createElement("a");
+  a.href = url;
+  a.target = "_blank";
+  a.rel = "noopener noreferrer";
+  document.body.appendChild(a);
+  a.click();
+  a.remove();
+}
+
+export default function CatalogGridClient({ initialCatalogs = [] }) {
+  const [isOpen, setIsOpen] = useState(false);
+  const [activeCatalog, setActiveCatalog] = useState(null);
+
+  const openModal = (catalog) => {
+    setActiveCatalog(catalog);
+    setIsOpen(true);
+  };
+
+  const closeModal = () => {
+    setIsOpen(false);
+    setActiveCatalog(null);
+  };
+
+  const handleSuccess = () => {
+    const url = activeCatalog?.catalogFile;
+    closeModal();
+    triggerDownload(url);
+  };
+
+  useEffect(() => {
+    if (!isOpen) return;
+
+    const onKeyDown = (e) => {
+      if (e.key === "Escape") closeModal();
+    };
+
+    window.addEventListener("keydown", onKeyDown);
+    return () => window.removeEventListener("keydown", onKeyDown);
+  }, [isOpen]);
+
+  return (
+    <>
+      <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-3 2xl:grid-cols-4 gap-6 p-6">
+        {initialCatalogs.map((catalog) => (
+          <button
+            key={catalog.id}
+            type="button"
+            onClick={() => openModal(catalog)}
+            className="text-left shadow-[4px_4px_2px_0_rgba(0,0,0,0.25)] hover:shadow-lg transition-shadow duration-300 rounded-lg"
+          >
+            <div className="bg-white lg:h-[400px] 2xl:h-[600px] rounded-lg shadow-md overflow-hidden flex flex-col cursor-pointer">
+              <img
+                src={catalog.coverImage}
+                alt={catalog.title}
+                className="lg:h-[85%] w-full object-cover"
+                loading="lazy"
+              />
+              <p className="text-center font-semibold text-2xl py-4 text-[#0253AE] my-auto">
+                {catalog.title}
+              </p>
+            </div>
+          </button>
+        ))}
+      </div>
+
+      {isOpen && (
+        <div
+          className="fixed inset-0 z-50 flex items-center justify-center bg-black/40 p-4"
+          role="dialog"
+          aria-modal="true"
+          onMouseDown={(e) => {
+            if (e.target === e.currentTarget) closeModal();
+          }}
+        >
+          <div className="w-full max-w-xl rounded-2xl bg-white p-6 font-display">
+            <div className="flex items-start justify-between gap-4">
+              <div className="flex flex-col">
+                <p className="text-sm text-gray-500">Isi form untuk download</p>
+                <h3 className="text-xl font-bold text-[#0253AE]">
+                  {activeCatalog?.title || "E-Catalog"}
+                </h3>
+              </div>
+
+              <button
+                type="button"
+                onClick={closeModal}
+                className="rounded-lg px-3 py-1 text-sm font-semibold text-gray-600 hover:bg-gray-100"
+                aria-label="Tutup"
+              >
+                Tutup
+              </button>
+            </div>
+
+            <div className="mt-5">
+              <EcatalogForm
+                catalogTitle={activeCatalog?.title}
+                onCancel={closeModal}
+                onSuccess={handleSuccess}
+              />
+            </div>
+          </div>
+        </div>
+      )}
+    </>
+  );
+}

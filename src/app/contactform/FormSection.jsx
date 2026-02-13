@@ -60,7 +60,7 @@ export default function ContactFormPage() {
       )}
       <div className="grid grid-cols-2 gap-5">
         <div className="flex flex-col w-full">
-          <Label htmlFor="name" className="text-[#1E40AF]">
+          <Label htmlFor="name">
             Nama <span className="text-red-500">*</span>
           </Label>
           <TextInput
@@ -74,7 +74,7 @@ export default function ContactFormPage() {
         </div>
 
         <div className="flex flex-col w-full">
-          <Label htmlFor="email" className="text-[#1E40AF]">
+          <Label htmlFor="email">
             Email <span className="text-red-500">*</span>
           </Label>
           <TextInput
