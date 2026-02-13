@@ -15,11 +15,13 @@ export default function EcatalogForm({ catalogTitle, onCancel, onSuccess }) {
 
   const [status, setStatus] = useState(null);
   const [isSubmitting, setIsSubmitting] = useState(false);
-  const occupationOptions = ["Mahasiswa", "Karyawan", "Wirausaha", "Lainnya"];
-  const needsOptions = [
-    "Informasi Produk",
-    "Penawaran Harga",
-    "Kerjasama Bisnis",
+  const occupationOptions = [
+    "Arsitek",
+    "Developer",
+    "Kontraktor/Aplikator",
+    "Desainer Interior/Exterior",
+    "Pemilik Proyek",
+    "Home Owner",
     "Lainnya",
   ];
 
@@ -191,24 +193,15 @@ export default function EcatalogForm({ catalogTitle, onCancel, onSuccess }) {
           Kebutuhan Anda terhadap produk kami
           <span className="text-red-500">*</span>
         </label>
-        <select
-          name="needs"
+        <TextInput
           id="ecatalog-needs"
+          name="needs"
+          type="text"
           value={formData.needs}
           onChange={handleChange}
           required
           disabled={isSubmitting}
-          className="w-full rounded-lg border border-gray-200 bg-white px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-[#0253AE]/40"
-        >
-          <option value="" disabled>
-            Pilih kebutuhan
-          </option>
-          {needsOptions.map((option) => (
-            <option key={option} value={option}>
-              {option}
-            </option>
-          ))}
-        </select>
+        />
       </div>
 
       <div className="flex flex-col sm:flex-row gap-3 sm:justify-end">
@@ -221,7 +214,7 @@ export default function EcatalogForm({ catalogTitle, onCancel, onSuccess }) {
           Batal
         </Button>
         <Button type="submit" disabled={isSubmitting}>
-          {isSubmitting ? "Mengirim..." : "Kirim & Download"}
+          {isSubmitting ? "Mengirim..." : "Download Catalog"}
         </Button>
       </div>
 
