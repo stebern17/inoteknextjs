@@ -137,6 +137,7 @@ export default function EcatalogForm({ catalogTitle, onCancel, onSuccess }) {
             id="ecatalog-phone"
             name="phone"
             type="tel"
+            placeholder="08XXXXXXXX"
             value={formData.phone}
             onChange={(e) => {
               const value = e.target.value.replace(/\D/g, ""); // hanya angka
