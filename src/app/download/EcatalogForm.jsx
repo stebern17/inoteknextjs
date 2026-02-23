@@ -132,15 +132,32 @@ export default function EcatalogForm({ catalogTitle, onCancel, onSuccess }) {
           <Label htmlFor="ecatalog-phone">
             No. Telp (Whatsapp) <span className="text-red-500">*</span>
           </Label>
+
           <TextInput
             id="ecatalog-phone"
             name="phone"
             type="tel"
             value={formData.phone}
-            onChange={handleChange}
+            onChange={(e) => {
+              const value = e.target.value.replace(/\D/g, ""); // hanya angka
+              if (value.length <= 13) {
+                setFormData({ ...formData, phone: value });
+              }
+            }}
+            inputMode="numeric"
+            pattern="[0-9]{10,13}"
+            minLength={10}
+            maxLength={13}
             required
             disabled={isSubmitting}
           />
+
+          {formData.phone.length > 0 &&
+            (formData.phone.length < 10 || formData.phone.length > 13) && (
+              <p className="text-sm text-red-500 mt-1">
+                Nomor harus 10–13 digit dan hanya berisi angka.
+              </p>
+            )}
         </div>
 
         <div className="flex flex-col w-full sm:col-span-2">
