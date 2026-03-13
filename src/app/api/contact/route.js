@@ -17,7 +17,7 @@ export async function POST(request) {
           Authorization: `Bearer ${process.env.NEXT_TOKEN_STRAPI}`,
         },
         body: JSON.stringify({ data }),
-      }
+      },
     );
 
     const text = await res.text(); // ambil response mentah
@@ -32,7 +32,7 @@ export async function POST(request) {
     await resend.emails.send({
       from: "noreply@idmaks.id",
       to: process.env.ADMIN_NOTIFICATION_EMAIL,
-      subject: '📩 Pesan Pertanyaan Baru dari User',
+      subject: "📩 Pesan Pertanyaan Baru dari User",
       html: `
                     <div style="font-family: Arial, sans-serif; max-width: 600px; margin: auto; border: 1px solid #e0e0e0; border-radius: 8px; overflow: hidden;">
                         <div style="background-color: #1E40AF; color: white; padding: 16px; text-align: center;">
@@ -56,6 +56,14 @@ export async function POST(request) {
                             <td style="font-weight: bold; color: #555;">Phone Number</td>
                             <td style="color: #333;">${data.phone}</td>
                             </tr>
+                            <tr style="border-bottom: 1px solid #eee;">
+                            <td style="font-weight: bold; color: #555;">Domisili Provinsi</td>
+                            <td style="color: #333;">${data.domicileProvince || "-"}</td>
+                            </tr>
+                            <tr style="border-bottom: 1px solid #eee;">
+                            <td style="font-weight: bold; color: #555;">Domisili Kabupaten/Kota</td>
+                            <td style="color: #333;">${data.domicileRegency || "-"}</td>
+                            </tr>
                             <tr>
                             <td style="font-weight: bold; color: #555; vertical-align: top;">Pesan</td>
                             <td style="color: #333;">${data.message}</td>
@@ -69,8 +77,8 @@ export async function POST(request) {
                         © ${new Date().getFullYear()} Website Nichiha. All rights reserved.
                         </div>
                     </div>
-                    `
-    })
+                    `,
+    });
 
     return new Response(text, { status: 200 });
   } catch (error) {
