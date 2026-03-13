@@ -3,7 +3,7 @@ import AdminButton from "../components/AdminButton";
 
 export default function CTASection() {
   return (
-    <section className="h-full w-full flex flex-col self-stretch gap-8 bg-[#1E40AF] p-8 rounded-4xl">
+    <section className="h-full w-full flex flex-col justify-center self-stretch gap-8 bg-[#1E40AF] p-8 rounded-4xl">
       <div>
         <div>
           <h2 className="text-center font-semibold text-4xl text-white">
