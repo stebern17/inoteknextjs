@@ -15,6 +15,8 @@ export async function POST(request) {
     const occupation = String(data.occupation || "").trim();
     const needs = String(data.needs || "").trim();
     const catalogTitle = String(data.catalogTitle || "").trim();
+    const domicileProvince = String(data.domicileProvince || "").trim();
+    const domicileRegency = String(data.domicileRegency || "").trim();
 
     if (!name || !useremail || !phone || !occupation || !needs) {
       return new Response(
@@ -42,6 +44,8 @@ export async function POST(request) {
       name,
       email: useremail,
       phone,
+      domicileProvince,
+      domicileRegency,
       occupation,
       needs,
       catalogTitle,
