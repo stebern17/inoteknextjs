@@ -1,7 +1,14 @@
 "use client";
 
-import { useMemo, useState } from "react";
-import { Alert, Button, Label, TextInput } from "flowbite-react";
+import { useEffect, useMemo, useState } from "react";
+import {
+  Alert,
+  Button,
+  Dropdown,
+  DropdownItem,
+  Label,
+  TextInput,
+} from "flowbite-react";
 
 export default function EcatalogForm({ catalogTitle, onCancel, onSuccess }) {
   const [formData, setFormData] = useState({
@@ -10,6 +17,8 @@ export default function EcatalogForm({ catalogTitle, onCancel, onSuccess }) {
     phone: "",
     occupation: "",
     occupationOther: "",
+    domicileProvince: "",
+    domicileRegency: "",
     needs: "",
   });
 
@@ -23,6 +32,52 @@ export default function EcatalogForm({ catalogTitle, onCancel, onSuccess }) {
     "Home Owner",
     "Lainnya",
   ];
+  const [provinces, setProvinces] = useState([]);
+  const [regencies, setRegencies] = useState([]);
+  const [selectedProvince, setSelectedProvince] = useState(null);
+  const [selectedRegency, setSelectedRegency] = useState(null);
+  const [isProvinceLoading, setIsProvinceLoading] = useState(false);
+  const [isRegencyLoading, setIsRegencyLoading] = useState(false);
+
+  useEffect(() => {
+    const fetchProvinces = async () => {
+      setIsProvinceLoading(true);
+      try {
+        const res = await fetch("/api/wilayah/provinces");
+        const payload = await res.json();
+        const items = Array.isArray(payload) ? payload : payload?.data || [];
+        setProvinces(items);
+      } catch (error) {
+        setProvinces([]);
+      } finally {
+        setIsProvinceLoading(false);
+      }
+    };
+
+    fetchProvinces();
+  }, []);
+
+  useEffect(() => {
+    const fetchRegencies = async (provinceCode) => {
+      setIsRegencyLoading(true);
+      try {
+        const res = await fetch(`/api/wilayah/regencies/${provinceCode}`);
+        const payload = await res.json();
+        const items = Array.isArray(payload) ? payload : payload?.data || [];
+        setRegencies(items);
+      } catch (error) {
+        setRegencies([]);
+      } finally {
+        setIsRegencyLoading(false);
+      }
+    };
+
+    if (selectedProvince?.code) {
+      fetchRegencies(selectedProvince.code);
+    } else {
+      setRegencies([]);
+    }
+  }, [selectedProvince]);
 
   const message = useMemo(() => {
     const title = String(catalogTitle || "").trim();
@@ -45,6 +100,24 @@ export default function EcatalogForm({ catalogTitle, onCancel, onSuccess }) {
     });
   };
 
+  const handleProvinceSelect = (province) => {
+    setSelectedProvince(province);
+    setSelectedRegency(null);
+    setFormData((prev) => ({
+      ...prev,
+      domicileProvince: province?.name || "",
+      domicileRegency: "",
+    }));
+  };
+
+  const handleRegencySelect = (regency) => {
+    setSelectedRegency(regency);
+    setFormData((prev) => ({
+      ...prev,
+      domicileRegency: regency?.name || "",
+    }));
+  };
+
   const handleSubmit = async (e) => {
     e.preventDefault();
 
@@ -55,6 +128,11 @@ export default function EcatalogForm({ catalogTitle, onCancel, onSuccess }) {
 
     if (formData.occupation === "Lainnya" && resolvedOccupation.length === 0) {
       setStatus("occupationOtherRequired");
+      return;
+    }
+
+    if (!selectedProvince || !selectedRegency) {
+      setStatus("domicile-error");
       return;
     }
 
@@ -95,6 +173,9 @@ export default function EcatalogForm({ catalogTitle, onCancel, onSuccess }) {
       )}
       {status === "occupationOtherRequired" && (
         <Alert color="failure">Mohon isi pekerjaan lainnya.</Alert>
+      )}
+      {status === "domicile-error" && (
+        <Alert color="failure">Pilih domisili terlebih dahulu.</Alert>
       )}
 
       <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
@@ -201,6 +282,84 @@ export default function EcatalogForm({ catalogTitle, onCancel, onSuccess }) {
             />
           </div>
         )}
+
+        <div className="flex flex-col w-full">
+          <Label htmlFor="ecatalog-domicile-province">
+            Domisili - Provinsi <span className="text-red-500">*</span>
+          </Label>
+          <Dropdown
+            dismissOnClick
+            renderTrigger={() => (
+              <button
+                id="ecatalog-domicile-province"
+                className="inline-flex items-center justify-center text-white bg-[#1E40AF] rounded-lg border border-transparent hover:bg-brand-strong focus:ring-4 focus:ring-brand-medium shadow-xs font-medium text-sm px-4 py-2.5 disabled:opacity-60"
+                type="button"
+                disabled={isSubmitting}
+              >
+                {selectedProvince?.name ||
+                  (isProvinceLoading ? "Memuat provinsi..." : "Pilih provinsi")}
+              </button>
+            )}
+          >
+            <div className="max-h-64 overflow-y-auto">
+              {provinces.length === 0 && !isProvinceLoading && (
+                <DropdownItem disabled>Tidak ada data provinsi.</DropdownItem>
+              )}
+
+              {provinces.map((province) => (
+                <DropdownItem
+                  key={province.code}
+                  onClick={() => handleProvinceSelect(province)}
+                >
+                  {province.name}
+                </DropdownItem>
+              ))}
+            </div>
+          </Dropdown>
+        </div>
+
+        <div className="flex flex-col w-full">
+          <Label htmlFor="ecatalog-domicile-regency">
+            Domisili - Kabupaten/Kota <span className="text-red-500">*</span>
+          </Label>
+          <Dropdown
+            dismissOnClick
+            renderTrigger={() => (
+              <button
+                id="ecatalog-domicile-regency"
+                className="inline-flex items-center justify-center text-white bg-[#1E40AF] rounded-lg border border-transparent hover:bg-brand-strong focus:ring-4 focus:ring-brand-medium shadow-xs font-medium text-sm px-4 py-2.5 disabled:opacity-60"
+                type="button"
+                disabled={!selectedProvince || isRegencyLoading || isSubmitting}
+              >
+                {!selectedProvince
+                  ? "Pilih provinsi dulu"
+                  : selectedRegency?.name ||
+                    (isRegencyLoading
+                      ? "Memuat kabupaten/kota..."
+                      : "Pilih kabupaten/kota")}
+              </button>
+            )}
+          >
+            <div className="max-h-64 overflow-y-auto">
+              {selectedProvince &&
+                regencies.length === 0 &&
+                !isRegencyLoading && (
+                  <DropdownItem disabled>
+                    Tidak ada data kabupaten/kota.
+                  </DropdownItem>
+                )}
+
+              {regencies.map((regency) => (
+                <DropdownItem
+                  key={regency.code}
+                  onClick={() => handleRegencySelect(regency)}
+                >
+                  {regency.name}
+                </DropdownItem>
+              ))}
+            </div>
+          </Dropdown>
+        </div>
       </div>
       <div>
         <label
