@@ -25,11 +25,11 @@ export default function EcatalogForm({ catalogTitle, onCancel, onSuccess }) {
   const [status, setStatus] = useState(null);
   const [isSubmitting, setIsSubmitting] = useState(false);
   const occupationOptions = [
-    "Arsitek",
-    "Developer",
-    "Kontraktor/Aplikator",
-    "Desainer (Interior/Exterior)",
     "Home Owner",
+    "Project Owner/Developer",
+    "Arsitek/Desainer",
+    "Kontraktor",
+    "Aplikator",
     "Lainnya",
   ];
   const [provinces, setProvinces] = useState([]);
