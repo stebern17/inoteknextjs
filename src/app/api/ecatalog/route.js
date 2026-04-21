@@ -10,7 +10,6 @@ export async function POST(request) {
     }
 
     const name = String(data.name || "").trim();
-    const useremail = String(data.useremail || "").trim();
     const phone = String(data.phone || "").trim();
     const occupation = String(data.occupation || "").trim();
     const needs = String(data.needs || "").trim();
@@ -18,10 +17,10 @@ export async function POST(request) {
     const domicileProvince = String(data.domicileProvince || "").trim();
     const domicileRegency = String(data.domicileRegency || "").trim();
 
-    if (!name || !useremail || !phone || !occupation || !needs) {
+    if (!name || !phone || !occupation || !needs) {
       return new Response(
         JSON.stringify({
-          error: "name, useremail, phone, occupation, and needs are required",
+          error: "name, phone, occupation, and needs are required",
         }),
         { status: 400, headers: { "Content-Type": "application/json" } },
       );
@@ -42,7 +41,6 @@ export async function POST(request) {
       type: "ecatalog",
       timestamp: new Date().toISOString(),
       name,
-      email: useremail,
       phone,
       domicileProvince,
       domicileRegency,
@@ -53,13 +51,6 @@ export async function POST(request) {
       userAgent: request.headers.get("user-agent") || "",
     };
 
-    const body = JSON.stringify(payload);
-    const baseFetchOptions = {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body,
-      cache: "no-store",
-    };
     const res = await fetch(webhookUrl, {
       method: "POST",
       headers: { "Content-Type": "application/json" },

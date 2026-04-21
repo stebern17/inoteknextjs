@@ -1,5 +1,5 @@
 export async function GET(request, { params }) {
-  const routeCode = params?.provinceCode;
+  const { provinceCode: routeCode } = await params;
   const url = new URL(request.url);
   const pathParts = url.pathname.split("/").filter(Boolean);
   const pathCode = pathParts[pathParts.length - 1];

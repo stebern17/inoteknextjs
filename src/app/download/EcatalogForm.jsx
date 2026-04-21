@@ -13,7 +13,6 @@ import {
 export default function EcatalogForm({ catalogTitle, onCancel, onSuccess }) {
   const [formData, setFormData] = useState({
     name: "",
-    useremail: "",
     phone: "",
     occupation: "",
     occupationOther: "",
@@ -180,7 +179,7 @@ export default function EcatalogForm({ catalogTitle, onCancel, onSuccess }) {
       )}
 
       <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-        <div className="flex flex-col w-full">
+        <div className="flex flex-col w-full sm:col-span-2">
           <Label htmlFor="ecatalog-name">
             Nama <span className="text-red-500">*</span>
           </Label>
@@ -189,21 +188,6 @@ export default function EcatalogForm({ catalogTitle, onCancel, onSuccess }) {
             name="name"
             type="text"
             value={formData.name}
-            onChange={handleChange}
-            required
-            disabled={isSubmitting}
-          />
-        </div>
-
-        <div className="flex flex-col w-full">
-          <Label htmlFor="ecatalog-email">
-            Email <span className="text-red-500">*</span>
-          </Label>
-          <TextInput
-            id="ecatalog-email"
-            name="useremail"
-            type="email"
-            value={formData.useremail}
             onChange={handleChange}
             required
             disabled={isSubmitting}
