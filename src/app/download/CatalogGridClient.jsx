@@ -56,7 +56,7 @@ export default function CatalogGridClient({ initialCatalogs = [] }) {
             onClick={() => openModal(catalog)}
             className="text-left shadow-[4px_4px_2px_0_rgba(0,0,0,0.25)] hover:shadow-lg transition-shadow duration-300 rounded-lg"
           >
-            <div className="bg-white lg:h-[400px] 2xl:h-[600px] rounded-lg shadow-md overflow-hidden flex flex-col cursor-pointer">
+            <div className="bg-white lg:h-[200px] 2xl:h-[400px] rounded-lg shadow-md overflow-hidden flex flex-col cursor-pointer">
               <img
                 src={catalog.coverImage}
                 alt={catalog.title}

@@ -57,12 +57,6 @@ function Footer() {
           <div className="space-y-3">
             <h2 className="text-lg font-semibold text-[#0253AE]">Kontak</h2>
             <div className="flex items-center gap-2 text-sm text-gray-700">
-              <img src="/icons/Email.svg" alt="email" className="w-5 h-5" />
-              <p className="break-all leading-snug">
-                info@inotekkaryamandiri.com
-              </p>
-            </div>
-            <div className="flex items-center gap-2 text-sm text-gray-700">
               <img
                 src="/icons/TelponIcon.svg"
                 alt="phone"

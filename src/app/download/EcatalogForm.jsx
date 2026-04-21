@@ -30,6 +30,7 @@ export default function EcatalogForm({ catalogTitle, onCancel, onSuccess }) {
     "Arsitek/Desainer",
     "Kontraktor",
     "Aplikator",
+    "Konsultan",
     "Lainnya",
   ];
   const [provinces, setProvinces] = useState([]);
